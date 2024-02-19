@@ -1,0 +1,10 @@
+.opendiv {
+  display: none;
+}
+.click-opendiv{
+    cursor: pointer;
+}
+
+.click-opendiv:focus + .opendiv {
+  display: block;
+}
