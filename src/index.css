@@ -39,6 +39,7 @@ div[theme-mode="light"] {
   --background-body: rgb(253, 253, 253);
   --color-box: rgb(255, 255, 255);
   --color-box-shadow: rgb(244, 245, 248);
+  --color-menu: rgba(255, 255, 255, 0.4);
 
   --bg-secend-100: rgb(145, 158, 171);
   --bg-secend-200: rgb(207, 208, 209);
@@ -84,9 +85,15 @@ div[theme-mode="dark"] {
   /* Background ---------------- */
   /* --------------------------- */
 
-  --background-body: rgb(18, 22, 29);
+  --background-body: rgb(13, 16, 19);
   --color-box: rgb(33, 43, 54);
   --color-box-shadow: rgb(13, 16, 19);
+  --color-menu: rgba(18, 22, 29, 0.4);
+
+  --bg-secend-100: rgb(41, 52, 64);
+  --bg-secend-200: rgb(207, 208, 209);
+  --bg-secend-300: rgb(32, 39, 49);
+  --bg-secend-400: rgb(32, 39, 49);
 
   /* TEXT COLOR ---------------- */
   /* --------------------------- */
@@ -139,6 +146,7 @@ div[theme-mode="dark"][box-theme="neon"] {
 
 .transt {
   transition: all 0.4s;
+  background-color: var(--color-menu);
   -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
 }

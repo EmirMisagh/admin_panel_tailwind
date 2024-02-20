@@ -1,6 +1,6 @@
 const initialState = {
      darkmode: false,
-     boxtheme: false,
+     boxtheme: true,
      notification: false,
      color: 'bluesky'
  }

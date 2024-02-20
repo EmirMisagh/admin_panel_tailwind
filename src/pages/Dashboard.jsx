@@ -24,7 +24,7 @@ function Dashboard() {
         <div
           className={`sidebar  ${
             sidebar ? "col-span-2" : "col-span-1"
-          } border-r border-gray400 relative h-full top-0`}
+          } border-r border-color_border_500 relative h-full top-0`}
         >
           <Sidebar />
         </div>

@@ -6,17 +6,15 @@ import {
   BsBank2,
   BsFillFileMusicFill,
 } from "react-icons/bs";
-import { MdKeyboardArrowRight } from "react-icons/md";
-import { BiSolidUserRectangle } from "react-icons/bi";
+import { MdKeyboardArrowRight, MdPlaylistAddCircle } from "react-icons/md";
+import { BiSolidUserRectangle, BiSolidMicrophoneAlt } from "react-icons/bi";
+import { RiAlbumFill } from "react-icons/ri";
 import { useSelector } from "react-redux";
 
-
 function Sidebar() {
-  const { sidebar } = useSelector(
-    (state) => ({
-      sidebar: state.menuReducer.sidebar,
-    })
-  );
+  const { sidebar } = useSelector((state) => ({
+    sidebar: state.menuReducer.sidebar,
+  }));
   return (
     <div
       className={` w-full h-[100vh]  sticky  top-0 left-0 m-0 ${
@@ -37,7 +35,7 @@ function Sidebar() {
           OVERVIEW
         </span>
         <div className="mt-3">
-          <ItemOverview title={"App"} address={"/"} icon={<BsSpeedometer />}  />
+          <ItemOverview title={"App"} address={"/"} icon={<BsSpeedometer />} />
           <ItemOverview
             title={"Commerce"}
             address={"/"}
@@ -62,11 +60,25 @@ function Sidebar() {
             address={"/"}
             icon={<BiSolidUserRectangle />}
           />
-          <div className="opendiv">amir</div>
           <ItemSide
             title={"Song"}
             address={"/"}
             icon={<BsFillFileMusicFill />}
+          />
+          <ItemSide
+            title={"Playlist"}
+            address={"/"}
+            icon={<MdPlaylistAddCircle />}
+          />
+          <ItemSide
+            title={"Album"}
+            address={"/"}
+            icon={<RiAlbumFill />}
+          />
+          <ItemSide
+            title={"Singer"}
+            address={"/"}
+            icon={<BiSolidMicrophoneAlt />}
           />
         </div>
       </div>
@@ -75,11 +87,9 @@ function Sidebar() {
 }
 
 function ItemOverview({ title, address, icon }) {
-  const { sidebar } = useSelector(
-    (state) => ({
-      sidebar: state.menuReducer.sidebar,
-    })
-  );
+  const { sidebar } = useSelector((state) => ({
+    sidebar: state.menuReducer.sidebar,
+  }));
   const downHandle = (e) => {
     e.target.classList.add("btn");
     e.target.classList.remove("hover:bg-bg_secend_400");
@@ -104,11 +114,11 @@ function ItemOverview({ title, address, icon }) {
                     w-full 
                     rounded-lg 
                     ${
-                        sidebar
+                      sidebar
                         ? "text-left  justify-between  "
                         : " text-center justify-center"
                     } 
-                    text-textgray300 
+                    text-textSecond_300
                     focus:outline-none 
                     font-Libre
                     bg-none  
@@ -137,11 +147,9 @@ function ItemOverview({ title, address, icon }) {
 }
 
 function ItemSide({ title, address, icon }) {
-    const { sidebar } = useSelector(
-        (state) => ({
-          sidebar: state.menuReducer.sidebar,
-        })
-      );
+  const { sidebar } = useSelector((state) => ({
+    sidebar: state.menuReducer.sidebar,
+  }));
   const [openDiv, setOpenDiv] = useState(false);
 
   const downHandle = (e) => {
@@ -168,11 +176,11 @@ function ItemSide({ title, address, icon }) {
                     w-full 
                     rounded-lg 
                     ${
-                        sidebar
+                      sidebar
                         ? "text-left  justify-between  "
                         : " text-center justify-center"
                     } 
-                    text-textgray300 
+                    text-textSecond_300
                     focus:outline-none 
                     font-Libre
                     bg-none  
@@ -199,7 +207,7 @@ function ItemSide({ title, address, icon }) {
         >
           <i
             className={` ${
-                sidebar ? " text-lg " : "text-xs  "
+              sidebar ? " text-lg " : "text-xs  "
             } pointer-events-none`}
           >
             {icon}
@@ -225,11 +233,9 @@ function ItemSide({ title, address, icon }) {
 }
 
 function Item({ title, address, icon }) {
-    const { sidebar } = useSelector(
-        (state) => ({
-          sidebar: state.menuReducer.sidebar,
-        })
-      );
+  const { sidebar } = useSelector((state) => ({
+    sidebar: state.menuReducer.sidebar,
+  }));
 
   const downHandle = (e) => {
     e.target.classList.add("btn");
@@ -254,9 +260,7 @@ function Item({ title, address, icon }) {
       w-full 
       rounded-lg 
       ${
-        sidebar
-          ? "text-left  justify-between  "
-          : " text-center justify-center"
+        sidebar ? "text-left  justify-between  " : " text-center justify-center"
       } 
       text-textSecond_400 
       focus:outline-none 
@@ -276,7 +280,7 @@ function Item({ title, address, icon }) {
                   ? "px-4 text-left  justify-start text-sm "
                   : "px-2 text-center justify-center text-[0.7rem]"
               } 
-              py-3   hover:bg-bg_secend_400`}
+              py-3   hover:bg-bg_secend_100`}
       >
         <span className="w-1 icon h-1 rounded-full bg-bg_secend_100"></span>
         {title}

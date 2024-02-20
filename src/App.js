@@ -16,7 +16,7 @@ function App() {
   }));
   return (
     <div
-      className="bg-background_body p-2"
+      className="bg-background_body px-2"
       theme-mode={darkmode ? "dark" : "light"}
       box-theme={boxtheme ? "defult" : "neon"}
     >

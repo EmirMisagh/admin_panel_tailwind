@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 export default function Topbar() {
   const dispatch = useDispatch();
   return (
-    <div className="w-full sticky top-0 left-0 z-30 text-textSecond_200 transt backdrop:blur-3xl">
+    <div className="w-full sticky top-0 left-0 z-30 text-textSecond_200 transt ">
       <div className="relative items-center">
         <nav className="px-12 py-5 flex justify-between items-center">
           <ul className="flex items-center">
@@ -55,9 +55,7 @@ export default function Topbar() {
             </li>
           </ul>
         </nav>
-        <div className="w-full absolute left-0 top-0 h-full flex items-center bg-menu z-[-1] transt">
-          <div className="blur-xs h-full w-full bg-menu transt"></div>
-        </div>
+      
       </div>
     </div>
   );
