@@ -36,6 +36,18 @@ module.exports = {
 
           // Theme ----------------
 
+      },
+      borderColor: {
+        color_border_50: withOpacity("--color-border-50"),
+        color_border_100: withOpacity("--color-border-100"),
+        color_border_200: withOpacity("--color-border-200"),
+        color_border_300: withOpacity("--color-border-300"),
+        color_border_400: withOpacity("--color-border-400"),
+        color_border_500: withOpacity("--color-border-500"),
+        color_border_600: withOpacity("--color-border-600"),
+        color_border_700: withOpacity("--color-border-700"),
+        color_border_800: withOpacity("--color-border-800"),
+        color_border_900: withOpacity("--color-border-900"),
       }
     },
   },

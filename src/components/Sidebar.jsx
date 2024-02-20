@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useSidebarMode } from "../context/MenuContext";
 import { NavLink } from "react-router-dom";
 import {
   BsSpeedometer,
@@ -9,13 +8,19 @@ import {
 } from "react-icons/bs";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { BiSolidUserRectangle } from "react-icons/bi";
+import { useSelector } from "react-redux";
+
 
 function Sidebar() {
-  const [sidebarMode] = useSidebarMode();
+  const { sidebar } = useSelector(
+    (state) => ({
+      sidebar: state.menuReducer.sidebar,
+    })
+  );
   return (
     <div
       className={` w-full h-[100vh]  sticky  top-0 left-0 m-0 ${
-        sidebarMode ? "px-3" : "px-3"
+        sidebar ? "px-3" : "px-3"
       }  py-5 font-Libre`}
     >
       <div className="flex justify-center font-Libre text-textSecond_400 ">
@@ -24,7 +29,7 @@ function Sidebar() {
       <div className="mt-10">
         <span
           className={`uppercase text-textSecond_700 text-xs flex  ${
-            sidebarMode
+            sidebar
               ? "text-left  justify-between  "
               : " text-center justify-center"
           }`}
@@ -32,7 +37,7 @@ function Sidebar() {
           OVERVIEW
         </span>
         <div className="mt-3">
-          <ItemOverview title={"App"} address={"/"} icon={<BsSpeedometer />} />
+          <ItemOverview title={"App"} address={"/"} icon={<BsSpeedometer />}  />
           <ItemOverview
             title={"Commerce"}
             address={"/"}
@@ -44,7 +49,7 @@ function Sidebar() {
       <div className="mt-4">
         <span
           className={`uppercase text-textSecond_700 text-xs flex  ${
-            sidebarMode
+            sidebar
               ? "text-left  justify-between  "
               : " text-center justify-center"
           }`}
@@ -70,8 +75,11 @@ function Sidebar() {
 }
 
 function ItemOverview({ title, address, icon }) {
-  const [sidebarMode] = useSidebarMode();
-
+  const { sidebar } = useSelector(
+    (state) => ({
+      sidebar: state.menuReducer.sidebar,
+    })
+  );
   const downHandle = (e) => {
     e.target.classList.add("btn");
     e.target.classList.remove("hover:bg-bg_secend_400");
@@ -96,7 +104,7 @@ function ItemOverview({ title, address, icon }) {
                     w-full 
                     rounded-lg 
                     ${
-                      sidebarMode
+                        sidebar
                         ? "text-left  justify-between  "
                         : " text-center justify-center"
                     } 
@@ -112,9 +120,9 @@ function ItemOverview({ title, address, icon }) {
           onMouseDown={(e) => downHandle(e)}
           onMouseUp={(e) => upHandle(e)}
           onClick={(e) => clickHandle(e)}
-          className={`w-full h-full flex items-center text-sm font-bold
+          className={`w-full h-full flex items-center text-sm 
               ${
-                sidebarMode
+                sidebar
                   ? "px-4 text-left  justify-start flex-row gap-3"
                   : "px-2 text-center justify-center flex-col gap-1"
               } 
@@ -129,7 +137,11 @@ function ItemOverview({ title, address, icon }) {
 }
 
 function ItemSide({ title, address, icon }) {
-  const [sidebarMode] = useSidebarMode();
+    const { sidebar } = useSelector(
+        (state) => ({
+          sidebar: state.menuReducer.sidebar,
+        })
+      );
   const [openDiv, setOpenDiv] = useState(false);
 
   const downHandle = (e) => {
@@ -156,7 +168,7 @@ function ItemSide({ title, address, icon }) {
                     w-full 
                     rounded-lg 
                     ${
-                      sidebarMode
+                        sidebar
                         ? "text-left  justify-between  "
                         : " text-center justify-center"
                     } 
@@ -174,20 +186,20 @@ function ItemSide({ title, address, icon }) {
         onClick={(e) => clickHandle(e)}
         className={`w-full h-full flex items-center text-sm rounded-lg
               ${
-                sidebarMode
+                sidebar
                   ? "px-4 text-left  justify-between flex-row gap-3"
                   : " text-center justify-center  gap-1"
               } 
               py-3   hover:bg-bg_secend_400 relative`}
       >
         <span
-          className={`flex items-center gap-3 w-full h-full pointer-events-none font-bold ${
-            sidebarMode ? " flex-row " : "text-xs flex-col "
+          className={`flex items-center gap-3 w-full h-full pointer-events-none ${
+            sidebar ? " flex-row " : "text-xs flex-col "
           } `}
         >
           <i
             className={` ${
-              sidebarMode ? " text-lg " : "text-xs  "
+                sidebar ? " text-lg " : "text-xs  "
             } pointer-events-none`}
           >
             {icon}
@@ -213,7 +225,11 @@ function ItemSide({ title, address, icon }) {
 }
 
 function Item({ title, address, icon }) {
-  const [sidebarMode] = useSidebarMode();
+    const { sidebar } = useSelector(
+        (state) => ({
+          sidebar: state.menuReducer.sidebar,
+        })
+      );
 
   const downHandle = (e) => {
     e.target.classList.add("btn");
@@ -238,7 +254,7 @@ function Item({ title, address, icon }) {
       w-full 
       rounded-lg 
       ${
-        sidebarMode
+        sidebar
           ? "text-left  justify-between  "
           : " text-center justify-center"
       } 
@@ -256,7 +272,7 @@ function Item({ title, address, icon }) {
         onClick={(e) => clickHandle(e)}
         className={`w-full h-full flex justify-start items-center gap-3 
               ${
-                sidebarMode
+                sidebar
                   ? "px-4 text-left  justify-start text-sm "
                   : "px-2 text-center justify-center text-[0.7rem]"
               } 

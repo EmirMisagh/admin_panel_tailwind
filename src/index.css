@@ -11,6 +11,7 @@ body {
   overflow: hidden;
   -moz-osx-font-smoothing: grayscale;
   letter-spacing: 1px;
+  transition: all 0.3s;
 }
 
 html {
@@ -134,4 +135,10 @@ div[theme-mode="dark"][box-theme="neon"] {
   border-radius: 100px;
   height: 50%;
   width: 0;
+}
+
+.transt {
+  transition: all 0.4s;
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
 }

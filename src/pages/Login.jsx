@@ -8,10 +8,10 @@ function Login() {
   return (
     <div className="flex justify-center items-center w-full h-[100vh]">
       <div className="box p-20">
-        <button onClick={loginMode.toggleMode}>Login</button>
+        <button onClick={loginMode.toggleLoginMode}>Login</button>
       </div>
       <div className="box p-20">
-        <button onClick={darkMode.toggleMode}>Dark</button>
+        <button onClick={darkMode.toggleLoginMode}>Dark</button>
       </div>
     </div>
   );
