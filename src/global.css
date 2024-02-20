@@ -1,10 +1,366 @@
 .opendiv {
   display: none;
 }
-.click-opendiv{
-    cursor: pointer;
+.click-opendiv {
+  cursor: pointer;
 }
 
 .click-opendiv:focus + .opendiv {
   display: block;
+}
+
+div[theme-mode="light"] .btn {
+  animation: gradient 300ms;
+  background: rgb(207, 207, 207);
+}
+
+div[theme-mode="dark"] .btn {
+  animation: gradientDay 300ms;
+  background: rgb(48, 56, 65);
+}
+
+@keyframes gradient {
+  0% {
+    background: radial-gradient(
+      circle at center,
+      rgba(207, 207, 207, 0.9) 0%,
+      rgb(237, 237, 237) 0%,
+      rgb(237, 237, 237) 100%
+    );
+  }
+  5% {
+    background: radial-gradient(
+      circle at center,
+      rgba(207, 207, 207, 0.9) 5%,
+      rgb(237, 237, 237) 0%,
+      rgb(237, 237, 237) 100%
+    );
+  }
+  10% {
+    background: radial-gradient(
+      circle at center,
+      rgb(207, 207, 207) 10%,
+      rgb(237, 237, 237) 0%,
+      rgb(237, 237, 237) 100%
+    );
+  }
+  15% {
+    background: radial-gradient(
+      circle at center,
+      rgb(207, 207, 207) 15%,
+      rgb(237, 237, 237) 0%,
+      rgb(237, 237, 237) 100%
+    );
+  }
+  20% {
+    background: radial-gradient(
+      circle at center,
+      rgb(207, 207, 207) 20%,
+      rgb(237, 237, 237) 0%,
+      rgb(237, 237, 237) 100%
+    );
+  }
+  25% {
+    background: radial-gradient(
+      circle at center,
+      rgb(207, 207, 207) 25%,
+      rgb(237, 237, 237) 25%,
+      rgb(237, 237, 237) 100%
+    );
+  }
+  30% {
+    background: radial-gradient(
+      circle at center,
+      rgb(207, 207, 207) 30%,
+      rgb(237, 237, 237) 25%,
+      rgb(237, 237, 237) 100%
+    );
+  }
+  35% {
+    background: radial-gradient(
+      circle at center,
+      rgb(207, 207, 207) 35%,
+      rgb(237, 237, 237) 25%,
+      rgb(237, 237, 237) 100%
+    );
+  }
+  40% {
+    background: radial-gradient(
+      circle at center,
+      rgb(207, 207, 207) 40%,
+      rgb(237, 237, 237) 25%,
+      rgb(237, 237, 237) 100%
+    );
+  }
+  45% {
+    background: radial-gradient(
+      circle at center,
+      rgb(207, 207, 207) 45%,
+      rgb(237, 237, 237) 25%,
+      rgb(237, 237, 237) 100%
+    );
+  }
+  50% {
+    background: radial-gradient(
+      circle at center,
+      rgb(207, 207, 207) 50%,
+      rgb(237, 237, 237) 50%,
+      rgb(237, 237, 237) 100%
+    );
+  }
+  55% {
+    background: radial-gradient(
+      circle at center,
+      rgb(207, 207, 207) 55%,
+      rgb(237, 237, 237) 50%,
+      rgb(237, 237, 237) 100%
+    );
+  }
+  60% {
+    background: radial-gradient(
+      circle at center,
+      rgb(207, 207, 207) 60%,
+      rgb(237, 237, 237) 50%,
+      rgb(237, 237, 237) 100%
+    );
+  }
+  65% {
+    background: radial-gradient(
+      circle at center,
+      rgb(207, 207, 207) 65%,
+      rgb(237, 237, 237) 50%,
+      rgb(237, 237, 237) 100%
+    );
+  }
+  70% {
+    background: radial-gradient(
+      circle at center,
+      rgb(207, 207, 207) 70%,
+      rgb(237, 237, 237) 50%,
+      rgb(237, 237, 237) 100%
+    );
+  }
+  75% {
+    background: radial-gradient(
+      circle at center,
+      rgb(207, 207, 207) 75%,
+      rgb(237, 237, 237) 75%,
+      rgb(237, 237, 237) 100%
+    );
+  }
+  80% {
+    background: radial-gradient(
+      circle at center,
+      rgb(207, 207, 207) 80%,
+      rgb(237, 237, 237) 75%,
+      rgb(237, 237, 237) 100%
+    );
+  }
+  85% {
+    background: radial-gradient(
+      circle at center,
+      rgb(207, 207, 207) 85%,
+      rgb(237, 237, 237) 75%,
+      rgb(237, 237, 237) 100%
+    );
+  }
+  90% {
+    background: radial-gradient(
+      circle at center,
+      rgb(207, 207, 207) 90%,
+      rgb(237, 237, 237) 75%,
+      rgb(237, 237, 237) 100%
+    );
+  }
+  95% {
+    background: radial-gradient(
+      circle at center,
+      rgb(207, 207, 207) 95%,
+      rgb(237, 237, 237) 75%,
+      rgb(237, 237, 237) 100%
+    );
+  }
+  100% {
+    background: radial-gradient(
+      circle at center,
+      rgb(206, 206, 209) 99%,
+      rgb(237, 237, 237) 100%,
+      rgb(237, 237, 237) 100%
+    );
+  }
+}
+
+@keyframes gradientDay {
+  0% {
+    background: radial-gradient(
+      circle at center,
+      rgba(48, 56, 65, 0) 0%,
+      rgb(32, 39, 49) 0%,
+      rgb(32, 39, 49) 100%
+    );
+  }
+  5% {
+    background: radial-gradient(
+      circle at center,
+      rgba(48, 56, 65, 0) 5%,
+      rgb(32, 39, 49) 0%,
+      rgb(32, 39, 49) 100%
+    );
+  }
+  10% {
+    background: radial-gradient(
+      circle at center,
+      rgb(48, 56, 65) 10%,
+      rgb(32, 39, 49) 0%,
+      rgb(32, 39, 49) 100%
+    );
+  }
+  15% {
+    background: radial-gradient(
+      circle at center,
+      rgb(48, 56, 65) 15%,
+      rgb(32, 39, 49) 0%,
+      rgb(32, 39, 49) 100%
+    );
+  }
+  20% {
+    background: radial-gradient(
+      circle at center,
+      rgb(48, 56, 65) 20%,
+      rgb(32, 39, 49) 0%,
+      rgb(32, 39, 49) 100%
+    );
+  }
+  25% {
+    background: radial-gradient(
+      circle at center,
+      rgb(48, 56, 65) 25%,
+      rgb(32, 39, 49) 25%,
+      rgb(32, 39, 49) 100%
+    );
+  }
+  30% {
+    background: radial-gradient(
+      circle at center,
+      rgb(48, 56, 65) 30%,
+      rgb(32, 39, 49) 25%,
+      rgb(32, 39, 49) 100%
+    );
+  }
+  35% {
+    background: radial-gradient(
+      circle at center,
+      rgb(48, 56, 65) 35%,
+      rgb(32, 39, 49) 25%,
+      rgb(32, 39, 49) 100%
+    );
+  }
+  40% {
+    background: radial-gradient(
+      circle at center,
+      rgb(48, 56, 65) 40%,
+      rgb(32, 39, 49) 25%,
+      rgb(32, 39, 49) 100%
+    );
+  }
+  45% {
+    background: radial-gradient(
+      circle at center,
+      rgb(48, 56, 65) 45%,
+      rgb(32, 39, 49) 25%,
+      rgb(32, 39, 49) 100%
+    );
+  }
+  50% {
+    background: radial-gradient(
+      circle at center,
+      rgb(48, 56, 65) 50%,
+      rgb(32, 39, 49) 50%,
+      rgb(32, 39, 49) 100%
+    );
+  }
+  55% {
+    background: radial-gradient(
+      circle at center,
+      rgb(48, 56, 65) 55%,
+      rgb(32, 39, 49) 50%,
+      rgb(32, 39, 49) 100%
+    );
+  }
+  60% {
+    background: radial-gradient(
+      circle at center,
+      rgb(48, 56, 65) 60%,
+      rgb(32, 39, 49) 50%,
+      rgb(32, 39, 49) 100%
+    );
+  }
+  65% {
+    background: radial-gradient(
+      circle at center,
+      rgb(48, 56, 65) 65%,
+      rgb(32, 39, 49) 50%,
+      rgb(32, 39, 49) 100%
+    );
+  }
+  70% {
+    background: radial-gradient(
+      circle at center,
+      rgb(48, 56, 65) 70%,
+      rgb(32, 39, 49) 50%,
+      rgb(32, 39, 49) 100%
+    );
+  }
+  75% {
+    background: radial-gradient(
+      circle at center,
+      rgb(48, 56, 65) 75%,
+      rgb(32, 39, 49) 75%,
+      rgb(32, 39, 49) 100%
+    );
+  }
+  80% {
+    background: radial-gradient(
+      circle at center,
+      rgb(48, 56, 65) 80%,
+      rgb(32, 39, 49) 75%,
+      rgb(32, 39, 49) 100%
+    );
+  }
+  85% {
+    background: radial-gradient(
+      circle at center,
+      rgb(48, 56, 65) 85%,
+      rgb(32, 39, 49) 75%,
+      rgb(32, 39, 49) 100%
+    );
+  }
+  90% {
+    background: radial-gradient(
+      circle at center,
+      rgb(48, 56, 65) 90%,
+      rgb(32, 39, 49) 75%,
+      rgb(32, 39, 49) 100%
+    );
+  }
+  95% {
+    background: radial-gradient(
+      circle at center,
+      rgb(48, 56, 65) 95%,
+      rgb(32, 39, 49) 75%,
+      rgb(32, 39, 49) 100%
+    );
+  }
+  100% {
+    background: radial-gradient(
+      circle at center,
+      rgb(48, 56, 65) 99%,
+      rgb(32, 39, 49) 100%,
+      rgb(32, 39, 49) 100%
+    );
+  }
+}
+
+.disabled {
+  pointer-events: none;
 }

@@ -25,7 +25,7 @@ export const useDarkMode = () => {
 };
 
 export const SidebarModeContext = createContext({
-  toggleLoginMode: () => {},
+  toggleMode: () => {},
 });
 
 export const useSidebarMode = () => {
@@ -33,7 +33,7 @@ export const useSidebarMode = () => {
 
   const sidebarModeHandle = useMemo(
     () => ({
-      toggleLoginMode: () => {
+      toggleMode: () => {
         setSidebarMode(!sidebarMode);
       },
     }),
@@ -41,4 +41,23 @@ export const useSidebarMode = () => {
   );
 
   return [sidebarMode, sidebarModeHandle];
+};
+
+export const SettingModeContext = createContext({
+  toggleLoginMode: () => {},
+});
+
+export const useSettingMode = () => {
+  const [settingMode, setSettingMode] = useState(true);
+
+  const settingModeHandle = useMemo(
+    () => ({
+      toggleMode: () => {
+        setSettingMode(!settingMode);
+      },
+    }),
+    [settingMode]
+  );
+
+  return [settingMode, settingModeHandle];
 };

@@ -14,6 +14,11 @@ module.exports = {
         // Background ----------------
         background_body: withOpacity("--background-body"),
 
+        bg_secend_100: withOpacity("--bg-secend-100"),
+        bg_secend_200: withOpacity("--bg-secend-200"),
+        bg_secend_300: withOpacity("--bg-secend-300"),
+        bg_secend_400: withOpacity("--bg-secend-400"),
+
       },
       textColor: {
 
