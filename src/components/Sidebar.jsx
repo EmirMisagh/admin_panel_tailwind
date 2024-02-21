@@ -18,82 +18,96 @@ function Sidebar() {
   const dispatch = useDispatch();
   return (
     <div
-      className={`transition-all delay-700 w-full h-[100vh]  sticky  top-0 left-0 m-0 ${
-        sidebar ? "px-3" : "px-3"
-      }  py-5 font-Libre`}
+      className={`transition-all delay-700 w-full h-[100vh]  sticky top-0 left-0 m-0 py-5 font-Libre`}
     >
-      <div className="flex justify-center font-Libre text-textSecond_400 ">
-        Admin
-      </div>
-      <div className="mt-10">
-        <span
-          className={`uppercase text-textSecond_700 text-xs flex  ${
-            sidebar
-              ? "text-left  justify-between  "
-              : " text-center justify-center"
+      <div className="w-full h-full relative">
+        <div className="flex justify-center font-Libre text-textSecond_400 py-6">
+          Admin
+        </div>
+        <div
+          className={`relative w-full overflow-y-scroll overflow-x-hidden h-[80vh] notscroll ${
+            sidebar ? "px-3" : "px-3"
           }`}
         >
-          OVERVIEW
-        </span>
-        <div className="mt-3">
-          <ItemOverview title={"App"} address={"/"} icon={<BsSpeedometer />} />
-          <ItemOverview
-            title={"Commerce"}
-            address={"/"}
-            icon={<BsBarChartLineFill />}
-          />
-          <ItemOverview title={"Analytics"} address={"/"} icon={<BsBank2 />} />
+          <div className="mt-10">
+            <span
+              className={`uppercase text-textSecond_700 text-xs flex  ${
+                sidebar
+                  ? "text-left  justify-between  "
+                  : " text-center justify-center"
+              }`}
+            >
+              OVERVIEW
+            </span>
+            <div className="mt-3">
+              <ItemOverview
+                title={"App"}
+                address={"/"}
+                icon={<BsSpeedometer />}
+              />
+              <ItemOverview
+                title={"Commerce"}
+                address={"/"}
+                icon={<BsBarChartLineFill />}
+              />
+              <ItemOverview
+                title={"Analytics"}
+                address={"/"}
+                icon={<BsBank2 />}
+              />
+            </div>
+          </div>
+          <div className="mt-4">
+            <span
+              className={`uppercase text-textSecond_700 text-xs flex  ${
+                sidebar
+                  ? "text-left  justify-between  "
+                  : " text-center justify-center"
+              }`}
+            >
+              managment
+            </span>
+            <div className="mt-3">
+              <ItemSide
+                title={"User"}
+                address={"/"}
+                icon={<BiSolidUserRectangle />}
+              />
+              <ItemSide
+                title={"Song"}
+                address={"/"}
+                icon={<BsFillFileMusicFill />}
+              />
+              <ItemSide
+                title={"Playlist"}
+                address={"/"}
+                icon={<MdPlaylistAddCircle />}
+              />
+              <ItemSide title={"Album"} address={"/"} icon={<RiAlbumFill />} />
+              <ItemSide
+                title={"Singer"}
+                address={"/"}
+                icon={<BiSolidMicrophoneAlt />}
+              />
+            </div>
+          </div>
         </div>
-      </div>
-      <div className="mt-4">
-        <span
-          className={`uppercase text-textSecond_700 text-xs flex  ${
-            sidebar
-              ? "text-left  justify-between  "
-              : " text-center justify-center"
-          }`}
-        >
-          managment
-        </span>
-        <div className="mt-3">
-          <ItemSide
-            title={"User"}
-            address={"/"}
-            icon={<BiSolidUserRectangle />}
-          />
-          <ItemSide
-            title={"Song"}
-            address={"/"}
-            icon={<BsFillFileMusicFill />}
-          />
-          <ItemSide
-            title={"Playlist"}
-            address={"/"}
-            icon={<MdPlaylistAddCircle />}
-          />
-          <ItemSide title={"Album"} address={"/"} icon={<RiAlbumFill />} />
-          <ItemSide
-            title={"Singer"}
-            address={"/"}
-            icon={<BiSolidMicrophoneAlt />}
-          />
-        </div>
-      </div>
-      <span
-        onClick={() => {
-          dispatch({
-            type: "sidebarboth",
-          });
-        }}
-        className="border border-gray400  z-[99999999999] text-textgray400 hover:border-gray100 absolute top-24 transform translate-x-3 rounded-full right-0 cursor-pointer"
-      >
-        <MdKeyboardArrowRight
-          className={` ${
-            sidebar ? "rotate-[180deg]" : "rotate-[0deg]"
-          } transform font-light
+          <span
+            onClick={() => {
+              dispatch({
+                type: "sidebarboth",
+              });
+            }}
+            className="border border-gray400  z-[99999999999] text-textgray400 hover:border-gray100 absolute top-24 transform translate-x-3 rounded-full right-0 cursor-pointer"
+          >
+            <MdKeyboardArrowRight
+              className={` ${
+                sidebar ? "rotate-[180deg]" : "rotate-[0deg]"
+              } transform font-light
                              h-5 w-5`}
-        />
-      </span>
+            />
+          </span>
+      </div>
     </div>
   );
 }

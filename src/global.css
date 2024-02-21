@@ -374,3 +374,16 @@ div[theme-mode="dark"] .btn {
 .InputComponentSpan {
   transition: 0.4s all;
 }
+
+.btnloading {
+  -webkit-animation: btnload 1s linear infinite;
+  -moz-animation: btnload 1s linear infinite;
+  animation: btnload 1s linear infinite;
+}
+
+@keyframes btnload {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}

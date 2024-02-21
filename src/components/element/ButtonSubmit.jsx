@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { ChevronUpIcon } from "@heroicons/react/20/solid";
+import { AiOutlineLoading } from "react-icons/ai";
 
-function ButtonSubmit({ title, submit }) {
+function ButtonSubmit({ title, submit, submiting }) {
   const [handleClick, sethandleClick] = useState(false);
 
   const Click = () => {
@@ -12,13 +12,25 @@ function ButtonSubmit({ title, submit }) {
   };
   return (
     <button
-      onClick={() => {Click() ; submit()}}
+      onClick={() => {
+        Click();
+        submit();
+      }}
+      disabled={submiting}
       onMouseDown={() => sethandleClick(true)}
       className={`${
         handleClick && "btn"
-      } bg-black text-white px-4 py-2 font-bold text-sm rounded-lg `}
+      } bg-black text-white transition-all delay-150 ${
+        submiting ? "p-1 rounded-full" : "px-4 py-2 rounded-lg"
+      }  font-bold text-sm  `}
     >
-      {title}
+      {submiting ? (
+        <div className="btnloading text-3xl text-white">
+          <AiOutlineLoading />
+        </div>
+      ) : (
+        title
+      )}
     </button>
   );
 }

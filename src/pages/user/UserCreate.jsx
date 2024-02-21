@@ -7,6 +7,8 @@ import * as Yup from "yup";
 import MyCombobox from "../../components/element/Combobox";
 import ButtonSubmit from "../../components/element/ButtonSubmit";
 import axios from "axios";
+import { ApiUrl, createUser } from "../../config/API";
+import MyModal from "../../components/element/Modal";
 
 const adminCombobox = [
   { id: 1, name: "User" },
@@ -40,6 +42,9 @@ const SignupSchema = Yup.object().shape({
 
 function UserCreate() {
   const [isSubmitting, setSubmitting] = useState(false);
+  const [isModal, setIsModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
+  const [modalMessageTitle, setModalMessageTitle] = useState("");
   const [avatar, setAvatar] = useState("");
   const [avatarSrc, setAvatarSrc] = useState("");
   const [admin, setAdmin] = useState("User");
@@ -60,26 +65,38 @@ function UserCreate() {
   };
 
   const submitHandle = async (values) => {
-    console.log(avatar);
+    setSubmitting(true)
     const formData = new FormData();
     formData.append("file", avatar);
-    console.log(formData);
 
     await axios
-      .post("https://serverkurdsong.liara.run/upload/user/avatar", formData)
+      .post(`${ApiUrl}/upload/user/avatar`, formData)
       .then((responce) => {
         setAvatar(responce.data.data);
+        values.avatar = responce.data.data;
       })
       .catch((error) => {
         setSubmitting(false);
         console.log(error);
+        setModalMessage("Image not uploaded")
+        setModalMessageTitle("")
+        return
       });
 
-    values.avatar = form.avatar;
     values.admin = form.admin;
-    setSubmitting(true);
-    console.log("hi");
-    console.log(values);
+    
+    const create = await createUser(values);
+    if(create.data){
+      setModalMessage(create.data.message)
+      setIsModal(true)
+      setSubmitting(false);
+      setModalMessageTitle("Payment successful")
+    }else{
+      setModalMessage(create.error.message)
+      setIsModal(true)
+      setSubmitting(false);
+      setModalMessageTitle("")
+    }
     setSubmitting(false);
   };
 
@@ -249,6 +266,7 @@ function UserCreate() {
                     <ButtonSubmit
                       title={"Create"}
                       submit={() => submitHandle(values)}
+                      submiting={isSubmitting}
                     />
                   </div>
                 </div>
@@ -259,6 +277,12 @@ function UserCreate() {
         {form.name}
         {form.family}
       </div>
+      <MyModal
+        isModal={isModal}
+        ModalMessage={modalMessage}
+        title={modalMessageTitle}
+        closeModal={() => setIsModal(false)}
+      />
     </div>
   );
 }
