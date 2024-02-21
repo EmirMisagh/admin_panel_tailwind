@@ -364,3 +364,13 @@ div[theme-mode="dark"] .btn {
 .disabled {
   pointer-events: none;
 }
+
+.InputComponent:focus + .InputComponentSpan {
+  top: -9px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  z-index: 60;
+}
+.InputComponentSpan {
+  transition: 0.4s all;
+}

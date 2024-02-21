@@ -297,7 +297,7 @@ function ItemBg({ active, icon }) {
   return (
     <div
       className={`p-[2.5rem] ${
-        active ? "box text-theme200 " : "text-textSecond_500"
+        active ? "box text-textSecond_50 " : "text-textSecond_500"
       } cursor-pointer py-[2.2rem] rounded-lg border border-color_border_600`}
     >
       <span className={`text-[22px]  `}>{icon}</span>

@@ -1,45 +1,41 @@
-import React, { useState } from "react";
 
 function InputComponent({
   title,
   typeInput,
-  style,
-  set,
+  onChange,
   value,
   errors,
-  touched,
+  name,
+  onBlur,
+  touche
 }) {
-  const [input, setInput] = useState("");
-
   return (
     <div className="w-full p-0  relative rounded-lg grid items-center ">
       <input
         type={`${typeInput}`}
-        onChange={(e) => {
-          set(e.target.value);
-          setInput(e.target.value);
-        }}
+        onChange={onChange}
+        onBlur={onBlur}
+        value={value}
+        name={name}
         className={`p-4 pl-5 text-textgray100 ${
-          errors ? "border-red-600" : "border-gray500"
+          errors && touche ? "border-red-600" : "border-gray600"
         } text-sm font-bold w-full z-20 bg-none outline-none rounded-lg  border focus:border-gray50  InputComponent `}
         style={{ background: "rgb(0,0,0,0)" }}
       />
       <span
         className={`absolute left-3 font-bold InputComponentSpan  ${
-          input
-            ? errors
+          value
+            ? errors && touche
               ? "text-red-600 top-[-9px] text-[0.80rem] font-bold z-50"
-              : "text-textgray300 top-[-9px] text-[0.80rem] font-bold z-50"
-            : errors
+              : "text-textSecond_500 top-[-9px] text-[0.80rem] font-bold z-50"
+            : errors && touche
             ? "text-red-600 top-[14px]"
-            : "text-textgray500 top-[14px]"
-        }   bg-box pl-1 ml-1 pr-1`}
+            : "text-textSecond_500 top-[14px]"
+        }   bg-background_box pl-1 ml-1 pr-1`}
       >
         {title}
       </span>
-      <small className="mt-1 text-red-600">
-        {errors && "Invalid email address"}
-      </small>
+      <small className="mt-1 text-red-600"> {errors && touche && errors}</small>
     </div>
   );
 }

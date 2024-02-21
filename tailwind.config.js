@@ -13,6 +13,7 @@ module.exports = {
 
         // Background ----------------
         background_body: withOpacity("--background-body"),
+        background_box: withOpacity("--color-box"),
 
         bg_secend_100: withOpacity("--bg-secend-100"),
         bg_secend_200: withOpacity("--bg-secend-200"),
@@ -48,7 +49,20 @@ module.exports = {
         color_border_700: withOpacity("--color-border-700"),
         color_border_800: withOpacity("--color-border-800"),
         color_border_900: withOpacity("--color-border-900"),
-      }
+      },
+      backgroundColor: {
+        bg_0: withOpacity("--color-back-gray-0"),
+        bg_50: withOpacity("--color-back-gray-50"),
+        bg_100: withOpacity("--color-back-gray-100"),
+        bg_200: withOpacity("--color-back-gray-200"),
+        bg_300: withOpacity("--color-back-gray-300"),
+        bg_400: withOpacity("--color-back-gray-400"),
+        bg_500: withOpacity("--color-back-gray-500"),
+        bg_600: withOpacity("--color-back-gray-600"),
+        bg_700: withOpacity("--color-back-gray-700"),
+        bg_800: withOpacity("--color-back-gray-800"),
+        bg_900: withOpacity("--color-back-gray-900"),
+      },
     },
   },
   plugins: [],

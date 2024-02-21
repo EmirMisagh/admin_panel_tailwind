@@ -9,15 +9,16 @@ import {
 import { MdKeyboardArrowRight, MdPlaylistAddCircle } from "react-icons/md";
 import { BiSolidUserRectangle, BiSolidMicrophoneAlt } from "react-icons/bi";
 import { RiAlbumFill } from "react-icons/ri";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 function Sidebar() {
   const { sidebar } = useSelector((state) => ({
     sidebar: state.menuReducer.sidebar,
   }));
+  const dispatch = useDispatch();
   return (
     <div
-      className={` w-full h-[100vh]  sticky  top-0 left-0 m-0 ${
+      className={`transition-all delay-700 w-full h-[100vh]  sticky  top-0 left-0 m-0 ${
         sidebar ? "px-3" : "px-3"
       }  py-5 font-Libre`}
     >
@@ -70,11 +71,7 @@ function Sidebar() {
             address={"/"}
             icon={<MdPlaylistAddCircle />}
           />
-          <ItemSide
-            title={"Album"}
-            address={"/"}
-            icon={<RiAlbumFill />}
-          />
+          <ItemSide title={"Album"} address={"/"} icon={<RiAlbumFill />} />
           <ItemSide
             title={"Singer"}
             address={"/"}
@@ -82,6 +79,21 @@ function Sidebar() {
           />
         </div>
       </div>
+      <span
+        onClick={() => {
+          dispatch({
+            type: "sidebarboth",
+          });
+        }}
+        className="border border-gray400  z-[99999999999] text-textgray400 hover:border-gray100 absolute top-24 transform translate-x-3 rounded-full right-0 cursor-pointer"
+      >
+        <MdKeyboardArrowRight
+          className={` ${
+            sidebar ? "rotate-[180deg]" : "rotate-[0deg]"
+          } transform font-light
+                             h-5 w-5`}
+        />
+      </span>
     </div>
   );
 }
@@ -196,18 +208,18 @@ function ItemSide({ title, address, icon }) {
               ${
                 sidebar
                   ? "px-4 text-left  justify-between flex-row gap-3"
-                  : " text-center justify-center  gap-1"
+                  : "px-2 text-center justify-center  "
               } 
               py-3   hover:bg-bg_secend_400 relative`}
       >
         <span
           className={`flex items-center gap-3 w-full h-full pointer-events-none ${
-            sidebar ? " flex-row " : "text-xs flex-col "
+            sidebar ? " flex-row " : "text-[0.79rem] flex-col gap-[7px]"
           } `}
         >
           <i
             className={` ${
-              sidebar ? " text-lg " : "text-xs  "
+              sidebar ? " text-lg " : "text-[0.9rem] scale-150  "
             } pointer-events-none`}
           >
             {icon}
@@ -223,10 +235,26 @@ function ItemSide({ title, address, icon }) {
           openDiv ? "" : "opendiv"
         }`}
       >
-        <Item title={"List"} address={"User/List"} icon={""} />
-        <Item title={"Create"} address={"User/new"} icon={""} />
-        <Item title={"Accont"} address={"User/accont"} icon={""} />
-        <Item title={"Card"} address={"User/card"} icon={""} />
+        <Item
+          title={"List"}
+          address={`${title.toLowerCase()}/List`}
+          icon={""}
+        />
+        <Item
+          title={"Create"}
+          address={`${title.toLowerCase()}/create`}
+          icon={""}
+        />
+        <Item
+          title={"Accont"}
+          address={`${title.toLowerCase()}/accont`}
+          icon={""}
+        />
+        <Item
+          title={"Card"}
+          address={`${title.toLowerCase()}/card`}
+          icon={""}
+        />
       </div>
     </NavLink>
   );
@@ -280,7 +308,7 @@ function Item({ title, address, icon }) {
                   ? "px-4 text-left  justify-start text-sm "
                   : "px-2 text-center justify-center text-[0.7rem]"
               } 
-              py-3   hover:bg-bg_secend_100`}
+              py-3   hover:bg-bg_secend_400`}
       >
         <span className="w-1 icon h-1 rounded-full bg-bg_secend_100"></span>
         {title}

@@ -7,12 +7,9 @@ import SettingMenu from "../components/SettingMenu";
 import { useSelector } from "react-redux";
 
 function Dashboard() {
-
-  const { sidebar } = useSelector(
-    (state) => ({
-      sidebar: state.menuReducer.sidebar,
-    })
-  );
+  const { sidebar } = useSelector((state) => ({
+    sidebar: state.menuReducer.sidebar,
+  }));
 
   return (
     <Router>
@@ -34,11 +31,13 @@ function Dashboard() {
           }`}
         >
           <Topbar />
-          <Routes>
-            {router.map((route, index) => (
-              <Route path={route.path} element={route.element} key={index} />
-            ))}
-          </Routes>
+          <div className="py-0 px-14">
+            <Routes>
+              {router.map((route, index) => (
+                <Route path={route.path} element={route.element} key={index} />
+              ))}
+            </Routes>
+          </div>
         </div>
         <div className="menues">
           <SettingMenu />

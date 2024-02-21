@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @import url("https://fonts.googleapis.com/css2?family=Anta&family=Courgette&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
 
 body {
   margin: 0;
@@ -12,6 +13,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
   letter-spacing: 1px;
   transition: all 0.3s;
+}
+
+.playfair {
+  font-family: "Playfair Display", serif;
+  font-weight: 600;
 }
 
 html {
@@ -45,6 +51,18 @@ div[theme-mode="light"] {
   --bg-secend-200: rgb(207, 208, 209);
   --bg-secend-300: rgb(207, 207, 207);
   --bg-secend-400: rgb(237, 237, 237);
+
+  --color-back-gray-0: #000;
+  --color-back-gray-50: #222222;
+  --color-back-gray-100: #333333;
+  --color-back-gray-200: #444444;
+  --color-back-gray-300: #555555;
+  --color-back-gray-400: #666666;
+  --color-back-gray-500: #777777;
+  --color-back-gray-600: #888888;
+  --color-back-gray-700: #999999;
+  --color-back-gray-800: #aaaaaa;
+  --color-back-gray-900: #fafafa;
 
   /* TEXT COLOR ---------------- */
   /* --------------------------- */
