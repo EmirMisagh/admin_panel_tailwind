@@ -31,7 +31,7 @@ function Dashboard() {
           }`}
         >
           <Topbar />
-          <div className="py-0 px-14">
+          <div className="py-0 px-14 pb-20">
             <Routes>
               {router.map((route, index) => (
                 <Route path={route.path} element={route.element} key={index} />

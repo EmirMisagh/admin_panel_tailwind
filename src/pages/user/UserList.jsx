@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { getUserAll } from "../../config/API";
 import { DataGridUser, DataNavbar } from "../../components/element/DataGrid";
+import Header from "../../components/Header";
 
 function UserList() {
   const [user, setUsers] = useState([]);
@@ -15,12 +16,22 @@ function UserList() {
     getUser();
   }, [getUser]);
   return (
-    <div className="p-3 px-0 rounded-2xl mt-8 box overflow-hidden">
-      <div className="border-b border-b-color_border_600 pb-[10px]">
-        <DataNavbar />
-      </div>
+    <div>
       <div>
-        <DataGridUser users={user} />
+        <Header
+          title={"List"}
+          address1={"Dashbourd"}
+          address2={"User"}
+          address3={"List"}
+        />
+      </div>
+      <div className="p-3 px-0 rounded-2xl mt-8 box overflow-hidden">
+        <div className="border-b border-b-color_border_600 pb-[10px]">
+          <DataNavbar />
+        </div>
+        <div>
+          <DataGridUser users={user} />
+        </div>
       </div>
     </div>
   );

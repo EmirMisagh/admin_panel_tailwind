@@ -98,7 +98,7 @@ function Sidebar() {
                 type: "sidebarboth",
               });
             }}
-            className="border border-gray400  z-[99999999999] text-textgray400 hover:border-gray100 absolute top-24 transform translate-x-3 rounded-full right-0 cursor-pointer"
+            className="border border-gray400  z-[99999999999] text-textSecond_300 hover:border-gray100 absolute top-24 transform translate-x-3 rounded-full right-0 cursor-pointer"
           >
             <MdKeyboardArrowRight
               className={` ${
@@ -150,6 +150,7 @@ function ItemOverview({ title, address, icon }) {
                     bg-none  
                     overflow-hidden
                     transition ease-in-out duration-300
+                    sidebarLink
                   `}
       >
         <button
@@ -310,6 +311,7 @@ function Item({ title, address, icon }) {
       bg-none 
       overflow-hidden
       transition ease-in-out duration-300 mt-1
+      sidebarLink
     `}
     >
       <button

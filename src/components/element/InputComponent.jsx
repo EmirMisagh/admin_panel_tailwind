@@ -1,4 +1,3 @@
-
 function InputComponent({
   title,
   typeInput,
@@ -7,7 +6,7 @@ function InputComponent({
   errors,
   name,
   onBlur,
-  touche
+  touche,
 }) {
   return (
     <div className="w-full p-0  relative rounded-lg grid items-center ">
@@ -18,8 +17,8 @@ function InputComponent({
         value={value}
         name={name}
         className={`p-4 pl-5 text-textgray100 ${
-          errors && touche ? "border-red-600" : "border-gray600"
-        } text-sm font-bold w-full z-20 bg-none outline-none rounded-lg  border focus:border-gray50  InputComponent `}
+          errors && touche ? "border-red-600" : "border-color_border_600"
+        } text-sm font-bold w-full z-20 bg-none outline-none rounded-lg  border focus:border-color_border_100  InputComponent `}
         style={{ background: "rgb(0,0,0,0)" }}
       />
       <span

@@ -85,13 +85,13 @@ export function DataGridUser({ users }) {
             touche={false}
           />
         </div>
-        <div className="flex items-center p-5 px-3">
+        <div className="flex items-center p-5 px-3 text-textSecond_200">
           <CiMenuKebab />
         </div>
       </div>
       <div className="grid text-[0.8rem]">
         {selected.length > 0 ? (
-          <div className="w-full h-full flex py-4 px-5 bg-orange-400 justify-between">
+          <div className="w-full h-full flex py-4 px-5 bg-theme600 text-theme100 justify-between">
             <div className="flex items-center gap-3">
               <div>
                 {selected.length < users.length ? (
@@ -113,7 +113,7 @@ export function DataGridUser({ users }) {
             </div>
           </div>
         ) : (
-          <div className="flex justify-between gap-5 py-4 text-[1rem] px-6 font-bold text-textgray100">
+          <div className="flex justify-between gap-5 py-4 text-[1rem] px-6 font-bold text-textSecond_500">
             <div className="flex items-center justify-center">
               <input
                 type="checkbox"
@@ -135,7 +135,7 @@ export function DataGridUser({ users }) {
               i < index && (
                 <div
                   key={i}
-                  className={`flex justify-between gap-5 items-center px-4 border-b text-textSecond_200 border-color_border_700 font-body transition-all delay-100 ${
+                  className={`flex justify-between gap-5 items-center px-4 border-b text-textSecond_400 border-color_border_700 font-body transition-all delay-100 ${
                     padding ? "py-2" : "py-5"
                   }`}
                 >
@@ -159,7 +159,9 @@ export function DataGridUser({ users }) {
                       />
                     </div>
                     <div className="">
-                      <b>{item.name + " " + item.family}</b>
+                      <b className=" text-textSecond_200">
+                        {item.name + " " + item.family}
+                      </b>
                       <p className=" text-textgray400">{item.email}</p>
                     </div>
                   </div>
@@ -167,24 +169,26 @@ export function DataGridUser({ users }) {
                   <div className="text-left w-20">Iran</div>
                   <div className="w-24 flex justify-center items-center">
                     <div
-                      className={` rounded-xl ${
+                      className={` rounded-xl text-white font-bold ${
                         item.admin === "Admin"
-                          ? "bg-green-400"
+                          ? "bg-green-600"
                           : item.admin === "User"
-                          ? "bg-blue-400"
-                          : "bg-yellow-400"
-                      } w-20  justify-center py-2  font-bold text-text-gray-700 flex items-center`}
+                          ? "bg-blue-600"
+                          : "bg-yellow-600"
+                      } w-20  justify-center py-2 flex items-center`}
                     >
                       <i></i>
                       <small>{item.admin}</small>
                     </div>
                   </div>
                   <div className="flex w-24 text-lg gap-3 items-center justify-end pr-4">
+                    <NavLink to={`/user/accont`}>
+                      <i>
+                        <MdEdit />
+                      </i>
+                    </NavLink>
                     <i>
-                      <MdEdit />
-                    </i>
-                    <i>
-                      <MdMoreVert />
+                      <MdDeleteForever />
                     </i>
                   </div>
                 </div>
@@ -282,7 +286,7 @@ export function DataNavbar() {
   };
 
   return (
-    <div className="flex navbarUser gap-9  px-4 text-textgray300 font-bold relative bg-box ">
+    <div className="flex navbarUser gap-9  px-4 text-textSecond_300 font-bold relative bg-box ">
       <p className="flex" onClick={() => clickHandle("0")}>
         <NavLink
           to="./"

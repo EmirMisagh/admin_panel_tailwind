@@ -387,3 +387,8 @@ div[theme-mode="dark"] .btn {
     transform: rotate(360deg);
   }
 }
+.sidebarLink.active {
+  background-color: var(--theme-bg-600);
+  color: var(--theme-text-200);
+  font-weight: bold;
+}

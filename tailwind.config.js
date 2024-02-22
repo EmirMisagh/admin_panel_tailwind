@@ -10,7 +10,6 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-
         // Background ----------------
         background_body: withOpacity("--background-body"),
         background_box: withOpacity("--color-box"),
@@ -20,9 +19,37 @@ module.exports = {
         bg_secend_300: withOpacity("--bg-secend-300"),
         bg_secend_400: withOpacity("--bg-secend-400"),
 
+         // RED THEME -----------------------------------------
+
+         themered100: withOpacity("--color-themered-100"),
+         themered200: withOpacity("--color-themered-200"),
+ 
+         // blue THEME -----------------------------------------
+ 
+         themeblue100: withOpacity("--color-themeblue-100"),
+         themeblue200: withOpacity("--color-themeblue-200"),
+ 
+         // PURPLE THEME -----------------------------------------
+ 
+         themepurple100: withOpacity("--color-themepurple-100"),
+         themepurple200: withOpacity("--color-themepurple-200"),
+ 
+         // YELLOW THEME -----------------------------------------
+ 
+         themeyellow100: withOpacity("--color-themeyellow-100"),
+         themeyellow200: withOpacity("--color-themeyellow-200"),
+ 
+         // PURPLE THEME -----------------------------------------
+ 
+         themebluesky100: withOpacity("--color-themebluesky-100"),
+         themebluesky200: withOpacity("--color-themebluesky-200"),
+ 
+         // PURPLE THEME -----------------------------------------
+ 
+         themegreen100: withOpacity("--color-themegreen-100"),
+         themegreen200: withOpacity("--color-themegreen-200"),
       },
       textColor: {
-
         textSecond_0: withOpacity("--color-textSecond-0"),
         textSecond_50: withOpacity("--color-textSecond-50"),
         textSecond_100: withOpacity("--color-textSecond-100"),
@@ -35,8 +62,17 @@ module.exports = {
         textSecond_800: withOpacity("--color-textSecond-800"),
         textSecond_900: withOpacity("--color-textSecond-900"),
 
-          // Theme ----------------
+        // Theme --------------------------------------------------
+        // --------------------------------------------------------
 
+        theme100: withOpacity(" --theme-text-100"),
+        theme200: withOpacity(" --theme-text-200"),
+        theme300: withOpacity(" --theme-text-300"),
+        theme400: withOpacity(" --theme-text-400"),
+        theme500: withOpacity(" --theme-text-500"),
+        theme600: withOpacity(" --theme-text-600"),
+        theme700: withOpacity(" --theme-text-700"),
+        theme800: withOpacity(" --theme-text-800"),
       },
       borderColor: {
         color_border_50: withOpacity("--color-border-50"),
@@ -62,6 +98,18 @@ module.exports = {
         bg_700: withOpacity("--color-back-gray-700"),
         bg_800: withOpacity("--color-back-gray-800"),
         bg_900: withOpacity("--color-back-gray-900"),
+
+        // Theme --------------------------------------------------
+        // --------------------------------------------------------
+
+        theme100: withOpacity(" --theme-bg-100"),
+        theme200: withOpacity(" --theme-bg-200"),
+        theme300: withOpacity(" --theme-bg-300"),
+        theme400: withOpacity(" --theme-bg-400"),
+        theme500: withOpacity(" --theme-bg-500"),
+        theme600: withOpacity(" --theme-bg-600"),
+        theme700: withOpacity(" --theme-bg-700"),
+        theme800: withOpacity(" --theme-bg-800"),
       },
     },
   },

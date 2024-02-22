@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 
 function App() {
   const [login, loginMode] = useLoginMode();
-  const { darkmode, boxtheme } = useSelector((state) => ({
+  const { darkmode, boxtheme, color } = useSelector((state) => ({
     menu: state.menuReducer.settingMenu,
     darkmode: state.themeReducer.darkmode,
     sidebar: state.menuReducer.sidebar,
@@ -19,6 +19,7 @@ function App() {
       className="bg-background_body px-2"
       theme-mode={darkmode ? "dark" : "light"}
       box-theme={boxtheme ? "defult" : "neon"}
+      data-theme={color}
     >
       <Suspense fallback={<FuncyLoding />}>
         <LoginModeContext.Provider value={loginMode}>

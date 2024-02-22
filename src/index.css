@@ -13,6 +13,36 @@ body {
   -moz-osx-font-smoothing: grayscale;
   letter-spacing: 1px;
   transition: all 0.3s;
+
+  /* // RED THEME ----------------------------------------- */
+
+  --color-themered-100: rgb(255, 48, 48);
+  --color-themered-200: rgba(255, 48, 48, 0.1);
+
+  /* // blue THEME ----------------------------------------- */
+
+  --color-themeblue-100: rgb(7, 141, 238);
+  --color-themeblue-200: rgba(7, 141, 238, 0.1);
+
+  /* // YELLOW THEME ----------------------------------------- */
+
+  --color-themeyellow-100: rgb(253, 169, 45);
+  --color-themeyellow-200: rgba(253, 169, 45, 0.1);
+
+  /* // PURPLE THEME ----------------------------------------- */
+
+  --color-themepurple-100: rgb(118, 53, 220);
+  --color-themepurple-200: rgba(118, 53, 220, 0.1);
+
+  /* // BLUESKY THEME ----------------------------------------- */
+
+  --color-themebluesky-100: rgb(32, 101, 209);
+  --color-themebluesky-200: rgba(32, 101, 209, 0.1);
+
+  /* // GREEN THEME ----------------------------------------- */
+
+  --color-themegreen-100: rgb(0, 167, 111);
+  --color-themegreen-200: rgba(0, 167, 111, 0.1);
 }
 
 .playfair {
@@ -97,14 +127,15 @@ div[theme-mode="light"] {
 
 div[theme-mode="light"][box-theme="neon"] {
   --background-body: rgb(244, 245, 248);
+  --color-menu: rgba(255, 255, 255, 0.2);
 }
 
 div[theme-mode="dark"] {
   /* Background ---------------- */
   /* --------------------------- */
 
-  --background-body: rgb(13, 16, 19);
-  --color-box: rgb(33, 43, 54);
+  --background-body: rgb(18, 22, 29);
+  --color-box: rgb(25, 34, 43);
   --color-box-shadow: rgb(13, 16, 19);
   --color-menu: rgba(18, 22, 29, 0.4);
 
@@ -112,6 +143,18 @@ div[theme-mode="dark"] {
   --bg-secend-200: rgb(207, 208, 209);
   --bg-secend-300: rgb(32, 39, 49);
   --bg-secend-400: rgb(32, 39, 49);
+
+  --color-back-gray-900: #000;
+  --color-back-gray-800: #222222;
+  --color-back-gray-700: #333333;
+  --color-back-gray-600: #444444;
+  --color-back-gray-500: #555555;
+  --color-back-gray-400: #666666;
+  --color-back-gray-300: #777777;
+  --color-back-gray-200: #888888;
+  --color-back-gray-100: #999999;
+  --color-back-gray-50: #aaaaaa;
+  --color-back-gray-0: #fafafa;
 
   /* TEXT COLOR ---------------- */
   /* --------------------------- */
@@ -143,7 +186,122 @@ div[theme-mode="dark"] {
 }
 
 div[theme-mode="dark"][box-theme="neon"] {
-  --background-body: rgb(13, 16, 19);
+  --background-body: rgb(18, 22, 29);
+}
+
+div[data-theme="red"] {
+  /* BACKGROUND------------- */
+
+  --theme-bg-100: #ff3030;
+  --theme-bg-200: #e4504c;
+  --theme-bg-300: #ff7067;
+  --theme-bg-400: #ff8e80;
+  --theme-bg-500: #ffbcba;
+  --theme-bg-600: rgb(255, 227, 225);
+  --theme-bg-700: rgba(255, 48, 48, 0.111);
+  --theme-bg-800: linear-gradient(to top, #563e44 20%, #ff8e80);
+
+  /* TEXT------------- */
+
+  --theme-text-100: rgb(255, 48, 48);
+  --theme-text-200: #ff796e;
+  --theme-text-300: #ff7067;
+  --theme-text-400: #ff8e80;
+}
+div[data-theme="green"] {
+  /* BACKGROUND------------- */
+
+  --theme-bg-100: rgb(0, 167, 111);
+  --theme-bg-200: rgb(0, 167, 111);
+  --theme-bg-300: rgb(0, 167, 111);
+  --theme-bg-400: rgb(168, 226, 205);
+  --theme-bg-500: rgb(113, 211, 178);
+  --theme-bg-600: rgb(213, 243, 230);
+  --theme-bg-700: rgba(91, 240, 195, 0.111);
+  --theme-bg-800: linear-gradient(to top, #563e44 20%, #a8e2cd);
+
+  /* TEXT------------- */
+
+  --theme-text-100: rgb(0, 167, 111);
+  --theme-text-200: rgb(0, 167, 111);
+  --theme-text-300: rgb(52, 189, 143);
+  --theme-text-400: rgb(92, 197, 162);
+}
+div[data-theme="purple"] {
+  /* BACKGROUND------------- */
+
+  --theme-bg-100: rgb(118, 53, 220);
+  --theme-bg-200: rgb(118, 53, 220);
+  --theme-bg-300: rgb(118, 53, 220);
+  --theme-bg-400: rgb(209, 187, 244);
+  --theme-bg-500: rgb(161, 120, 228);
+  --theme-bg-600: rgb(233, 221, 250);
+  --theme-bg-700: rgba(128, 76, 224, 0.111);
+  --theme-bg-800: linear-gradient(to top, #563e44 20%, #ff8e80);
+
+  /* TEXT------------- */
+
+  --theme-text-100: #ff3030;
+  --theme-text-200: rgb(118, 53, 220);
+  --theme-text-300: rgb(32, 10, 105);
+  --theme-text-400: rgb(117, 100, 166);
+}
+div[data-theme="blue"] {
+  /* BACKGROUND------------- */
+
+  --theme-bg-100: rgb(32, 101, 209);
+  --theme-bg-200: rgb(32, 101, 209);
+  --theme-bg-300: rgb(32, 101, 209);
+  --theme-bg-400: rgb(178, 203, 240);
+  --theme-bg-500: rgb(121, 161, 226);
+  --theme-bg-600: rgb(218, 230, 249);
+  --theme-bg-700: rgba(80, 144, 240, 0.111);
+  --theme-bg-800: linear-gradient(to top, #563e44 20%, #ff8e80);
+
+  /* TEXT------------- */
+
+  --theme-text-100: #ff3030;
+  --theme-text-200: rgb(62, 122, 214);
+  --theme-text-300: rgb(6, 27, 100);
+  --theme-text-400: rgb(118, 135, 178);
+}
+div[data-theme="bluesky"] {
+  /* BACKGROUND------------- */
+
+  --theme-bg-100: rgb(7, 141, 238);
+  --theme-bg-200: rgb(7, 141, 238);
+  --theme-bg-300: rgb(7, 141, 238);
+  --theme-bg-400: rgb(169, 216, 249);
+  --theme-bg-500: rgb(93, 179, 240);
+  --theme-bg-600: rgb(212, 236, 252);
+  --theme-bg-700: rgba(68, 162, 230, 0.111);
+  --theme-bg-800: linear-gradient(to top, #563e44 20%, #ff8e80);
+
+  /* TEXT------------- */
+
+  --theme-text-100: rgb(1, 41, 114);
+  --theme-text-200: rgb(28, 151, 239);
+  --theme-text-300: rgb(1, 41, 114);
+  --theme-text-400: rgb(108, 139, 183);
+}
+div[data-theme="yellow"] {
+  /* BACKGROUND------------- */
+
+  --theme-bg-100: rgb(253, 169, 45);
+  --theme-bg-200: rgb(253, 192, 88);
+  --theme-bg-300: rgb(253, 225, 183);
+  --theme-bg-400: rgb(254, 219, 165);
+  --theme-bg-500: rgb(254, 241, 219);
+  --theme-bg-600: rgb(254, 241, 220);
+  --theme-bg-700: rgba(255, 205, 119, 0.2);
+  --theme-bg-800: linear-gradient(to top, #563e44 20%, #ff8e80);
+
+  /* TEXT------------- */
+
+  --theme-text-100: rgb(253, 190, 83);
+  --theme-text-200: rgb(253, 190, 83);
+  --theme-text-300: rgb(240, 175, 70);
+  --theme-text-400: rgb(230, 165, 60);
 }
 
 .box {
@@ -165,6 +323,6 @@ div[theme-mode="dark"][box-theme="neon"] {
 .transt {
   transition: all 0.4s;
   background-color: var(--color-menu);
-  -webkit-backdrop-filter: blur(5px);
-  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
 }
