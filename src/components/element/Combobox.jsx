@@ -2,18 +2,19 @@ import { Fragment, useState } from "react";
 import { Combobox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 
-
-
 function MyCombobox({ handle, arr, label }) {
   const [selected, setSelected] = useState(arr[0]);
   const [query, setQuery] = useState("");
 
-  const filteredPeople = query === "" ? arr : arr.filter((item) => {
-    return item.name
-    .toLowerCase()
-    .replace(/\s+/g, '')
-    .includes(query.toLowerCase().replace(/\s+/g, ''))
-  });
+  const filteredPeople =
+    query === ""
+      ? arr
+      : arr.filter((item) => {
+          return item.name
+            .toLowerCase()
+            .replace(/\s+/g, "")
+            .includes(query.toLowerCase().replace(/\s+/g, ""));
+        });
 
   const changeHandle = (value) => {
     setSelected(value);
@@ -47,7 +48,7 @@ function MyCombobox({ handle, arr, label }) {
             leaveTo="opacity-0"
             afterLeave={() => setQuery("")}
           >
-            <Combobox.Options className="absolute z-[999999] mt-1 max-h-60 w-full overflow-auto rounded-2xl  bg-box py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
+            <Combobox.Options className="absolute z-[999999] bg-white mt-1 max-h-60 w-full overflow-auto rounded-2xl  bg-box py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
               {filteredPeople.length === 0 && query !== "" ? (
                 <div className="relative cursor-default select-none px-4 py-2 text-textgray100">
                   Nothing found.
@@ -57,7 +58,7 @@ function MyCombobox({ handle, arr, label }) {
                   <Combobox.Option
                     key={person.id}
                     className={({ active }) =>
-                      `relative cursor-default select-none py-2 pl-10 pr-4 z-[999999]  ${
+                      `relative cursor-default select-none py-2 pl-10 pr-4 z-[999999]   ${
                         active
                           ? "bg-teal-600 z-[999999] text-white"
                           : "text-textgray400"
@@ -97,9 +98,9 @@ function MyCombobox({ handle, arr, label }) {
       </Combobox>
       <span
         className={`absolute left-3 font-bold
-             text-textgray300 top-[-10px] text-[0.80rem] font-bold"
+             text-textSecond_300 top-[-10px] text-[0.80rem] font-bold"
          
-          bg-box pl-2 pr-2`}
+          bg-background_box pl-2 pr-2`}
       >
         {label}
       </span>
