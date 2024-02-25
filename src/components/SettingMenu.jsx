@@ -205,7 +205,7 @@ function SettingMenu() {
             <div
               className={`p-1 w-16 h-14 ${
                 color === "red" && "bg-themered200 "
-              } flex justify-center items-center cursor-pointer rounded-lg border border-gray600`}
+              } flex justify-center items-center cursor-pointer rounded-lg border border-color_border_600`}
               onClick={() => {
                 dispatch({
                   type: "red",
@@ -221,7 +221,7 @@ function SettingMenu() {
             <div
               className={`p-1 w-16 h-14 ${
                 color === "blue" && "bg-themeblue200"
-              } flex justify-center items-center cursor-pointer rounded-lg border border-gray600`}
+              } flex justify-center items-center cursor-pointer rounded-lg border border-color_border_600`}
               onClick={() => {
                 dispatch({
                   type: "blue",
@@ -237,7 +237,7 @@ function SettingMenu() {
             <div
               className={`p-1 w-16 h-14 ${
                 color === "purple" && "bg-themepurple200"
-              } flex justify-center items-center cursor-pointer rounded-lg border border-gray600`}
+              } flex justify-center items-center cursor-pointer rounded-lg border border-color_border_600`}
               onClick={() => {
                 dispatch({
                   type: "purple",
@@ -249,7 +249,7 @@ function SettingMenu() {
             <div
               className={`p-1 w-16 h-14 ${
                 color === "yellow" && "bg-themeyellow200"
-              } flex justify-center items-center cursor-pointer rounded-lg border border-gray600`}
+              } flex justify-center items-center cursor-pointer rounded-lg border border-color_border_600`}
               onClick={() => {
                 dispatch({
                   type: "yellow",
@@ -265,7 +265,7 @@ function SettingMenu() {
             <div
               className={`p-1 w-16 h-14 ${
                 color === "bluesky" && "bg-themebluesky200"
-              } flex justify-center items-center cursor-pointer rounded-lg border border-gray600`}
+              } flex justify-center items-center cursor-pointer rounded-lg border border-color_border_600`}
               onClick={() => {
                 dispatch({
                   type: "bluesky",
@@ -277,7 +277,7 @@ function SettingMenu() {
             <div
               className={`p-1 w-16 h-14 ${
                 color === "green" && "bg-themegreen200"
-              } flex justify-center items-center cursor-pointer rounded-lg border border-gray600`}
+              } flex justify-center items-center cursor-pointer rounded-lg border border-color_border_600`}
               onClick={() => {
                 dispatch({
                   type: "green",

@@ -99,6 +99,19 @@ module.exports = {
         bg_800: withOpacity("--color-back-gray-800"),
         bg_900: withOpacity("--color-back-gray-900"),
 
+         // COVER --------------------------------------------------
+        // --------------------------------------------------------
+
+        bg_cover_100: withOpacity("--color-cover-100"),
+        bg_cover_200: withOpacity("--color-cover-200"),
+        bg_cover_300: withOpacity("--color-cover-300"),
+        bg_cover_400: withOpacity("--color-cover-400"),
+        bg_cover_500: withOpacity("--color-cover-500"),
+        bg_cover_600: withOpacity("--color-cover-600"),
+        bg_cover_700: withOpacity("--color-cover-700"),
+        bg_cover_800: withOpacity("--color-cover-800"),
+        bg_cover_900: withOpacity("--color-cover-900"),
+
         // Theme --------------------------------------------------
         // --------------------------------------------------------
 

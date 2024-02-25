@@ -43,6 +43,18 @@ body {
 
   --color-themegreen-100: rgb(0, 167, 111);
   --color-themegreen-200: rgba(0, 167, 111, 0.1);
+
+   /* // COVER COLOR ----------------------------------------- */
+
+   --color-cover-100: rgba(255, 255, 255, 0.1);
+   --color-cover-200: rgba(255, 255, 255, 0.2);
+   --color-cover-300: rgba(255, 255, 255, 0.3);
+   --color-cover-400: rgba(255, 255, 255, 0.4);
+   --color-cover-500: rgba(255, 255, 255, 0.5);
+   --color-cover-600: rgba(255, 255, 255, 0.6);
+   --color-cover-700: rgba(255, 255, 255, 0.7);
+   --color-cover-800: rgba(255, 255, 255, 0.8);
+   --color-cover-900: rgba(255, 255, 255, 0.9);
 }
 
 .playfair {
@@ -325,4 +337,5 @@ div[data-theme="yellow"] {
   background-color: var(--color-menu);
   -webkit-backdrop-filter: blur(15px);
   backdrop-filter: blur(15px);
+  z-index: 99999999999999999;
 }

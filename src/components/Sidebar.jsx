@@ -3,11 +3,11 @@ import { NavLink } from "react-router-dom";
 import {
   BsSpeedometer,
   BsBarChartLineFill,
-  BsBank2,
   BsFillFileMusicFill,
 } from "react-icons/bs";
 import { MdKeyboardArrowRight, MdPlaylistAddCircle } from "react-icons/md";
 import { BiSolidUserRectangle, BiSolidMicrophoneAlt } from "react-icons/bi";
+import { GoFileDirectoryFill } from "react-icons/go";
 import { RiAlbumFill } from "react-icons/ri";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -53,7 +53,7 @@ function Sidebar() {
               <ItemOverview
                 title={"Analytics"}
                 address={"/"}
-                icon={<BsBank2 />}
+                icon={<GoFileDirectoryFill />}
               />
             </div>
           </div>
@@ -163,7 +163,7 @@ function ItemOverview({ title, address, icon }) {
                   ? "px-4 text-left  justify-start flex-row gap-3"
                   : "px-2 text-center justify-center flex-col gap-1"
               } 
-              py-3   hover:bg-bg_secend_400`}
+              py-3   hover:bg-bg_secend_400 hover:text-textSecond_300`}
         >
           <span className=" text-lg pointer-events-none">{icon}</span>
           {title}
@@ -324,7 +324,7 @@ function Item({ title, address, icon }) {
                   ? "px-4 text-left  justify-start text-sm "
                   : "px-2 text-center justify-center text-[0.7rem]"
               } 
-              py-3   hover:bg-bg_secend_400`}
+              py-3   hover:bg-bg_secend_400 hover:text-textSecond_400`}
       >
         <span className="w-1 icon h-1 rounded-full bg-bg_secend_100"></span>
         {title}

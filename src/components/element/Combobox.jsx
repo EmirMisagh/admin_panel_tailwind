@@ -104,16 +104,7 @@ function MyCombobox({ handle, arr, label }) {
       >
         {label}
       </span>
-      {!!query && (
-        <span
-          className={`absolute left-3 font-bold InputComponentSpan  
-          
-          text-textgray500 top-[15.5px] m-0"
-          bg-box pl-2 pr-2`}
-        >
-          Choose a {label.toLowerCase()}
-        </span>
-      )}
+     
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { AiOutlineLoading } from "react-icons/ai";
 
-function ButtonSubmit({ title, submit, submiting }) {
+function ButtonSubmit({ title, submit, submiting, styl }) {
   const [handleClick, sethandleClick] = useState(false);
 
   const Click = () => {
@@ -22,7 +22,7 @@ function ButtonSubmit({ title, submit, submiting }) {
         handleClick && "btn"
       } bg-black text-white transition-all delay-150 ${
         submiting ? "p-1 rounded-full" : "px-4 py-2 rounded-lg"
-      }  font-bold text-sm  `}
+      }  font-bold text-sm hover:bg-slate-600 ${styl}`}
     >
       {submiting ? (
         <div className="btnloading text-3xl text-white">

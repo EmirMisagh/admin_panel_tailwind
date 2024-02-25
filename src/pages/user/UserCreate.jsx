@@ -7,13 +7,13 @@ import * as Yup from "yup";
 import MyCombobox from "../../components/element/Combobox";
 import ButtonSubmit from "../../components/element/ButtonSubmit";
 import axios from "axios";
-import { ApiUrl, createUser } from "../../config/API";
+import { ApiUrl, createUser, getUserEmail } from "../../config/API";
 import MyModal from "../../components/element/Modal";
 
 const adminCombobox = [
   { id: 1, name: "User" },
   { id: 2, name: "Manager" },
-  { id: 3, name: "Amin" },
+  { id: 3, name: "Admin" },
 ];
 
 const SignupSchema = Yup.object().shape({
@@ -64,43 +64,55 @@ function UserCreate() {
     admin,
   };
 
-  const submitHandle = async (values) => {
-    setSubmitting(true)
+  const submitHandle = async (values, errors) => {
+    setSubmitting(true);
     const formData = new FormData();
     formData.append("file", avatar);
 
+    console.log(errors);
+
+    const email = await getUserEmail(values.email);
+    console.log(email);
+
+    if (email.data.found) {
+      setModalMessage(email.data.message);
+      setIsModal(true);
+      setSubmitting(false);
+      setModalMessageTitle("Payment successful");
+      return;
+    }
     await axios
       .post(`${ApiUrl}/upload/user/avatar`, formData)
       .then((responce) => {
         setAvatar(responce.data.data);
         values.avatar = responce.data.data;
       })
-      .catch((error) => {
+      .catch(() => {
         setSubmitting(false);
-        console.log(error);
-        setModalMessage("Image not uploaded")
-        setModalMessageTitle("")
-        return
+        setModalMessage("Image not uploaded");
+        setModalMessageTitle("");
+        return;
       });
 
     values.admin = form.admin;
-    
+
     const create = await createUser(values);
-    if(create.data){
-      setModalMessage(create.data.message)
-      setIsModal(true)
+    if (create.data) {
+      setModalMessage(create.data.message);
+      setIsModal(true);
       setSubmitting(false);
-      setModalMessageTitle("Payment successful")
-    }else{
-      setModalMessage(create.error.message)
-      setIsModal(true)
+      setModalMessageTitle("Payment successful");
+    } else {
+      setModalMessage(create.error.message);
+      setIsModal(true);
       setSubmitting(false);
-      setModalMessageTitle("")
+      setModalMessageTitle("");
     }
     setSubmitting(false);
   };
 
   const uploadImage = (e) => {
+    console.log(e.target.files[0])
     setAvatar(e.target.files[0]);
     const element = e.target.files[0];
     const reader = new FileReader();
@@ -150,7 +162,7 @@ function UserCreate() {
                     touche={touched.avatar}
                   />
                 </div>
-                <div className="box p-5 grid grid-cols-2 gap-3 flex-1 rounded-2xl">
+                <div className="box p-5 grid grid-cols-2 gap-4 flex-1 rounded-2xl">
                   <div>
                     <InputComponent
                       title={"First Name"}
@@ -265,7 +277,7 @@ function UserCreate() {
                   <div className="flex justify-end items-end">
                     <ButtonSubmit
                       title={"Create"}
-                      submit={() => submitHandle(values)}
+                      submit={() => submitHandle(values, errors)}
                       submiting={isSubmitting}
                     />
                   </div>
