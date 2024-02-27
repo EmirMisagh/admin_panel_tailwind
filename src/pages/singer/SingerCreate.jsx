@@ -6,14 +6,13 @@ import InputComponent from "../../components/element/InputComponent";
 import * as Yup from "yup";
 import MyCombobox from "../../components/element/Combobox";
 import ButtonSubmit from "../../components/element/ButtonSubmit";
-import axios from "axios";
-import { ApiUrl, createUser, getUserEmail } from "../../config/API";
+import { createSinger, uploadImageApi } from "../../config/API";
 import MyModal from "../../components/element/Modal";
 
-const adminCombobox = [
-  { id: 1, name: "User" },
-  { id: 2, name: "Manager" },
-  { id: 3, name: "Admin" },
+const countryCombobox = [
+  { id: 1, name: "Iran" },
+  { id: 2, name: "Turkish" },
+  { id: 3, name: "Iraq" },
 ];
 
 const SignupSchema = Yup.object().shape({
@@ -25,93 +24,75 @@ const SignupSchema = Yup.object().shape({
     .min(2, "Too Short!")
     .max(50, "Too Long!")
     .required("Required"),
-  username: Yup.string()
-    .min(2, "Too Short!")
-    .max(50, "Too Long!")
-    .required("Required"),
   avatar: Yup.string()
     .min(2, "Too Short!")
     .max(50, "Too Long!")
     .required("Required"),
-  email: Yup.string().email("Invalid email").required("Required"),
-  password: Yup.string()
-    .required("No password provided.")
-    .min(8, "Password is too short - should be 8 chars minimum.")
-    .matches(/[a-zA-Z]/, "Password can only contain Latin letters."),
 });
 
-function UserCreate() {
+function SingerCreate() {
   const [isSubmitting, setSubmitting] = useState(false);
   const [isModal, setIsModal] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
   const [modalMessageTitle, setModalMessageTitle] = useState("");
   const [avatar, setAvatar] = useState("");
+  const [country, setCountry] = useState("");
   const [avatarSrc, setAvatarSrc] = useState("");
-  const [admin, setAdmin] = useState("User");
-  const [emailVerified, setEmailVerified] = useState(false);
 
   const form = {
     name: "",
     family: "",
-    username: "",
     email: "",
-    emailVerified: false,
-    password: "",
     avatar,
-    country: "",
+    country,
     city: "",
-    phone: "",
-    admin,
+    twitter: "",
+    instgram: "",
+    facebook: "",
   };
 
-  const submitHandle = async (values) => {
-    setSubmitting(true);
-    const formData = new FormData();
-    formData.append("file", avatar);
+  const submitHandle = async(values) => {
+     // ERROR CHEKING -----------------
+     setSubmitting(true);
+     if ((!values.name, !values.family, !avatar)) {
+       console.log("error");
+       console.log(values);
+       setSubmitting(false);
+       return;
+     }
+ 
+     // UPLOAD IMAGE -----------------
+     const formData = new FormData();
+     formData.append("file", avatar);
 
+     const imageUpload = await uploadImageApi("singeravatar", formData);
+     if (!imageUpload.data.data) {
+       setSubmitting(false);
+       setModalMessage("Image not uploaded");
+       setModalMessageTitle("");
+       return;
+     }
+     setAvatar(imageUpload.data.data);
+     values.avatar = imageUpload.data.data;
 
-    const email = await getUserEmail(values.email);
-    console.log(email);
+     const create = await createSinger(values);
+     if (create.data) {
+       setModalMessage(create.data.message);
+       setIsModal(true);
+       setSubmitting(false);
+       setModalMessageTitle("Payment successful");
+     } else {
+       setModalMessage(create.error.message);
+       setIsModal(true);
+       setSubmitting(false);
+       setModalMessageTitle("");
+     }
 
-    if (email.data.found) {
-      setModalMessage(email.data.message);
-      setIsModal(true);
-      setSubmitting(false);
-      setModalMessageTitle("Payment successful");
-      return;
-    }
-    await axios
-      .post(`${ApiUrl}/upload/user/avatar`, formData)
-      .then((responce) => {
-        setAvatar(responce.data.data);
-        values.avatar = responce.data.data;
-      })
-      .catch(() => {
-        setSubmitting(false);
-        setModalMessage("Image not uploaded");
-        setModalMessageTitle("");
-        return;
-      });
+     setSubmitting(false);
 
-    values.admin = form.admin;
-
-    const create = await createUser(values);
-    if (create.data) {
-      setModalMessage(create.data.message);
-      setIsModal(true);
-      setSubmitting(false);
-      setModalMessageTitle("Payment successful");
-    } else {
-      setModalMessage(create.error.message);
-      setIsModal(true);
-      setSubmitting(false);
-      setModalMessageTitle("");
-    }
-    setSubmitting(false);
   };
 
   const uploadImage = (e) => {
-    console.log(e.target.files[0])
     setAvatar(e.target.files[0]);
     const element = e.target.files[0];
     const reader = new FileReader();
@@ -125,10 +106,10 @@ function UserCreate() {
     <div>
       <div>
         <Header
-          title={"Create a new user"}
+          title={"Create a new singer"}
           address1={"Dashbourd"}
-          address2={"User"}
-          address3={"New User"}
+          address2={"Singer"}
+          address3={"New Singer"}
         />
       </div>
       <div>
@@ -155,8 +136,8 @@ function UserCreate() {
                     error={avatar}
                     onChange={handleChange}
                     value={values.avatar}
-                    emailVerified={emailVerified}
-                    handleToggle={() => setEmailVerified(!emailVerified)}
+                    emailVerified={false}
+                    handleToggle={() => {}}
                     onBlur={handleBlur}
                     touche={touched.avatar}
                   />
@@ -199,79 +180,49 @@ function UserCreate() {
                     />
                   </div>
                   <div>
-                    <InputComponent
-                      title={"Username"}
-                      typeInput={"text"}
-                      name="username"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.username}
-                      errors={errors.username}
-                      touche={touched.username}
-                    />
-                  </div>
-                  <div>
-                    <InputComponent
-                      title={"Phone Number"}
-                      typeInput={"text"}
-                      name="phone"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.phone}
-                      errors={errors.phone}
-                      touche={touched.phone}
-                    />
-                  </div>
-                  <div>
                     <MyCombobox
-                      handle={setAdmin}
-                      arr={adminCombobox}
+                      handle={setCountry}
+                      arr={countryCombobox}
                       label={"Country"}
                     />
                   </div>
                   <div>
-                    <MyCombobox
-                      handle={setAdmin}
-                      arr={adminCombobox}
-                      label={"Admin"}
-                    />
-                  </div>
-                  <div>
                     <InputComponent
-                      title={"City"}
+                      title={"Twitter"}
                       typeInput={"text"}
-                      name="city"
+                      name="twitter"
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      value={values.city}
-                      errors={errors.city}
-                      touche={touched.city}
+                      value={values.twitter}
+                      errors={errors.twitter}
+                      touche={touched.twitter}
                     />
                   </div>
                   <div>
                     <InputComponent
-                      title={"Password"}
-                      typeInput={"password"}
-                      name="password"
+                      title={"Facebook"}
+                      typeInput={"text"}
+                      name="facebook"
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      value={values.password}
-                      errors={errors.password}
-                      touche={touched.password}
+                      value={values.facebook}
+                      errors={errors.facebook}
+                      touche={touched.facebook}
                     />
                   </div>
                   <div>
                     <InputComponent
-                      title={"Password"}
-                      typeInput={"password"}
-                      name="password"
+                      title={"Instgram"}
+                      typeInput={"text"}
+                      name="instgram"
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      value={values.password}
-                      errors={errors.password}
-                      touche={touched.password}
+                      value={values.instgram}
+                      errors={errors.instgram}
+                      touche={touched.instgram}
                     />
                   </div>
+                  <div></div>
                   <div></div>
                   <div className="flex justify-end items-end">
                     <ButtonSubmit
@@ -285,7 +236,6 @@ function UserCreate() {
             </Form>
           )}
         </Formik>
-      
       </div>
       <MyModal
         isModal={isModal}
@@ -297,4 +247,4 @@ function UserCreate() {
   );
 }
 
-export default UserCreate;
+export default SingerCreate;

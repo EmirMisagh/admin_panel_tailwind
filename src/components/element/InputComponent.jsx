@@ -25,8 +25,8 @@ function InputComponent({
         className={`absolute left-3 font-bold InputComponentSpan  ${
           value
             ? errors && touche
-              ? "text-red-600 top-[-9px] text-[0.80rem] font-bold z-50"
-              : "text-textSecond_500 top-[-9px] text-[0.80rem] font-bold z-50"
+              ? "text-red-600 top-[-10px] text-[0.80rem] font-bold z-50"
+              : "text-textSecond_500 top-[-10px] text-[0.80rem] font-bold z-50"
             : errors && touche
             ? "text-red-600 top-[14px]"
             : "text-textSecond_500 top-[14px]"

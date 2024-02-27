@@ -1,7 +1,20 @@
-import React from "react";
+import React, { useEffect, useCallback, useState } from "react";
 import Header from "../../components/Header";
+import { getSongAll } from "../../config/API";
+import { DataGridSong } from "../../components/element/DataGrid";
 
 function SongList() {
+  const [song, setSong] = useState([]);
+
+  const getSong = useCallback(async () => {
+    const songData = await getSongAll();
+    console.log(songData);
+    setSong(songData.data);
+  }, []);
+
+  useEffect(() => {
+    getSong();
+  }, [getSong]);
   return (
     <div>
       <div>
@@ -12,6 +25,9 @@ function SongList() {
           address3={"List"}
           button={"Create new"}
         />
+      </div>
+      <div className="p-3 px-0 rounded-2xl mt-8 box overflow-hidden">
+        <DataGridSong songs={song} />
       </div>
     </div>
   );

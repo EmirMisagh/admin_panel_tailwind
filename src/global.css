@@ -366,7 +366,7 @@ div[theme-mode="dark"] .btn {
 }
 
 .InputComponent:focus + .InputComponentSpan {
-  top: -9px;
+  top: -10px;
   font-size: 0.8rem;
   font-weight: 700;
   z-index: 60;
@@ -391,4 +391,59 @@ div[theme-mode="dark"] .btn {
   background-color: var(--theme-bg-600);
   color: var(--theme-text-200);
   font-weight: bold;
+}
+
+.imageCard {
+  padding: 5px;
+}
+.imageCard::after,
+.imageCard::before {
+  content: "";
+  position: absolute;
+  display: inline-block;
+  background: var(--color-box);
+}
+.imageCard::after {
+  width: 70px;
+  height: 50px;
+  z-index: -1;
+  top: 8px;
+  right: -59px;
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  clip-path: polygon(
+    80% 49%,
+    88% 38%,
+    100% 17%,
+    100% 100%,
+    65% 100%,
+    0 99%,
+    19% 93%,
+    39% 73%,
+    53% 72%,
+    69% 63%
+  );
+}
+.imageCard::before {
+  width: 70px;
+  height: 50px;
+  z-index: -1;
+  top: 8px;
+  left: -59px;
+  clip-path: polygon(
+    80% 49%,
+    88% 38%,
+    100% 17%,
+    100% 100%,
+    65% 100%,
+    0 99%,
+    19% 93%,
+    39% 73%,
+    53% 72%,
+    69% 63%
+  );
+}
+
+.imageCover {
+  background-color: rgba(0, 0, 0, 0.3);
 }

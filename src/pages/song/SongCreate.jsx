@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useCallback, useEffect } from "react";
 import Header from "../../components/Header";
 import InputComponent from "../../components/element/InputComponent";
 import MyCombobox from "../../components/element/Combobox";
@@ -7,59 +7,153 @@ import UploadFile from "../../components/element/UploadFile";
 import TextEditor from "../../components/element/TextEditor";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
-
-const form = {
-  name: "",
-  family: "",
-  username: "",
-  email: "",
-  emailVerified: false,
-  password: "",
-  country: "",
-  city: "",
-  phone: "",
-};
+import MusicPlayer from "../../components/MusicPlayer";
+import { createSong, uploadImageApi, getSingerAll } from "../../config/API";
+import MyModal from "../../components/element/Modal";
+import Toggle from "../../components/element/Toggle";
 
 const SignupSchema = Yup.object().shape({
   name: Yup.string()
     .min(2, "Too Short!")
     .max(50, "Too Long!")
     .required("Required"),
-  family: Yup.string()
+  singer: Yup.string()
     .min(2, "Too Short!")
     .max(50, "Too Long!")
     .required("Required"),
-  username: Yup.string()
+  image: Yup.string()
     .min(2, "Too Short!")
     .max(50, "Too Long!")
     .required("Required"),
-  avatar: Yup.string()
+  music: Yup.string()
     .min(2, "Too Short!")
     .max(50, "Too Long!")
     .required("Required"),
-  email: Yup.string().email("Invalid email").required("Required"),
-  password: Yup.string()
-    .required("No password provided.")
-    .min(8, "Password is too short - should be 8 chars minimum.")
-    .matches(/[a-zA-Z]/, "Password can only contain Latin letters."),
 });
 
 function SongCreate() {
+  const [show, setShow] = useState(true);
+  const [isSubmitting, setSubmitting] = useState(false);
+  const [peoplework, setPeoplework] = useState(false);
+  const [remember, setRemember] = useState(false);
   const [image, setImage] = useState("");
   const [imageSrc, setImageSrc] = useState("");
+  const [music, setMusic] = useState("");
+  const [musicSrc, setMusicSrc] = useState("");
+  const [duration, setduration] = useState(0);
+  const [isModal, setIsModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
+  const [modalMessageTitle, setModalMessageTitle] = useState("");
+  const [singer, setSinger] = useState("");
+  const [singers, setSingers] = useState([]);
+  const audioRef = useRef();
 
-  const submitHandle = () => {};
+  const getSingers = useCallback(async () => {
+    const singerData = await getSingerAll();
+    console.log(singerData.data);
+    setSingers(singerData.data);
+  }, []);
+
+  useEffect(() => {
+    getSingers();
+  }, [getSingers]);
+
+  const form = {
+    name: "",
+    singer,
+    category: "",
+    image,
+    music,
+    lyric: "",
+    duration,
+    album: "",
+    show,
+    author: "",
+    tags: [],
+  };
+
+  const submitHandle = async (values) => {
+    // ERROR CHEKING -----------------
+    setSubmitting(true);
+    if ((!values.name, !values.singer, !values.image, !values.music)) {
+      console.log("error");
+      // setSubmitting(false);
+      // return;
+    }
+    console.log(image);
+
+    // UPLOAD IMAGE -----------------
+    const formData = new FormData();
+    formData.append("file", image);
+
+    const imageUpload = await uploadImageApi("songimage", formData);
+    if (!imageUpload.data.data) {
+      setSubmitting(false);
+      setModalMessage("Image not uploaded");
+      setModalMessageTitle("");
+      return;
+    }
+    setImage(imageUpload.data.data);
+    values.image = imageUpload.data.data;
+
+    // UPLOAD MUSIC -----------------
+    const formDataMusic = new FormData();
+    formDataMusic.append("file", music);
+
+    const musicUpload = await uploadImageApi("songmusic", formDataMusic);
+    if (!musicUpload.data.data) {
+      setSubmitting(false);
+      setModalMessage("Image not uploaded");
+      setModalMessageTitle("");
+      return;
+    }
+    setMusic(musicUpload.data.data);
+    values.music = musicUpload.data.data;
+
+    values.duration = duration;
+    values.show = show;
+    values.singer = singer;
+
+    const create = await createSong(values);
+    if (create.data) {
+      setModalMessage(create.data.message);
+      setIsModal(true);
+      setSubmitting(false);
+      setModalMessageTitle("Payment successful");
+    } else {
+      setModalMessage(create.error.message);
+      setIsModal(true);
+      setSubmitting(false);
+      setModalMessageTitle("");
+    }
+
+    setSubmitting(false);
+  };
 
   const uploadImage = (file) => {
-    console.log(file[0]);
     setImage(file[0]);
     const element = file[0];
     const reader = new FileReader();
     reader.onload = function (e) {
-      console.log(e);
       setImageSrc(e.target.result);
     };
     reader.readAsDataURL(element);
+  };
+
+  const uploadMusic = (file) => {
+    setMusic(file[0]);
+    const element = file[0];
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      setMusicSrc(e.target.result);
+    };
+    reader.readAsDataURL(element);
+  };
+
+  const onLoadedMetadata = () => {
+    if (audioRef.current) {
+      setduration(audioRef.current.duration);
+    }
   };
 
   return (
@@ -110,12 +204,9 @@ function SongCreate() {
                 </div>
                 <div>
                   <MyCombobox
-                    arr={[
-                      { id: 2, name: "Admin" },
-                      { id: 3, name: "Manager" },
-                      { id: 4, name: "User" },
-                    ]}
+                    arr={singers}
                     label={"Singer"}
+                    handle={setSinger}
                   />
                 </div>
                 <div>
@@ -132,15 +223,24 @@ function SongCreate() {
                     </div>
                   </div>
                 )}
-                <div>
-                  <small>Song</small>
-                  <div className="mt-3">
-                    <UploadFile />
+                {!music && (
+                  <div>
+                    <small>Song</small>
+                    <div className="mt-3">
+                      <UploadFile handleUpload={uploadMusic} />
+                    </div>
                   </div>
-                </div>
-                <div>
-                  <img src={imageSrc} alt="" />
-                </div>
+                )}
+                {image && (
+                  <div>
+                    <MusicPlayer
+                      image={imageSrc}
+                      music={musicSrc}
+                      audioRef={audioRef}
+                      onLoadedMetadata={onLoadedMetadata}
+                    />
+                  </div>
+                )}
               </div>
             </div>
             <div className="grid grid-cols-3  mt-6">
@@ -156,25 +256,59 @@ function SongCreate() {
                 </div>
                 <div>
                   <MyCombobox
-                    arr={[
-                      { id: 1, name: "Not filter" },
-                      { id: 2, name: "Admin" },
-                      { id: 3, name: "Manager" },
-                      { id: 4, name: "User" },
-                    ]}
-                    label={"Admin"}
+                    arr={singers}
+                    label={"Album"}
                   />
                 </div>
+                <div className="flex justify-around items-center">
+                  <div className="flex justify-start items-center gap-2">
+                    <Toggle
+                      handle={() => setRemember(!remember)}
+                      value={remember}
+                    />
+                    <small>{remember ? <>Remember</> : <>Normal</>}</small>
+                  </div>
+                  <div className="flex justify-start items-center gap-2">
+                    <Toggle
+                      handle={() => setPeoplework(!peoplework)}
+                      value={peoplework}
+                    />
+                    <small>
+                      {peoplework ? <>People Work</> : <>Your Work</>}
+                    </small>
+                  </div>
+                  <div className="flex justify-start items-center gap-2">
+                    <Toggle handle={() => {}} value={true} />
+                    <small>{show ? <>Remember</> : <>Normal</>}</small>
+                  </div>
+                </div>
               </div>
-              <div className=" col-span-1">vbc</div>
-              <div className=" col-span-2 flex justify-end items-end">
-                {" "}
-                <ButtonSubmit title={"Create"} />
+              <div className=" col-span-1"></div>
+              <div className=" col-span-2 flex justify-between p-8 items-center">
+                <div>
+                  <div className="flex items-center gap-2">
+                    <Toggle handle={() => setShow(!show)} value={show} />
+                    <small>{show ? <>Published</> : <>Private</>}</small>
+                  </div>
+                </div>
+                <div>
+                  <ButtonSubmit
+                    title={"Create"}
+                    submit={() => submitHandle(values)}
+                    submiting={isSubmitting}
+                  />
+                </div>
               </div>
             </div>
           </Form>
         )}
       </Formik>
+      <MyModal
+        isModal={isModal}
+        ModalMessage={modalMessage}
+        title={modalMessageTitle}
+        closeModal={() => setIsModal(false)}
+      />
     </div>
   );
 }

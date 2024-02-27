@@ -55,6 +55,17 @@ body {
    --color-cover-700: rgba(255, 255, 255, 0.7);
    --color-cover-800: rgba(255, 255, 255, 0.8);
    --color-cover-900: rgba(255, 255, 255, 0.9);
+
+
+   --color-coverblack-100: rgba(0, 0, 0, 0.1);
+   --color-coverblack-200: rgba(0, 0, 0, 0.2);
+   --color-coverblack-300: rgba(0, 0, 0, 0.3);
+   --color-coverblack-400: rgba(0, 0, 0, 0.4);
+   --color-coverblack-500: rgba(0, 0, 0, 0.5);
+   --color-coverblack-600: rgba(0, 0, 0, 0.6);
+   --color-coverblack-700: rgba(0, 0, 0, 0.7);
+   --color-coverblack-800: rgba(0, 0, 0, 0.8);
+   --color-coverblack-900: rgba(0, 0, 0, 0.9);
 }
 
 .playfair {

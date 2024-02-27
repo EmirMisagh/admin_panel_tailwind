@@ -12,7 +12,7 @@ import { RiAlbumFill } from "react-icons/ri";
 import { useSelector, useDispatch } from "react-redux";
 
 function Sidebar() {
-  const { sidebar } = useSelector((state) => ({
+  const { sidebar,  } = useSelector((state) => ({
     sidebar: state.menuReducer.sidebar,
   }));
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ function Sidebar() {
     >
       <div className="w-full h-full relative">
         <div className="flex justify-center font-Libre text-textSecond_400 py-6">
-          Admin
+          
         </div>
         <div
           className={`relative w-full overflow-y-scroll overflow-x-hidden h-[80vh] notscroll ${
@@ -51,8 +51,8 @@ function Sidebar() {
                 icon={<BsBarChartLineFill />}
               />
               <ItemOverview
-                title={"Analytics"}
-                address={"/"}
+                title={"Files"}
+                address={"/files"}
                 icon={<GoFileDirectoryFill />}
               />
             </div>
@@ -92,21 +92,21 @@ function Sidebar() {
             </div>
           </div>
         </div>
-          <span
-            onClick={() => {
-              dispatch({
-                type: "sidebarboth",
-              });
-            }}
-            className="border border-gray400  z-[99999999999] text-textSecond_300 hover:border-gray100 absolute top-24 transform translate-x-3 rounded-full right-0 cursor-pointer"
-          >
-            <MdKeyboardArrowRight
-              className={` ${
-                sidebar ? "rotate-[180deg]" : "rotate-[0deg]"
-              } transform font-light
+        <span
+          onClick={() => {
+            dispatch({
+              type: "sidebarboth",
+            });
+          }}
+          className="border border-gray400  z-[99999999999] text-textSecond_300 hover:border-gray100 absolute top-24 transform translate-x-3 rounded-full right-0 cursor-pointer"
+        >
+          <MdKeyboardArrowRight
+            className={` ${
+              sidebar ? "rotate-[180deg]" : "rotate-[0deg]"
+            } transform font-light
                              h-5 w-5`}
-            />
-          </span>
+          />
+        </span>
       </div>
     </div>
   );

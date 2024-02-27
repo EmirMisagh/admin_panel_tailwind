@@ -1,14 +1,22 @@
 import React, { useState } from "react";
 import { useDropzone } from "react-dropzone";
 
-function UploadFile({handleUpload}) {
+function UploadFile({handleUpload, acceptFile}) {
   const [image, setImage] = useState([]);
   const { getRootProps, getInputProps } = useDropzone({
+    accept: {
+      'image/jpeg': [],
+      'image/png': [],
+      'audio/*': []
+    },
     onDrop: (acceptedFiles) => {
       setImage(acceptedFiles);
       handleUpload(acceptedFiles);
     },
   });
+
+ 
+
   return (
     <div className="w-full p-10 gap-10 flex flex-col  items-center relative rounded-lg aspect-video bg-bg_secend_400">
       <div className="flex justify-start items-center ">
@@ -35,6 +43,7 @@ function UploadFile({handleUpload}) {
       ></div>
       <input
         type="file"
+        accept="image/png, image/gif, image/jpeg"
         {...getInputProps()}
         className=""
         style={{ display: "none" }}

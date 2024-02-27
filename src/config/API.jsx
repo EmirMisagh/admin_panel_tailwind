@@ -17,6 +17,9 @@ async function resolve(promise) {
   return resolved;
 }
 
+// USER API _________________________________________________________________________
+// __________________________________________________________________________________
+
 async function getUserAll() {
   return await resolve(
     axios.get(`${ApiUrl}/author`).then((res) => res.data.data)
@@ -35,10 +38,103 @@ async function getUserEmail(email) {
   );
 }
 
+async function getUserToken(email) {
+  return await resolve(
+    await axios.get(`${ApiUrl}/author/token/${email}`).then((res) => res.data)
+  );
+}
+
 async function createUser(body) {
   return await resolve(
     axios.post(`${ApiUrl}/author/create`, body).then((res) => res.data)
   );
 }
 
-export { getUserOne, getUserAll, createUser, getUserEmail };
+// SONG API _________________________________________________________________________
+// __________________________________________________________________________________
+
+async function getSongAll() {
+  return await resolve(
+    axios.get(`${ApiUrl}/song/`).then((res) => res.data.data)
+  );
+}
+
+async function getSongOne(id) {
+  return await resolve(
+    axios.get(`${ApiUrl}/song/${id}`).then((res) => res.data.data)
+  );
+}
+
+async function createSong(body) {
+  return await resolve(
+    axios.post(`${ApiUrl}/song/create`, body).then((res) => res.data)
+  );
+}
+
+// SINGER API _________________________________________________________________________
+// __________________________________________________________________________________
+
+async function getSingerAll() {
+  return await resolve(
+    axios.get(`${ApiUrl}/singer/`).then((res) => res.data.data)
+  );
+}
+
+async function getSingerOne(id) {
+  return await resolve(
+    axios.get(`${ApiUrl}/singer/${id}`).then((res) => res.data.data)
+  );
+}
+
+async function createSinger(body) {
+  return await resolve(
+    axios.post(`${ApiUrl}/singer/create`, body).then((res) => res.data)
+  );
+}
+
+// FILE API _________________________________________________________________________
+// __________________________________________________________________________________
+
+async function uploadImageApi(key, body) {
+  switch (key) {
+    case "useravatar":
+      return await resolve(
+        axios.post(`${ApiUrl}/upload/user/avatar`, body).then((res) => res.data)
+      );
+    case "songimage":
+      return await resolve(
+        axios.post(`${ApiUrl}/upload/song/image`, body).then((res) => res.data)
+      );
+    case "songmusic":
+      return await resolve(
+        axios.post(`${ApiUrl}/upload/song/music`, body).then((res) => res.data)
+      );
+    case "singeravatar":
+      return await resolve(
+        axios
+          .post(`${ApiUrl}/upload/singer/avatar`, body)
+          .then((res) => res.data)
+      );
+    default:
+      break;
+  }
+}
+
+// EXPORT ___________________________________________________________________________
+// __________________________________________________________________________________
+
+export {
+  getUserOne,
+  getUserAll,
+  createUser,
+  getUserEmail,
+  getUserToken,
+  uploadImageApi,
+  createSong,
+  getSongAll,
+  getSongOne,
+  getSingerAll,
+  getSingerOne,
+  createSinger,
+
+};

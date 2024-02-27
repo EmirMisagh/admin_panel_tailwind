@@ -21,8 +21,8 @@ function ButtonSubmit({ title, submit, submiting, styl }) {
       className={`${
         handleClick && "btn"
       } bg-black text-white transition-all delay-150 ${
-        submiting ? "p-1 rounded-full" : "px-4 py-2 rounded-lg"
-      }  font-bold text-sm hover:bg-slate-600 ${styl}`}
+        submiting ? "p-1 rounded-full" : `px-4 py-2 rounded-lg ${styl}`
+      }  font-bold text-sm hover:bg-slate-600 `}
     >
       {submiting ? (
         <div className="btnloading text-3xl text-white">

@@ -104,7 +104,6 @@ function MyCombobox({ handle, arr, label }) {
       >
         {label}
       </span>
-     
     </div>
   );
 }

@@ -112,6 +112,16 @@ module.exports = {
         bg_cover_800: withOpacity("--color-cover-800"),
         bg_cover_900: withOpacity("--color-cover-900"),
 
+        bg_coverblack_100: withOpacity("--color-coverblack-100"),
+        bg_coverblack_200: withOpacity("--color-coverblack-200"),
+        bg_coverblack_300: withOpacity("--color-coverblack-300"),
+        bg_coverblack_400: withOpacity("--color-coverblack-400"),
+        bg_coverblack_500: withOpacity("--color-coverblack-500"),
+        bg_coverblack_600: withOpacity("--color-coverblack-600"),
+        bg_coverblack_700: withOpacity("--color-coverblack-700"),
+        bg_coverblack_800: withOpacity("--color-coverblack-800"),
+        bg_coverblack_900: withOpacity("--color-coverblack-900"),
+
         // Theme --------------------------------------------------
         // --------------------------------------------------------
 
