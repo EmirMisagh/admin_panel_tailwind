@@ -1,18 +1,32 @@
-import Home from "../pages/Home";
-import PlaylistList from "../pages/playlist/PlaylistList";
-import PlaylistCreate from "../pages/playlist/PlaylistCreate";
-import SingerCreate from "../pages/singer/SingerCreate";
-import SingerList from "../pages/singer/SingerList";
-import SongCreate from "../pages/song/SongCreate";
-import SongList from "../pages/song/SongList";
-import UserCard from "../pages/user/UserCard";
-import UserCreate from "../pages/user/UserCreate";
-import UserList from "../pages/user/UserList";
+import { lazy } from "react";
+
+
+const Home = lazy(() => import("../pages/Home"));
+const Files = lazy(() => import("../pages/Files"));
+const SingerList = lazy(() => import("../pages/singer/SingerList"));
+const SingerCreate = lazy(() => import("../pages/singer/SingerCreate"));
+const SongCreate = lazy(() => import("../pages/song/SongCreate"));
+const SongList = lazy(() => import("../pages/song/SongList"));
+const UserCard = lazy(() => import("../pages/user/UserCard"));
+const UserCreate = lazy(() => import("../pages/user/UserCreate"));
+const UserList = lazy(() => import("../pages/user/UserList"));
+const PlaylistList = lazy(() => import("../pages/playlist/PlaylistList"));
+const PlaylistCreate = lazy(() => import("../pages/playlist/PlaylistCreate"));
+
 
 export const router = [
   {
     element: <Home />,
     path: "/",
+  },
+
+  {
+    element: <Files />,
+    path: "/files",
+  },
+  {
+    element: <Files />,
+    path: "/files/*",
   },
 
    // User -------------------------------------------------

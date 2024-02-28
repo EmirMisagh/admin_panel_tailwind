@@ -120,6 +120,13 @@ async function uploadImageApi(key, body) {
   }
 }
 
+async function getFilesAll() {
+  return await resolve(
+    axios.get(`${ApiUrl}/file/all/`).then((res) => res.data.data)
+  );
+}
+
+
 // EXPORT ___________________________________________________________________________
 // __________________________________________________________________________________
 
@@ -136,5 +143,5 @@ export {
   getSingerAll,
   getSingerOne,
   createSinger,
-
+  getFilesAll,
 };

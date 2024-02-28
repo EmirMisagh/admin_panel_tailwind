@@ -1,10 +1,11 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { router } from "../config/Routes";
 import Sidebar from "../components/Sidebar";
 import Topbar from "../components/Topbar";
 import SettingMenu from "../components/SettingMenu";
 import { useSelector } from "react-redux";
+import Loading from "../components/Loading";
 
 function Dashboard() {
   const { sidebar } = useSelector((state) => ({
@@ -31,12 +32,18 @@ function Dashboard() {
           }`}
         >
           <Topbar />
-          <div className="py-0 px-14 pb-20">
-            <Routes>
-              {router.map((route, index) => (
-                <Route path={route.path} element={route.element} key={index} />
-              ))}
-            </Routes>
+          <div className="py-0 px-14 pb-20 relative">
+            <Suspense fallback={<Loading />}>
+              <Routes>
+                {router.map((route, index) => (
+                  <Route
+                    path={route.path}
+                    element={route.element}
+                    key={index}
+                  />
+                ))}
+              </Routes>
+            </Suspense>
           </div>
         </div>
         <div className="menues">

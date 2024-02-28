@@ -1,11 +1,9 @@
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLoginMode, LoginModeContext } from "./context/LoginContext";
-import FuncyLoding from "./config/FuncyLoding";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import Loading from "./components/Loading";
 import { useSelector } from "react-redux";
-
 
 function App() {
   const [load, setLoad] = useState(false);
@@ -20,9 +18,8 @@ function App() {
 
   useEffect(() => {
     setTimeout(() => {
-      
       setLoad(true);
-    }, 1000);
+    }, 4000);
   }, []);
 
   return (
@@ -32,21 +29,19 @@ function App() {
       box-theme={boxtheme ? "defult" : "neon"}
       data-theme={color}
     >
-      <Suspense fallback={<FuncyLoding />}>
-        <LoginModeContext.Provider value={loginMode}>
-          {load ? (
-            login ? (
-              <Dashboard />
-            ) : (
-              <Login />
-            )
+      <LoginModeContext.Provider value={loginMode}>
+        {load ? (
+          login ? (
+            <Dashboard />
           ) : (
-            <div className="w-[100%] h-[100vh]">
-              <Loading />
-            </div>
-          )}
-        </LoginModeContext.Provider>
-      </Suspense>
+            <Login />
+          )
+        ) : (
+          <div className="w-[100%] h-[100vh]">
+            <Loading />
+          </div>
+        )}
+      </LoginModeContext.Provider>
     </div>
   );
 }
