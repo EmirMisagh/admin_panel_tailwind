@@ -98,6 +98,27 @@ async function createSinger(body) {
   );
 }
 
+// PLAYLIST API _________________________________________________________________________
+// __________________________________________________________________________________
+
+async function getPlaylistAll() {
+  return await resolve(
+    axios.get(`${ApiUrl}/playlist/`).then((res) => res.data.data)
+  );
+}
+
+async function getPlaylistOne(id) {
+  return await resolve(
+    axios.get(`${ApiUrl}/playlist/${id}`).then((res) => res.data.data)
+  );
+}
+
+async function createPlaylist(body) {
+  return await resolve(
+    axios.post(`${ApiUrl}/playlist/create`, body).then((res) => res.data)
+  );
+}
+
 // FILE API _________________________________________________________________________
 // __________________________________________________________________________________
 
@@ -119,6 +140,12 @@ async function uploadImageApi(key, body) {
       return await resolve(
         axios
           .post(`${ApiUrl}/upload/singer/avatar`, body)
+          .then((res) => res.data)
+      );
+    case "playlistimage":
+      return await resolve(
+        axios
+          .post(`${ApiUrl}/upload/playlist/image`, body)
           .then((res) => res.data)
       );
     default:
@@ -152,8 +179,11 @@ export {
   getSongOne,
   getSingerAll,
   getSingerOne,
+  getPlaylistAll,
+  getPlaylistOne,
+  createPlaylist,
   createSinger,
   getFilesAll,
   deleteUser,
-  deleteFile
+  deleteFile,
 };

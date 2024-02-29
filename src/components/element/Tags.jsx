@@ -45,7 +45,7 @@ function Tags({
         ))}
       </div>
       <input
-        className=" outline-none w-auto"
+        className=" outline-none max-w-[100&]"
         type={`text`}
         onChange={(e) => setInput(e.target.value)}
         value={input}

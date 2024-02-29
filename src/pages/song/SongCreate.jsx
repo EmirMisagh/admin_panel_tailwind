@@ -82,7 +82,6 @@ function SongCreate() {
       // setSubmitting(false);
       // return;
     }
-    console.log(image);
 
     // UPLOAD IMAGE -----------------
     const formData = new FormData();

@@ -30,7 +30,7 @@ function Sidebar() {
             {name} {sidebar && family}
           </p>
           <div className="mt-3 flex flex-col gap-1 text-sm justify-between items-center">
-            <small>{ sidebar && email}</small>
+            <small>{sidebar && email}</small>
             <span className="flex text-xs py-1 px-3 text-white justify-center items-center rounded-lg bg-theme500">
               {admin}
             </span>
@@ -38,10 +38,10 @@ function Sidebar() {
         </div>
         <div
           className={`relative w-full overflow-y-scroll overflow-x-hidden h-[80vh] notscroll ${
-            sidebar ? "px-3" : "px-3"
+            sidebar ? "px-3" : "px-2"
           }`}
         >
-          <div className="mt-10">
+          <div className={`${sidebar ? "mt-10" : "mt-4"}`}>
             <span
               className={`uppercase text-textSecond_700 text-xs flex  ${
                 sidebar
@@ -148,7 +148,7 @@ function ItemOverview({ title, address, icon }) {
     <>
       <NavLink
         to={`${address}`}
-        className={`flex 
+        className={`flex mt-1
                     w-full 
                     rounded-lg 
                     ${
