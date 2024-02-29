@@ -11,6 +11,7 @@ import MusicPlayer from "../../components/MusicPlayer";
 import { createSong, uploadImageApi, getSingerAll } from "../../config/API";
 import MyModal from "../../components/element/Modal";
 import Toggle from "../../components/element/Toggle";
+import Tags from "../../components/element/Tags";
 
 const SignupSchema = Yup.object().shape({
   name: Yup.string()
@@ -46,6 +47,7 @@ function SongCreate() {
   const [modalMessageTitle, setModalMessageTitle] = useState("");
   const [singer, setSinger] = useState("");
   const [singers, setSingers] = useState([]);
+  const [tags, setTags] = useState([]);
   const audioRef = useRef();
 
   const getSingers = useCallback(async () => {
@@ -279,6 +281,16 @@ function SongCreate() {
                     <small>{show ? <>Remember</> : <>Normal</>}</small>
                   </div>
                 </div>
+                <div>
+                  <Tags
+                   title={"Tags"}
+                   name="tags"
+                   onChange={(vlaue) => setTags(tags.push(vlaue))}
+                   onBlur={() => {}}
+                   value={tags}
+                   errors={false}
+                   touche={false} />
+                </div>
               </div>
               <div className=" col-span-1"></div>
               <div className=" col-span-2 flex justify-between p-8 items-center">
@@ -307,6 +319,11 @@ function SongCreate() {
         title={modalMessageTitle}
         closeModal={() => setIsModal(false)}
       />
+      {tags.map(item => (
+        <p>
+          {item}
+        </p>
+      ))}
     </div>
   );
 }
