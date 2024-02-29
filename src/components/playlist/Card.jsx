@@ -5,7 +5,7 @@ function Card() {
     <div className="flex box bg-background_box rounded-lg p-2 hover:scale-105 cursor-pointer transition-all delay-75">
       <div className="flex flex-col justify-around px-4">
         <div className="flex justify-between items-center">
-          <div className="flex bg-pink-300 rounded-xl text-xs p-2 px-3">
+          <div className="flex bg-theme600 rounded-xl text-xs p-2 px-3">
             Published
           </div>
           <small className="text-xs text-textSecond_400">25 Feb 2024</small>
