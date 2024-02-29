@@ -2,6 +2,7 @@ import React, { useMemo, useState } from "react";
 import { FaFolder } from "react-icons/fa";
 import { FcFolder, FcImageFile } from "react-icons/fc";
 import { NavLink } from "react-router-dom";
+import FileMenu from "./FileMenu";
 
 function FileRoot({ root, dir }) {
   const [files, setFiles] = useState([]);
@@ -35,7 +36,12 @@ function FileRoot({ root, dir }) {
 
   const linkHandle = (value) => {
     const linkContainer = root[0];
-    if (value === "root2") return <NavLink to={`/files/${linkContainer.root}`}>{linkContainer.root}</NavLink>;
+    if (value === "root2")
+      return (
+        <NavLink to={`/files/${linkContainer.root}`}>
+          {linkContainer.root}
+        </NavLink>
+      );
     if (value === "root3") return linkContainer.index;
   };
 
@@ -86,6 +92,8 @@ function FileRoot({ root, dir }) {
 }
 
 const Type = ({ data, dir }) => {
+  const [file, setFile] = useState("");
+  const [select, setSelect] = useState(false);
 
   const IconHandle = (value) => {
     if (dir === "root") {
@@ -135,28 +143,60 @@ const Type = ({ data, dir }) => {
     }
   };
 
+  const fileShow = (value) => {
+    if (dir === "root") {
+      const name = value.root.split(".");
+      console.log("name", name);
+      if (name.length === 1) setFile("");
+      if (name[name.length - 1] === "jpg") {
+        setFile(name.join("."));
+        setSelect(true);
+      }
+    } else if (dir === "root2") {
+      const name = value.index.split(".");
+      console.log("name", name);
+      if (name.length === 1) setFile("");
+      if (name[name.length - 1] === "jpg"){
+        setFile(value.root + "/" + name.join("."));
+        setSelect(true);
+      }
+    } else if (dir === "root3") {
+      const name = value.seccond.split(".");
+      console.log("name", name);
+      if (name.length === 1) setFile("");
+      if (name[name.length - 1] === "jpg"){
+        setFile(value.root + "/" + value.index + "/" + name.join("."));
+        setSelect(true);  
+      }
+    }
+  };
+
   return (
-    <NavLink to={linkHandle(data)}>
-      <div
-        className="
+    <>
+      <NavLink to={linkHandle(data)}>
+        <div
+          onClick={() => fileShow(data)}
+          className="
     flex justify-between items-center gap-5 py-4 px-5 rounded-2xl hover:bg-background_box hover:shadow-xl cursor-pointer transition-all delay-100
     border border-color_border_500"
-      >
-        <div>
-          <input type="checkbox" name="" id="" />
+        >
+          <div>
+            <input type="checkbox" name="" id="" />
+          </div>
+          <div className="flex-1 flex items-center gap-3">
+            <i className=" text-4xl">{IconHandle(data)}</i>
+            {dir === "root"
+              ? data.root
+              : dir === "root2"
+              ? data.index
+              : data.seccond}
+          </div>
+          <div>22.5Mb</div>
+          <div> {typeHandle(data)}</div>
         </div>
-        <div className="flex-1 flex items-center gap-3">
-          <i className=" text-4xl">{IconHandle(data)}</i>
-          {dir === "root"
-            ? data.root
-            : dir === "root2"
-            ? data.index
-            : data.seccond}
-        </div>
-        <div>22.5Mb</div>
-        <div> {typeHandle(data)}</div>
-      </div>
-    </NavLink>
+      </NavLink>
+      <FileMenu file={file} select={select} selectHandle={() => setSelect(false)} />
+    </>
   );
 };
 

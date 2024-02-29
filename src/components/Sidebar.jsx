@@ -12,17 +12,29 @@ import { RiAlbumFill } from "react-icons/ri";
 import { useSelector, useDispatch } from "react-redux";
 
 function Sidebar() {
-  const { sidebar,  } = useSelector((state) => ({
+  const { sidebar } = useSelector((state) => ({
     sidebar: state.menuReducer.sidebar,
   }));
+  const name = window.localStorage.getItem("name");
+  const admin = window.localStorage.getItem("admin");
+  const family = window.localStorage.getItem("family");
+  const email = window.localStorage.getItem("email");
   const dispatch = useDispatch();
   return (
     <div
       className={`transition-all delay-700 w-full h-[100vh]  sticky top-0 left-0 m-0 py-5 font-Libre`}
     >
       <div className="w-full h-full relative">
-        <div className="flex justify-center font-Libre text-textSecond_400 py-6">
-          
+        <div className="flex flex-col items-center justify-center font-Libre text-textSecond_400 py-6">
+          <p className=" text-textSecond_50 font-bold">
+            {name} {family}
+          </p>
+          <div className="mt-3 flex flex-col gap-1 text-sm justify-between items-center">
+            <small>{email}</small>
+            <span className="flex text-xs py-1 px-3 text-white justify-center items-center rounded-lg bg-theme500">
+              {admin}
+            </span>
+          </div>
         </div>
         <div
           className={`relative w-full overflow-y-scroll overflow-x-hidden h-[80vh] notscroll ${

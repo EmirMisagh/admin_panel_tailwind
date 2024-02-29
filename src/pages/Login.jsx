@@ -37,6 +37,11 @@ function Login() {
           });
           loginMode.toggleLoginMode();
           window.localStorage.setItem("token", Email.data.data.token);
+          window.localStorage.setItem("name", Email.data.data.name);
+          window.localStorage.setItem("family", Email.data.data.family);
+          window.localStorage.setItem("admin", Email.data.data.admin);
+          window.localStorage.setItem("avatar", Email.data.data.avatar);
+          window.localStorage.setItem("email", Email.data.data.email);
         } else {
           setModalMessage("You not accses");
           setIsModal(true);
@@ -152,7 +157,7 @@ function Login() {
               title={"Login"}
               submit={loginHandle}
               submiting={isSubmitting}
-              styl={"w-full h-12"}
+              styl={"w-full h-12 bg-black"}
             />
           </div>
         </div>

@@ -6,8 +6,9 @@ import { useDispatch } from "react-redux";
 
 export default function Topbar() {
   const dispatch = useDispatch();
+  const avatar = window.localStorage.getItem("avatar");
   return (
-    <div className="w-full sticky top-0 left-0 z-30 text-textSecond_200 transt ">
+    <div className="w-full sticky top-0 left-0 text-textSecond_200 transt z-[99999]  ">
       <div className="relative items-center">
         <nav className="px-12 py-5 flex justify-between items-center">
           <ul className="flex items-center">
@@ -47,15 +48,14 @@ export default function Topbar() {
             <li className="p-2 rounded-full hover:bg-bg_secend_300 transt cursor-pointer">
               <span className="  ">
                 <img
-                  className=" rounded-full w-9 h-9 "
-                  src="/img/avatar_1.jpg"
+                  className=" rounded-full w-9 h-9 object-cover"
+                  src={avatar}
                   alt=""
                 />
               </span>
             </li>
           </ul>
         </nav>
-      
       </div>
     </div>
   );

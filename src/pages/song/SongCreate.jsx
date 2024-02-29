@@ -296,6 +296,7 @@ function SongCreate() {
                     title={"Create"}
                     submit={() => submitHandle(values)}
                     submiting={isSubmitting}
+                    styl="bg-black"
                   />
                 </div>
               </div>

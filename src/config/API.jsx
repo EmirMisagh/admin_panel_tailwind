@@ -132,6 +132,11 @@ async function getFilesAll() {
   );
 }
 
+async function deleteFile(body) {
+  return await resolve(
+    axios.post(`${ApiUrl}/file/remove/`, body).then((res) => res.data)
+  );
+}
 // EXPORT ___________________________________________________________________________
 // __________________________________________________________________________________
 
@@ -150,4 +155,5 @@ export {
   createSinger,
   getFilesAll,
   deleteUser,
+  deleteFile
 };
