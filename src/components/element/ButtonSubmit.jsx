@@ -20,7 +20,7 @@ function ButtonSubmit({ title, submit, submiting, styl }) {
       onMouseDown={() => sethandleClick(true)}
       className={`${
         handleClick && "btn"
-      }  text-white transition-all delay-150 ${
+      }   transition-all delay-150 ${
         submiting ? "p-1 rounded-full" : `px-4 py-2 rounded-lg ${styl}`
       }  font-bold text-sm hover:bg-slate-600 `}
     >

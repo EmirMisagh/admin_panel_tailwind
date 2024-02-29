@@ -8,9 +8,9 @@ const TextEditor = () => {
     <div className=" bg-bg_secend_400 pb-28">
       <Editor
         editorState={editorState}
-        toolbarClassName="toolbarClassName"
-        wrapperClassName="wrapperClassName"
-        editorClassName="editorClassName"
+        toolbarClassName=""
+        wrapperClassName=""
+        editorClassName=""
         onEditorStateChange={setEditorState}
       />
     </div>

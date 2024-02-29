@@ -18,7 +18,7 @@ function UploadFile({handleUpload, acceptFile}) {
  
 
   return (
-    <div className="w-full p-10 gap-10 flex flex-col  items-center relative rounded-lg aspect-video bg-bg_secend_400">
+    <div className="w-full p-10 gap-10 flex flex-col overflow-hidden items-center relative rounded-lg aspect-video bg-bg_secend_400">
       <div className="flex justify-start items-center ">
         <img
           src="/img/Untitled1-removebg-preview.png"

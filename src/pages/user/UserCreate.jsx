@@ -278,7 +278,7 @@ function UserCreate() {
                       title={"Create"}
                       submit={() => submitHandle(values)}
                       submiting={isSubmitting}
-                      styl="bg-black"
+                      styl="bg-bg_0 text-textSecond_900"
                     />
                   </div>
                 </div>

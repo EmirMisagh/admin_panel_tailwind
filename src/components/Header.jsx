@@ -27,8 +27,8 @@ function Header({ title, address1, address2, address3, button }) {
         {!!button && (
           <NavLink to={`/${address2.toLowerCase()}/create`}>
             <button
-              className="bg-black text-white transition-all delay-100 
-         px-4 py-2 rounded-lg hover:bg-slate-600
+              className="bg-bg_0 text-textSecond_900 transition-all delay-100 
+         px-4 py-2 rounded-lg hover:bg-bg_100
         font-bold text-sm "
             >
               {button}

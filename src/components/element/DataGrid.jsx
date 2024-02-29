@@ -62,7 +62,11 @@ export function DataGridUser({ users }) {
   };
   const removeHandle = async (id) => {
     const remove = await deleteUser(id);
-    setList(list.filter(i => {return i._id !== id}))
+    setList(
+      list.filter((i) => {
+        return i._id !== id;
+      })
+    );
     setModalMessage("User Deleted");
     setIsModal(true);
     setModalMessageTitle("Payment successful");
@@ -213,14 +217,14 @@ export function DataGridUser({ users }) {
       <div className="flex items-center py-6 px-8 justify-between">
         <div className="flex gap-3 justify-center items-center">
           <Toggle handle={paddingHandle} value={padding} />
-          <p className="text-sm">Dense</p>
+          <p className="text-sm text-textSecond_50">Dense</p>
         </div>
         <div className="flex gap-5 justify-center items-center">
           <div>
-            <b className="text-textgray200">Rows per page:</b>
+            <b className="text-textSecond_400">Rows per page:</b>
           </div>
           <div>
-            <p>
+            <p className="text-textSecond_400">
               {indexOne + 1}–{index >= list.length ? list.length : index} of{" "}
               {list.length}
             </p>
@@ -460,14 +464,14 @@ export function DataGridSong({ songs }) {
       <div className="flex items-center py-6 px-8 justify-between">
         <div className="flex gap-3 justify-center items-center">
           <Toggle handle={paddingHandle} value={padding} />
-          <p className="text-sm">Dense</p>
+          <p className="text-sm text-textSecond_50">Dense</p>
         </div>
         <div className="flex gap-5 justify-center items-center">
           <div>
-            <b className="text-textgray200">Rows per page:</b>
+            <b className="text-textSecond_400">Rows per page:</b>
           </div>
           <div>
-            <p>
+            <p className="text-textSecond_400">
               {indexOne + 1}–{index >= list.length ? list.length : index} of{" "}
               {list.length}
             </p>

@@ -114,7 +114,7 @@ div[theme-mode="light"] {
   --color-back-gray-600: #888888;
   --color-back-gray-700: #999999;
   --color-back-gray-800: #e7e7e7;
-  --color-back-gray-900: #f7f7f7;
+  --color-back-gray-900: rgb(247, 247, 247);
 
   /* TEXT COLOR ---------------- */
   /* --------------------------- */
@@ -166,8 +166,8 @@ div[theme-mode="dark"] {
   --bg-secend-300: rgb(32, 39, 49);
   --bg-secend-400: rgb(32, 39, 49);
 
-  --color-back-gray-900: #000;
-  --color-back-gray-800: #222222;
+  --color-back-gray-900: rgb(38, 50, 61);
+  --color-back-gray-800: rgb(52, 63, 73);
   --color-back-gray-700: #333333;
   --color-back-gray-600: #444444;
   --color-back-gray-500: #555555;

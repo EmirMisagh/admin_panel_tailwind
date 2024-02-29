@@ -210,14 +210,14 @@ function SongCreate() {
                   />
                 </div>
                 <div>
-                  <small>Lyric</small>
+                  <small className="text-textSecond_50">Lyric</small>
                   <div className="mt-3">
                     <TextEditor />
                   </div>
                 </div>
                 {!image && (
                   <div>
-                    <small>Image</small>
+                    <small className="text-textSecond_50">Image</small>
                     <div className="mt-3">
                       <UploadFile handleUpload={uploadImage} />
                     </div>
@@ -225,7 +225,7 @@ function SongCreate() {
                 )}
                 {!music && (
                   <div>
-                    <small>Song</small>
+                    <small className="text-textSecond_50">Song</small>
                     <div className="mt-3">
                       <UploadFile handleUpload={uploadMusic} />
                     </div>
@@ -255,20 +255,17 @@ function SongCreate() {
                   <InputComponent title={"Name"} typeInput={"text"} />
                 </div>
                 <div>
-                  <MyCombobox
-                    arr={singers}
-                    label={"Album"}
-                  />
+                  <MyCombobox arr={singers} label={"Album"} />
                 </div>
                 <div className="flex justify-around items-center">
-                  <div className="flex justify-start items-center gap-2">
+                  <div className="flex justify-start items-center gap-2 text-textSecond_50">
                     <Toggle
                       handle={() => setRemember(!remember)}
                       value={remember}
                     />
                     <small>{remember ? <>Remember</> : <>Normal</>}</small>
                   </div>
-                  <div className="flex justify-start items-center gap-2">
+                  <div className="flex justify-start items-center gap-2 text-textSecond_50">
                     <Toggle
                       handle={() => setPeoplework(!peoplework)}
                       value={peoplework}
@@ -277,7 +274,7 @@ function SongCreate() {
                       {peoplework ? <>People Work</> : <>Your Work</>}
                     </small>
                   </div>
-                  <div className="flex justify-start items-center gap-2">
+                  <div className="flex justify-start items-center gap-2 text-textSecond_50">
                     <Toggle handle={() => {}} value={true} />
                     <small>{show ? <>Remember</> : <>Normal</>}</small>
                   </div>
@@ -286,7 +283,7 @@ function SongCreate() {
               <div className=" col-span-1"></div>
               <div className=" col-span-2 flex justify-between p-8 items-center">
                 <div>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 text-textSecond_50">
                     <Toggle handle={() => setShow(!show)} value={show} />
                     <small>{show ? <>Published</> : <>Private</>}</small>
                   </div>
@@ -296,7 +293,7 @@ function SongCreate() {
                     title={"Create"}
                     submit={() => submitHandle(values)}
                     submiting={isSubmitting}
-                    styl="bg-black"
+                    styl="bg-bg_0 text-textSecond_900"
                   />
                 </div>
               </div>

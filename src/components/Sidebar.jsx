@@ -27,10 +27,10 @@ function Sidebar() {
       <div className="w-full h-full relative">
         <div className="flex flex-col items-center justify-center font-Libre text-textSecond_400 py-6">
           <p className=" text-textSecond_50 font-bold">
-            {name} {family}
+            {name} {sidebar && family}
           </p>
           <div className="mt-3 flex flex-col gap-1 text-sm justify-between items-center">
-            <small>{email}</small>
+            <small>{ sidebar && email}</small>
             <span className="flex text-xs py-1 px-3 text-white justify-center items-center rounded-lg bg-theme500">
               {admin}
             </span>

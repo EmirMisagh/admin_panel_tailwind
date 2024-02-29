@@ -47,13 +47,13 @@ function FileRoot({ root, dir }) {
 
   return (
     <div className="py-3">
-      <div className="flex items-center gap-3">
-        <div className=" rounded-full bg-bg_secend_200 text-lg p-3">
+      <div className="flex items-center gap-3 text-textSecond_50">
+        <div className=" rounded-full bg-bg_800 text-lg p-3">
           <FaFolder />
         </div>
         <div>
           <b>Kurdsong</b>
-          <p className="flex items-center gap-2">
+          <p className="flex items-center gap-2 text-textSecond_300 playfair">
             <small>
               <NavLink to="/files">root</NavLink>
             </small>
@@ -73,7 +73,7 @@ function FileRoot({ root, dir }) {
         </div>
       </div>
       <div>
-        <div className="flex justify-between bg-bg_secend_400 items-center gap-5 py-4 my-3 mt-6 px-5 rounded-2xl border border-color_border_500">
+        <div className="flex justify-between text-textSecond_300 bg-bg_800 items-center gap-5 py-4 my-3 mt-6 px-5 rounded-2xl border border-color_border_500">
           <div>
             <input type="checkbox" name="" id="" />
           </div>
@@ -156,7 +156,7 @@ const Type = ({ data, dir }) => {
       const name = value.index.split(".");
       console.log("name", name);
       if (name.length === 1) setFile("");
-      if (name[name.length - 1] === "jpg"){
+      if (name[name.length - 1] === "jpg") {
         setFile(value.root + "/" + name.join("."));
         setSelect(true);
       }
@@ -164,9 +164,9 @@ const Type = ({ data, dir }) => {
       const name = value.seccond.split(".");
       console.log("name", name);
       if (name.length === 1) setFile("");
-      if (name[name.length - 1] === "jpg"){
+      if (name[name.length - 1] === "jpg") {
         setFile(value.root + "/" + value.index + "/" + name.join("."));
-        setSelect(true);  
+        setSelect(true);
       }
     }
   };
@@ -177,8 +177,8 @@ const Type = ({ data, dir }) => {
         <div
           onClick={() => fileShow(data)}
           className="
-    flex justify-between items-center gap-5 py-4 px-5 rounded-2xl hover:bg-background_box hover:shadow-xl cursor-pointer transition-all delay-100
-    border border-color_border_500"
+    flex justify-between text-textSecond_50 items-center gap-5 py-4 px-5 rounded-2xl hover:bg-background_box hover:shadow-xl cursor-pointer transition-all delay-100
+    border border-color_border_600"
         >
           <div>
             <input type="checkbox" name="" id="" />
@@ -195,7 +195,11 @@ const Type = ({ data, dir }) => {
           <div> {typeHandle(data)}</div>
         </div>
       </NavLink>
-      <FileMenu file={file} select={select} selectHandle={() => setSelect(false)} />
+      <FileMenu
+        file={file}
+        select={select}
+        selectHandle={() => setSelect(false)}
+      />
     </>
   );
 };
