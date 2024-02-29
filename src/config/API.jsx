@@ -50,6 +50,12 @@ async function createUser(body) {
   );
 }
 
+async function deleteUser(id) {
+  return await resolve(
+    axios.delete(`${ApiUrl}/author/delete/${id}`).then((res) => res.data)
+  );
+}
+
 // SONG API _________________________________________________________________________
 // __________________________________________________________________________________
 
@@ -126,7 +132,6 @@ async function getFilesAll() {
   );
 }
 
-
 // EXPORT ___________________________________________________________________________
 // __________________________________________________________________________________
 
@@ -144,4 +149,5 @@ export {
   getSingerOne,
   createSinger,
   getFilesAll,
+  deleteUser,
 };
