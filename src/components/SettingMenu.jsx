@@ -292,8 +292,8 @@ function SettingMenu() {
         </div>
       </div>
       <div
-        className={`${menu ? "w-[100vw] " : "w-0"}
-    h-[100vh] transition-all delay-200 fixed justify-between bg-bg_coverblack_100 left-0 top-0 z-[999999] flex flex-col`}
+        className={`${menu ? "w-[80vw] " : "w-0"}
+    h-[100vh] transition-all  fixed justify-between left-0 top-0 z-[999999] flex flex-col`}
         onClick={() => {
           dispatch({
             type: "menu",

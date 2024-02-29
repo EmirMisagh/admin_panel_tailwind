@@ -115,6 +115,7 @@ function SongCreate() {
     values.duration = duration;
     values.show = show;
     values.singer = singer;
+    values.tags = tags;
 
     const create = await createSong(values);
     if (create.data) {
@@ -254,7 +255,7 @@ function SongCreate() {
               </div>
               <div className=" col-span-2 box rounded-2xl p-5 grid gap-7">
                 <div>
-                  <InputComponent title={"Name"} typeInput={"text"} />
+                  <MyCombobox arr={singers} label={"Category"} />
                 </div>
                 <div>
                   <MyCombobox arr={singers} label={"Album"} />
@@ -283,13 +284,14 @@ function SongCreate() {
                 </div>
                 <div>
                   <Tags
-                   title={"Tags"}
-                   name="tags"
-                   onChange={(vlaue) => setTags(tags.push(vlaue))}
-                   onBlur={() => {}}
-                   value={tags}
-                   errors={false}
-                   touche={false} />
+                    title={"Tags"}
+                    name="tags"
+                    onChange={setTags}
+                    onBlur={() => {}}
+                    value={tags}
+                    errors={false}
+                    touche={false}
+                  />
                 </div>
               </div>
               <div className=" col-span-1"></div>
@@ -319,10 +321,8 @@ function SongCreate() {
         title={modalMessageTitle}
         closeModal={() => setIsModal(false)}
       />
-      {tags.map(item => (
-        <p>
-          {item}
-        </p>
+      {tags.map((item) => (
+        <p>{item}</p>
       ))}
     </div>
   );
