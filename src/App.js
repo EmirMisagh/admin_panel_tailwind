@@ -3,7 +3,7 @@ import { useLoginMode, LoginModeContext } from "./context/LoginContext";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import Loading from "./components/Loading";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 function App() {
   const [load, setLoad] = useState(false);
@@ -16,11 +16,17 @@ function App() {
     boxtheme: state.themeReducer.boxtheme,
   }));
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
     setTimeout(() => {
       setLoad(true);
+      const darkMode = window.localStorage.getItem("darkmode");
+      dispatch({
+        type: darkMode === "light" ? "light" : "dark",
+      });
     }, 4000);
-  }, []);
+  }, [dispatch]);
 
   return (
     <div

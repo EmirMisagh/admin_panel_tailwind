@@ -1,19 +1,19 @@
 import React from "react";
 
-function Card() {
+function Card({ playlist }) {
   return (
     <div className="flex box bg-background_box rounded-lg p-2 hover:scale-105 cursor-pointer transition-all delay-75">
-      <div className="flex flex-col justify-around px-4">
+      <div className="flex flex-col justify-around px-4 w-[28rem]">
         <div className="flex justify-between items-center">
           <div className="flex bg-theme600 rounded-xl text-xs p-2 px-3">
-            Published
+            {playlist.show ? "Published" : "Private"}
           </div>
           <small className="text-xs text-textSecond_400">25 Feb 2024</small>
         </div>
         <div>
-          <h2 className="text-textSecond_50">90s</h2>
+          <h2 className="text-textSecond_50">{playlist.name}</h2>
           <p className="text-xs text-textSecond_300">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore,
+            Playlist by KordSong - 2 songs 6 min 50 sec
           </p>
         </div>
         <div className="flex justify-around text-sm text-textSecond_400">
@@ -25,7 +25,7 @@ function Card() {
       <div>
         <img
           className="w-full h-full rounded-md object-cover"
-          src="/img/colorful-wallpaper.jpg"
+          src={playlist.image}
           alt=""
         />
       </div>

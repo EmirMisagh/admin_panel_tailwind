@@ -16,7 +16,7 @@ function InputComponent({
         onBlur={onBlur}
         value={value}
         name={name}
-        className={`p-4 pl-5 text-textgray100 ${
+        className={`p-4 pl-5 text-textSecond_200 ${
           errors && touche ? "border-red-600" : "border-color_border_600"
         } text-sm font-bold w-full z-20 bg-none outline-none rounded-lg  border focus:border-color_border_100  InputComponent `}
         style={{ background: "rgb(0,0,0,0)" }}

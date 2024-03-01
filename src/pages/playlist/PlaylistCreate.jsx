@@ -51,40 +51,42 @@ function PlaylistCreate() {
   const submitHandle = async (values) => {
     setSubmitting(true);
     // ERROR CHEKING -----------------
-    if ((!values.name, !values.singer, !values.image, !values.music)) {
+    if ((!values.name, !image)) {
       console.log("error");
       setSubmitting(false);
       return;
     }
 
-     // UPLOAD IMAGE -----------------
-     const formData = new FormData();
-     formData.append("file", image);
- 
-     const imageUpload = await uploadImageApi("playlistimage", formData);
-     if (!imageUpload.data.data) {
-       setSubmitting(false);
-       setModalMessage("Image not uploaded");
-       setModalMessageTitle("");
-       return;
-     }
-     setImage(imageUpload.data.data);
-     values.image = imageUpload.data.data;
+    // UPLOAD IMAGE -----------------
+    const formData = new FormData();
+    formData.append("file", image);
 
-     const create = await createPlaylist(values);
-     if (create.data) {
-       setModalMessage(create.data.message);
-       setIsModal(true);
-       setSubmitting(false);
-       setModalMessageTitle("Payment successful");
-     } else {
-       setModalMessage(create.error.message);
-       setIsModal(true);
-       setSubmitting(false);
-       setModalMessageTitle("");
-     }
- 
-     setSubmitting(false);
+    const imageUpload = await uploadImageApi("playlistimage", formData);
+    if (!imageUpload.data.data) {
+      setSubmitting(false);
+      setModalMessage("Image not uploaded");
+      setModalMessageTitle("");
+      return;
+    }
+    setImage(imageUpload.data.data);
+    values.image = imageUpload.data.data;
+    values.show = show;
+    values.tags = tags;
+
+    const create = await createPlaylist(values);
+    if (create.data) {
+      setModalMessage(create.data.message);
+      setIsModal(true);
+      setSubmitting(false);
+      setModalMessageTitle("Payment successful");
+    } else {
+      setModalMessage(create.error.message);
+      setIsModal(true);
+      setSubmitting(false);
+      setModalMessageTitle("");
+    }
+
+    setSubmitting(false);
   };
 
   const uploadImage = (file) => {
@@ -194,10 +196,11 @@ function PlaylistCreate() {
         </Formik>
       </div>
       <MyModal
-         isModal={isModal}
-         ModalMessage={modalMessage}
-         title={modalMessageTitle}
-         closeModal={() => setIsModal(false)} />
+        isModal={isModal}
+        ModalMessage={modalMessage}
+        title={modalMessageTitle}
+        closeModal={() => setIsModal(false)}
+      />
     </div>
   );
 }

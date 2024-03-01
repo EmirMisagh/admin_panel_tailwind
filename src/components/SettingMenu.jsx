@@ -53,6 +53,7 @@ function SettingMenu() {
                   dispatch({
                     type: "light",
                   });
+                  window.localStorage.setItem("darkmode", "light");
                 }}
               >
                 <ItemBg
@@ -65,6 +66,7 @@ function SettingMenu() {
                   dispatch({
                     type: "dark",
                   });
+                  window.localStorage.setItem("darkmode", "dark");
                 }}
               >
                 <ItemBg
