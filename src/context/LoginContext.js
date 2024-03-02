@@ -12,11 +12,9 @@ export const useLoginMode = () => {
 
   useMemo(async () => {
     const token = window.localStorage.getItem("token");
-    console.log(token);
     if (token) {
       try {
         const email = await getUserToken(token);
-        console.log(email);
         if (email.data.data.token === token) {
           setLogin(true);
         }

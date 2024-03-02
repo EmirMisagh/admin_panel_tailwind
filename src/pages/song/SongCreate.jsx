@@ -254,10 +254,7 @@ function SongCreate() {
               </div>
               <div className=" col-span-2 box rounded-2xl p-5 grid gap-7">
                 <div>
-                  <MyCombobox arr={singers} label={"Category"} />
-                </div>
-                <div>
-                  <MyCombobox arr={singers} label={"Album"} />
+                  <MyCombobox arr={singers} label={"Category"} handle={() => {}} />
                 </div>
                 <div className="flex justify-around items-center">
                   <div className="flex justify-start items-center gap-2 text-textSecond_50">
@@ -280,6 +277,9 @@ function SongCreate() {
                     <Toggle handle={() => {}} value={true} />
                     <small>{show ? <>Remember</> : <>Normal</>}</small>
                   </div>
+                </div>
+                <div>
+                  <MyCombobox arr={singers} label={"Album"}   handle={() => {}} />
                 </div>
                 <div>
                   <Tags

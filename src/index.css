@@ -209,6 +209,7 @@ div[theme-mode="dark"] {
 
 div[theme-mode="dark"][box-theme="neon"] {
   --background-body: rgb(18, 22, 29);
+  --color-box-shadow: rgb(18, 22, 29);
 }
 
 div[data-theme="red"] {

@@ -12,6 +12,7 @@ const UserCreate = lazy(() => import("../pages/user/UserCreate"));
 const UserList = lazy(() => import("../pages/user/UserList"));
 const PlaylistList = lazy(() => import("../pages/playlist/PlaylistList"));
 const PlaylistCreate = lazy(() => import("../pages/playlist/PlaylistCreate"));
+const AlbumCreate = lazy(() => import("../pages/album/AlbumCreate"));
 
 
 export const router = [
@@ -76,8 +77,16 @@ export const router = [
     element: <PlaylistCreate />,
     path: "/playlist/create",
   },
+  
   {
     element: <PlaylistList />,
     path: "/playlist/list",
+  },
+
+   // Album -------------------------------------------------
+
+  {
+    element: <AlbumCreate />,
+    path: "/album/create",
   },
 ];

@@ -22,7 +22,7 @@ function MyCombobox({ handle, arr, label }) {
   };
 
   return (
-    <div className="w-full relative z-[99999]">
+    <div className="w-full relative z-[9]">
       <Combobox value={selected} onChange={changeHandle}>
         <div className="relative ">
           <div className="relative w-full cursor-default overflow-hidden rounded-lg bg-box text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm p-2 border border-color_border_100">
@@ -48,7 +48,7 @@ function MyCombobox({ handle, arr, label }) {
             leaveTo="opacity-0"
             afterLeave={() => setQuery("")}
           >
-            <Combobox.Options className="absolute z-[999999] bg-background_box mt-1 max-h-60 w-full overflow-auto rounded-2xl  bg-box py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
+            <Combobox.Options className="absolute z-[99999] bg-background_box mt-1 max-h-60 w-full overflow-auto rounded-2xl  bg-box py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
               {filteredPeople.length === 0 && query !== "" ? (
                 <div className="relative cursor-default select-none px-4 py-2 text-textSecond_300">
                   Nothing found.
@@ -56,11 +56,11 @@ function MyCombobox({ handle, arr, label }) {
               ) : (
                 filteredPeople.map((person) => (
                   <Combobox.Option
-                    key={person.id}
+                    key={person._id}
                     className={({ active }) =>
-                      `relative cursor-default select-none py-2 pl-10 pr-4 z-[999999]   ${
+                      `relative z-[99999] cursor-default select-none py-2 pl-10 pr-4  ${
                         active
-                          ? "bg-teal-600 z-[999999] text-white"
+                          ? "bg-teal-600 text-white"
                           : "text-textSecond_400"
                       }`
                     }
@@ -69,7 +69,7 @@ function MyCombobox({ handle, arr, label }) {
                     {({ selected, active }) => (
                       <>
                         <span
-                          className={`block truncate z-[999999] ${
+                          className={`block truncate z-[9999999999] ${
                             selected ? "font-medium" : "font-normal"
                           }`}
                         >
@@ -77,7 +77,7 @@ function MyCombobox({ handle, arr, label }) {
                         </span>
                         {selected ? (
                           <span
-                            className={`absolute inset-y-0 z-[999999] left-0 flex items-center pl-3 ${
+                            className={`absolute inset-y-0 z-[9999999999] left-0 flex items-center pl-3 ${
                               active ? "text-white" : "text-teal-600"
                             }`}
                           >
@@ -98,7 +98,7 @@ function MyCombobox({ handle, arr, label }) {
       </Combobox>
       <span
         className={`absolute left-3 font-bold
-             text-textSecond_300 top-[-10px] text-[0.80rem] font-bold"
+             text-textSecond_300 top-[-10px] z-0 text-[0.80rem] font-bold"
          
           bg-background_box pl-2 pr-2`}
       >

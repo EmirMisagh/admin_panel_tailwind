@@ -8,7 +8,6 @@ function PlaylistList() {
 
   const getPlaylist = useCallback(async () => {
     const playlistData = await getPlaylistAll();
-    console.log(playlistData);
     setPlaylist(playlistData.data);
   }, []);
 

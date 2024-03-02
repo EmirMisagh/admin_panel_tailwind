@@ -9,11 +9,11 @@ function Header({ title, address1, address2, address3, button }) {
         <h2 className="text-textSecond_100 text-2xl font-bold">{title}</h2>
         <p className="flex gap-5 p-2 text-sm items-center pl-0 text-textSecond_100">
           <span>
-            <NavLink to={"/"}>{address1}</NavLink>
+            <NavLink to={`/`}>{address1}</NavLink>
           </span>
           <LuDot />
           <span>
-            <NavLink to={"#"}>{address2}</NavLink>
+            <NavLink to={`/${address2}/list`}>{address2}</NavLink>
           </span>
           {!!address3 && (
             <>

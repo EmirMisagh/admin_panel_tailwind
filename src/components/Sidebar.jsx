@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { NavLink } from "react-router-dom";
 import {
   BsSpeedometer,
@@ -169,11 +169,11 @@ function ItemOverview({ title, address, icon }) {
           onMouseDown={(e) => downHandle(e)}
           onMouseUp={(e) => upHandle(e)}
           onClick={(e) => clickHandle(e)}
-          className={`w-full h-full flex items-center text-sm 
+          className={`w-full h-full flex items-center 
               ${
                 sidebar
-                  ? "px-4 text-left  justify-start flex-row gap-3"
-                  : "px-2 text-center justify-center flex-col gap-1"
+                  ? "px-4 text-left  justify-start flex-row gap-3 text-sm"
+                  : "px-2 text-center justify-center flex-col gap-1 text-xs "
               } 
               py-3   hover:bg-bg_secend_400 hover:text-textSecond_300`}
         >
@@ -190,6 +190,16 @@ function ItemSide({ title, address, icon }) {
     sidebar: state.menuReducer.sidebar,
   }));
   const [openDiv, setOpenDiv] = useState(false);
+
+  useMemo(() => {
+    let Url = window.location.href
+    Url = Url.split('//')
+    Url = Url[1]
+    Url = Url.split('/')
+    Url = Url[1]
+    if(Url === title.toLowerCase())
+    setOpenDiv(true)
+  },[title])
 
   const downHandle = (e) => {
     e.target.classList.add("btn");
@@ -209,8 +219,7 @@ function ItemSide({ title, address, icon }) {
     }, 400);
   };
   return (
-    <NavLink
-      to={`#`}
+    <div
       className={`flex flex-col mt-1 
                     w-full 
                     rounded-lg 
@@ -234,8 +243,8 @@ function ItemSide({ title, address, icon }) {
         className={`w-full h-full flex items-center text-sm rounded-lg
               ${
                 sidebar
-                  ? "px-4 text-left  justify-between flex-row gap-3"
-                  : "px-2 text-center justify-center  "
+                  ? "px-4 text-left  justify-between flex-row gap-3 text-sm"
+                  : "px-2 text-center justify-center text-xs "
               } 
               py-3   hover:bg-bg_secend_400 relative`}
       >
@@ -253,7 +262,7 @@ function ItemSide({ title, address, icon }) {
           </i>
           {title}
         </span>
-        <i className=" pointer-events-none">
+        <i className={`${openDiv && "rotate-90"} pointer-events-none`}>
           <MdKeyboardArrowRight />
         </i>
       </button>
@@ -283,7 +292,7 @@ function ItemSide({ title, address, icon }) {
           icon={""}
         />
       </div>
-    </NavLink>
+    </div>
   );
 }
 
@@ -310,7 +319,7 @@ function Item({ title, address, icon }) {
   };
   return (
     <NavLink
-      to={`${address}`}
+      to={`/${address}`}
       className={`flex 
       w-full 
       rounded-lg 
@@ -338,7 +347,9 @@ function Item({ title, address, icon }) {
               } 
               py-3   hover:bg-bg_secend_400 hover:text-textSecond_400`}
       >
-        <span className="w-1 icon h-1 rounded-full bg-bg_secend_100"></span>
+        <span className="w-1 icon h-1 rounded-full bg-bg_secend_100">
+
+        </span>
         {title}
       </button>
     </NavLink>

@@ -119,6 +119,27 @@ async function createPlaylist(body) {
   );
 }
 
+// PLAYLIST API _________________________________________________________________________
+// __________________________________________________________________________________
+
+async function getAlbumAll() {
+  return await resolve(
+    axios.get(`${ApiUrl}/album/`).then((res) => res.data.data)
+  );
+}
+
+async function getAlbumOne(id) {
+  return await resolve(
+    axios.get(`${ApiUrl}/album/${id}`).then((res) => res.data.data)
+  );
+}
+
+async function createAlbum(body) {
+  return await resolve(
+    axios.post(`${ApiUrl}/album/create`, body).then((res) => res.data)
+  );
+}
+
 // FILE API _________________________________________________________________________
 // __________________________________________________________________________________
 
@@ -182,6 +203,9 @@ export {
   getPlaylistAll,
   getPlaylistOne,
   createPlaylist,
+  getAlbumAll,
+  getAlbumOne,
+  createAlbum,
   createSinger,
   getFilesAll,
   deleteUser,

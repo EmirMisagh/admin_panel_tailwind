@@ -25,7 +25,7 @@ function App() {
       dispatch({
         type: darkMode === "light" ? "light" : "dark",
       });
-    }, 4000);
+    }, 2000);
   }, [dispatch]);
 
   return (
