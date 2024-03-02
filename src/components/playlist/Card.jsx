@@ -14,7 +14,7 @@ function Card({ playlist }) {
           <h2 className="text-textSecond_50">{playlist.name}</h2>
           <p className="text-xs text-textSecond_300">
             {playlist.singer ? "Album" : "Playlist"} by{" "}
-            {playlist.singer ? playlist.singer : "KordSong"} - 2 songs 6 min 50
+            {playlist.singer ? playlist.singer : "KordSong"} - {playlist.songs} songs 6 min 50
             sec
           </p>
         </div>

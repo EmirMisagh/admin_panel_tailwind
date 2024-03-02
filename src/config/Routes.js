@@ -1,5 +1,4 @@
 import { lazy } from "react";
-import AlbumList from "../pages/album/AlbumList";
 
 
 const Home = lazy(() => import("../pages/Home"));
@@ -14,6 +13,8 @@ const UserList = lazy(() => import("../pages/user/UserList"));
 const PlaylistList = lazy(() => import("../pages/playlist/PlaylistList"));
 const PlaylistCreate = lazy(() => import("../pages/playlist/PlaylistCreate"));
 const AlbumCreate = lazy(() => import("../pages/album/AlbumCreate"));
+const AlbumList = lazy(() => import("../pages/album/AlbumList"));
+const CategoryList = lazy(() => import("../pages/category/CategoryList"));
 
 
 export const router = [
@@ -93,5 +94,16 @@ export const router = [
   {
     element: <AlbumList />,
     path: "/album/list",
+  },
+
+   // Category -------------------------------------------------
+
+   {
+    element: <AlbumCreate />,
+    path: "/category/create",
+  },
+  {
+    element: <CategoryList />,
+    path: "/category/list",
   },
 ];

@@ -119,7 +119,7 @@ async function createPlaylist(body) {
   );
 }
 
-// PLAYLIST API _________________________________________________________________________
+// ALBUM API _________________________________________________________________________
 // __________________________________________________________________________________
 
 async function getAlbumAll() {
@@ -137,6 +137,27 @@ async function getAlbumOne(id) {
 async function createAlbum(body) {
   return await resolve(
     axios.post(`${ApiUrl}/album/create`, body).then((res) => res.data)
+  );
+}
+
+// CATEGORY API _________________________________________________________________________
+// __________________________________________________________________________________
+
+async function getCategoryAll() {
+  return await resolve(
+    axios.get(`${ApiUrl}/category/`).then((res) => res.data.data)
+  );
+}
+
+async function getCategoryOne(id) {
+  return await resolve(
+    axios.get(`${ApiUrl}/category/${id}`).then((res) => res.data.data)
+  );
+}
+
+async function createCategory(body) {
+  return await resolve(
+    axios.post(`${ApiUrl}/category/create`, body).then((res) => res.data)
   );
 }
 
@@ -173,6 +194,12 @@ async function uploadImageApi(key, body) {
       return await resolve(
         axios
           .post(`${ApiUrl}/upload/album/image`, body)
+          .then((res) => res.data)
+      );
+    case "categoryimage":
+      return await resolve(
+        axios
+          .post(`${ApiUrl}/upload/category/image`, body)
           .then((res) => res.data)
       );
     default:
@@ -212,6 +239,9 @@ export {
   getAlbumAll,
   getAlbumOne,
   createAlbum,
+  createCategory,
+  getCategoryOne,
+  getCategoryAll,
   createSinger,
   getFilesAll,
   deleteUser,

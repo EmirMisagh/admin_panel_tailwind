@@ -365,15 +365,13 @@ div[theme-mode="dark"] .btn {
   pointer-events: none;
 }
 
-.InputComponentSpan {
-  z-index: 99;
-}
+
 
 .InputComponent:focus + .InputComponentSpan {
   top: -10px;
   font-size: 0.8rem;
   font-weight: 700;
-  z-index: 99;
+  z-index: 60;
 }
 .InputComponentSpan {
   transition: 0.4s all;

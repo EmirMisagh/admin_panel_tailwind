@@ -51,45 +51,44 @@ function SingerCreate() {
     facebook: "",
   };
 
-  const submitHandle = async(values) => {
-     // ERROR CHEKING -----------------
-     setSubmitting(true);
-     if ((!values.name, !values.family, !avatar)) {
-       console.log("error");
-       console.log(values);
-       setSubmitting(false);
-       return;
-     }
- 
-     // UPLOAD IMAGE -----------------
-     const formData = new FormData();
-     formData.append("file", avatar);
+  const submitHandle = async (values) => {
+    // ERROR CHEKING -----------------
+    setSubmitting(true);
+    if ((!values.name, !values.family, !avatar)) {
+      console.log("error");
+      console.log(values);
+      setSubmitting(false);
+      return;
+    }
 
-     const imageUpload = await uploadImageApi("singeravatar", formData);
-     if (!imageUpload.data.data) {
-       setSubmitting(false);
-       setModalMessage("Image not uploaded");
-       setModalMessageTitle("");
-       return;
-     }
-     setAvatar(imageUpload.data.data);
-     values.avatar = imageUpload.data.data;
+    // UPLOAD IMAGE -----------------
+    const formData = new FormData();
+    formData.append("file", avatar);
 
-     const create = await createSinger(values);
-     if (create.data) {
-       setModalMessage(create.data.message);
-       setIsModal(true);
-       setSubmitting(false);
-       setModalMessageTitle("Payment successful");
-     } else {
-       setModalMessage(create.error.message);
-       setIsModal(true);
-       setSubmitting(false);
-       setModalMessageTitle("");
-     }
+    const imageUpload = await uploadImageApi("singeravatar", formData);
+    if (!imageUpload.data.data) {
+      setSubmitting(false);
+      setModalMessage("Image not uploaded");
+      setModalMessageTitle("");
+      return;
+    }
+    setAvatar(imageUpload.data.data);
+    values.avatar = imageUpload.data.data;
 
-     setSubmitting(false);
+    const create = await createSinger(values);
+    if (create.data) {
+      setModalMessage(create.data.message);
+      setIsModal(true);
+      setSubmitting(false);
+      setModalMessageTitle("Payment successful");
+    } else {
+      setModalMessage(create.error.message);
+      setIsModal(true);
+      setSubmitting(false);
+      setModalMessageTitle("");
+    }
 
+    setSubmitting(false);
   };
 
   const uploadImage = (e) => {
@@ -229,6 +228,7 @@ function SingerCreate() {
                       title={"Create"}
                       submit={() => submitHandle(values)}
                       submiting={isSubmitting}
+                      styl="bg-bg_0 text-textSecond_900"
                     />
                   </div>
                 </div>

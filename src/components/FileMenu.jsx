@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 function FileMenu({ file, select, selectHandle }) {
   const navigate = useNavigate();
+  const name = file.split("/");
   const deleteHandle = async (file) => {
     const remove = await deleteFile({
       url: "https://kurdsong.storage.iran.liara.space/" + file,
@@ -28,7 +29,7 @@ function FileMenu({ file, select, selectHandle }) {
               alt=""
             />
             <div className="py-5 text-textSecond_100">
-              <p>{file}</p>
+              <p>{name[name.length - 1]}</p>
             </div>
           </div>
           <div className="mt-6 text-textSecond_400">

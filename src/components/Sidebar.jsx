@@ -6,7 +6,7 @@ import {
   BsFillFileMusicFill,
 } from "react-icons/bs";
 import { MdKeyboardArrowRight, MdPlaylistAddCircle } from "react-icons/md";
-import { BiSolidUserRectangle, BiSolidMicrophoneAlt } from "react-icons/bi";
+import { BiSolidUserRectangle, BiSolidMicrophoneAlt, BiSolidCategoryAlt } from "react-icons/bi";
 import { GoFileDirectoryFill } from "react-icons/go";
 import { RiAlbumFill } from "react-icons/ri";
 import { useSelector, useDispatch } from "react-redux";
@@ -100,6 +100,11 @@ function Sidebar() {
                 title={"Singer"}
                 address={"/"}
                 icon={<BiSolidMicrophoneAlt />}
+              />
+              <ItemSide
+                title={"Category"}
+                address={"/"}
+                icon={<BiSolidCategoryAlt />}
               />
             </div>
           </div>

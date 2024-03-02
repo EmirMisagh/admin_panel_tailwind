@@ -9,11 +9,11 @@ function Card({ singer }) {
     <div className="w-full rounded-2xl flex flex-col overflow-hidden box cursor-pointer">
       <div className="flex-1 relative">
         <img
-          className="h-36 w-full imageCover object-cover "
+          className="h-36 w-full bg-bg_coverblack_500 object-cover "
           src="/img/abstract-multi.jpg"
           alt=""
         />
-        <div className="w-ful h-full absolute inset-0 imageCover"></div>
+        <div className="w-ful h-full absolute inset-0 bg-bg_coverblack_100"></div>
       </div>
       <div className="flex-1 flex flex-col gap-3 items-center justify-end">
         <div className=" relative flex justify-center h-12">
@@ -26,8 +26,8 @@ function Card({ singer }) {
           </div>
         </div>
         <div className="flex flex-col items-center font-bold">
-          <b className="text-textgray100">{singer.name}</b>
-          <p className="mt-1 text-textgray300 text-sm">{singer.family}</p>
+          <b className="text-textSecond_100">{singer.name}</b>
+          <p className="mt-1 text-textSecond_400 text-sm">{singer.family}</p>
           <span className="flex gap-5 py-8 text-lg">
             <i className=" text-blue-600">
               <FaFacebookF />
@@ -46,16 +46,18 @@ function Card({ singer }) {
       </div>
       <div className="flex-1 flex justify-around border-t border-gray600">
         <div className="flex flex-col justify-center items-center py-4">
-          <p className="text-xs text-textgray200">Follower</p>
-          <b className="mt-1 text-md text-textgray100">9.91k</b>
+          <p className="text-xs text-textSecond_400">Follower</p>
+          <b className="mt-1 text-md text-textSecond_200">9.91k</b>
         </div>
         <div className="flex flex-col justify-center items-center py-4">
-          <p className="text-xs text-textgray200">Follower</p>
-          <b className="mt-1 text-md text-textgray100">9.91k</b>
+          <p className="text-xs text-textSecond_400">Follower</p>
+          <b className="mt-1 text-md text-textSecond_200">9.91k</b>
         </div>
         <div className="flex flex-col justify-center items-center py-4">
-          <p className="text-xs text-textgray200">View</p>
-          <b className="mt-1 text-md text-textgray100">{singer.viewsongs}k</b>
+          <p className="text-xs text-textSecond_400">View</p>
+          <b className="mt-1 text-md text-textSecond_200">
+            {singer.viewsongs}k
+          </b>
         </div>
       </div>
     </div>
