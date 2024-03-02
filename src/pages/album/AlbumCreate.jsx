@@ -72,7 +72,7 @@ function AlbumCreate() {
     const formData = new FormData();
     formData.append("file", image);
 
-    const imageUpload = await uploadImageApi("playlistimage", formData);
+    const imageUpload = await uploadImageApi("albumimage", formData);
     if (!imageUpload.data.data) {
       setSubmitting(false);
       setModalMessage("Image not uploaded");

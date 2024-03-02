@@ -1,4 +1,5 @@
 import { lazy } from "react";
+import AlbumList from "../pages/album/AlbumList";
 
 
 const Home = lazy(() => import("../pages/Home"));
@@ -88,5 +89,9 @@ export const router = [
   {
     element: <AlbumCreate />,
     path: "/album/create",
+  },
+  {
+    element: <AlbumList />,
+    path: "/album/list",
   },
 ];

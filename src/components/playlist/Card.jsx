@@ -13,7 +13,9 @@ function Card({ playlist }) {
         <div>
           <h2 className="text-textSecond_50">{playlist.name}</h2>
           <p className="text-xs text-textSecond_300">
-            Playlist by KordSong - 2 songs 6 min 50 sec
+            {playlist.singer ? "Album" : "Playlist"} by{" "}
+            {playlist.singer ? playlist.singer : "KordSong"} - 2 songs 6 min 50
+            sec
           </p>
         </div>
         <div className="flex justify-around text-sm text-textSecond_400">

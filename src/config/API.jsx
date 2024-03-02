@@ -169,6 +169,12 @@ async function uploadImageApi(key, body) {
           .post(`${ApiUrl}/upload/playlist/image`, body)
           .then((res) => res.data)
       );
+    case "albumimage":
+      return await resolve(
+        axios
+          .post(`${ApiUrl}/upload/album/image`, body)
+          .then((res) => res.data)
+      );
     default:
       break;
   }
