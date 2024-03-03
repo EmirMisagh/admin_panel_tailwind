@@ -65,7 +65,6 @@ function Login() {
       setModalMessageTitle("Payment successful");
       return;
     }
-
     setTimeout(() => {
       setSubmitting(false);
       // loginMode.toggleLoginMode();

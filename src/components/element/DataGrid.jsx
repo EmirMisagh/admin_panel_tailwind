@@ -385,7 +385,7 @@ export function DataGridSong({ songs }) {
               />
             </div>
             <div className="flex-1">Name</div>
-            <div className="w-44">Album</div>
+            <div className="w-20">Album</div>
             <div className=" text-left w-20">Category</div>
             <div className="w-24 text-center">People</div>
             <div className="w-24 text-center">View</div>
@@ -427,7 +427,7 @@ export function DataGridSong({ songs }) {
                       <p className=" text-textgray400">{item.singer}</p>
                     </div>
                   </div>
-                  <div className="w-44  ">{item.album}</div>
+                  <div className="w-20  ">{item.album}</div>
                   <div className="text-left w-20">Work</div>
                   <div className="w-24 flex justify-center items-center">
                     <div
