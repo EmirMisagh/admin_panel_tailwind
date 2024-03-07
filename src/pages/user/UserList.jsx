@@ -10,7 +10,6 @@ function UserList() {
 
   const getUser = useCallback(async () => {
     const userData = await getUserAll();
-    console.log(userData.data);
     setUsers(userData.data);
   }, []);
 
