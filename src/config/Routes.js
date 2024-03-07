@@ -1,4 +1,5 @@
 import { lazy } from "react";
+import UserEdit from "../pages/user/UserEdit";
 
 
 const Home = lazy(() => import("../pages/Home"));
@@ -46,6 +47,10 @@ export const router = [
   {
     element: <UserCard />,
     path: "/user/card",
+  },
+  {
+    element: <UserEdit />,
+    path: "/user/:id",
   },
   {
     element: <UserList />,
