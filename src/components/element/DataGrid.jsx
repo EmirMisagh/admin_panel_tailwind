@@ -197,7 +197,7 @@ export function DataGridUser({ users }) {
                     </div>
                   </div>
                   <div className="flex w-24 text-lg gap-3 items-center justify-end pr-4">
-                    <NavLink to={`/user/accont`}>
+                    <NavLink to={`/user/${item._id}`}>
                       <i>
                         <MdEdit />
                       </i>

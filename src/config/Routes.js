@@ -53,6 +53,10 @@ export const router = [
     path: "/user/:id",
   },
   {
+    element: <UserEdit />,
+    path: "/user/:id/*",
+  },
+  {
     element: <UserList />,
     path: "/user/list/*",
   },
