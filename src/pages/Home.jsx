@@ -24,7 +24,7 @@ function Home() {
     <div className="mt-7">
       <div className="grid grid-cols-12 gap-5">
         <div className=" col-span-8  h-64">
-          {/* <Playlist playlist={playlist} /> */}
+          <Playlist playlist={playlist} />
         </div>
         <div className=" col-span-4  h-64">
           <Playlist playlist={song} />

@@ -83,6 +83,12 @@ async function createSong(body) {
   );
 }
 
+async function deleteSong(id) {
+  return await resolve(
+    axios.delete(`${ApiUrl}/song/delete/${id}`).then((res) => res.data)
+  );
+}
+
 // SINGER API _________________________________________________________________________
 // __________________________________________________________________________________
 
@@ -238,6 +244,7 @@ export {
   createSong,
   getSongAll,
   getSongOne,
+  deleteSong,
   getSingerAll,
   getSingerOne,
   getPlaylistAll,

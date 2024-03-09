@@ -11,7 +11,7 @@ import {
 } from "react-icons/md";
 import { BiSolidCheckboxMinus, BiSolidCheckboxChecked } from "react-icons/bi";
 import Toggle from "./Toggle";
-import { deleteUser } from "../../config/API";
+import { deleteSong, deleteUser } from "../../config/API";
 import MyModal from "./Modal";
 
 export function DataGridUser({ users }) {
@@ -283,6 +283,9 @@ export function DataGridSong({ songs }) {
   const [selected, setSelected] = useState([]);
   const [index, setIndex] = useState(7);
   const [indexOne, setIndexOne] = useState(0);
+  const [isModal, setIsModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
+  const [modalMessageTitle, setModalMessageTitle] = useState("");
 
   useMemo(() => {
     setList(songs);
@@ -318,6 +321,19 @@ export function DataGridSong({ songs }) {
     }
 
     setList(songs.filter((item) => item.admin === event));
+  };
+
+  const removeHandle = async (id) => {
+    const remove = await deleteSong(id);
+    setList(
+      list.filter((i) => {
+        return i._id !== id;
+      })
+    );
+    setModalMessage("Song Deleted");
+    setIsModal(true);
+    setModalMessageTitle("Payment successful");
+    console.log(remove);
   };
 
   return (
@@ -452,7 +468,10 @@ export function DataGridSong({ songs }) {
                         <MdEdit />
                       </i>
                     </NavLink>
-                    <i>
+                    <i
+                      className=" cursor-pointer"
+                      onClick={() => removeHandle(item._id)}
+                    >
                       <MdDeleteForever />
                     </i>
                   </div>
@@ -513,6 +532,12 @@ export function DataGridSong({ songs }) {
           </div>
         </div>
       </div>
+      <MyModal
+        isModal={isModal}
+        ModalMessage={modalMessage}
+        title={modalMessageTitle}
+        closeModal={() => setIsModal(false)}
+      />
     </div>
   );
 }
