@@ -36,11 +36,11 @@ function NavbarEdit() {
     }
   };
   return (
-    <div className="flex navbarUser gap-10 mt-10 text-textgray300 font-bold relative py-3">
+    <div className="flex navbarUser gap-10 mt-10 text-textSecond_300 font-bold relative py-3">
       <p className="flex" onClick={() => clickHandle("general")}>
         <NavLink
           to="./"
-          className="flex items-center focus:text-textgray50 gap-2 navbarUser"
+          className="flex items-center focus:text-textSecond_50 gap-2 navbarUser"
         >
           <i className="text-2xl">
             <BsPersonVcardFill />
@@ -51,7 +51,7 @@ function NavbarEdit() {
       <p className="flex" onClick={() => clickHandle("biling")}>
         <NavLink
           to="./edit"
-          className="flex items-center gap-2 focus:text-textgray50 navbarUser"
+          className="flex items-center gap-2 focus:text-textSecond_50 navbarUser"
         >
           <i className="text-2xl">
             <GiNotebook />
@@ -62,7 +62,7 @@ function NavbarEdit() {
       <p className="flex" onClick={() => clickHandle("notifaction")}>
         <NavLink
           to="./notif"
-          className="flex focus:text-textgray50 items-center gap-2"
+          className="flex focus:text-textSecond_50 items-center gap-2"
         >
           <i className="text-2xl">
             <IoIosNotifications />
@@ -73,7 +73,7 @@ function NavbarEdit() {
       <p className="flex" onClick={() => clickHandle("social")}>
         <NavLink
           to={""}
-          className="flex focus:text-textgray50 items-center gap-2"
+          className="flex focus:text-textSecond_50 items-center gap-2"
         >
           <i className="text-2xl">
             <IoShareSocial />
@@ -84,7 +84,7 @@ function NavbarEdit() {
       <p className="flex" onClick={() => clickHandle("security")}>
         <NavLink
           to={"./security"}
-          className="flex focus:text-textgray50 items-center gap-2"
+          className="flex focus:text-textSecond_50 items-center gap-2"
         >
           <i className="text-2xl">
             <MdVpnKey />

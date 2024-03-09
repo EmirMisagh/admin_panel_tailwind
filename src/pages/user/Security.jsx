@@ -52,7 +52,6 @@ function Security({user}) {
 
    const body = user
    body.password = values.password
-   console.log(body)
 
     const create = await updateUser(user._id,body);
     if (create.data) {
@@ -127,7 +126,7 @@ function Security({user}) {
                       touche={touched.confrimpassword}
                     />
                   </div>
-                  <div>{user.name}</div>
+                  <div></div>
                   <div className="flex justify-end items-end">
                     <ButtonSubmit
                       title={"Update"}

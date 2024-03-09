@@ -23,10 +23,10 @@ function UserEdit() {
     <div>
       <div>
         <Header
-          title={"Create a new user"}
+          title={"Details the user"}
           address1={"Dashbourd"}
           address2={"User"}
-          address3={"New User"}
+          address3={"New Edit"}
         />
       </div>
       <div>
@@ -34,8 +34,7 @@ function UserEdit() {
       </div>
       <div className="mt-9">
         <Routes>
-          <Route path="/" element={<Accont />} />
-          <Route path="/edit" element={<Accont />} />
+          <Route path="/" element={<Accont user={user}  />} />
           <Route path="/security" element={<Security user={user} />} />
         </Routes>
       </div>

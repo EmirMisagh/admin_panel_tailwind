@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {  useState } from "react";
 import { Formik, Form } from "formik";
 import ProfileShow from "../../components/user/ProfileShow";
 import InputComponent from "../../components/element/InputComponent";
@@ -33,29 +33,24 @@ const SignupSchema = Yup.object().shape({
     .max(50, "Too Long!")
     .required("Required"),
   email: Yup.string().email("Invalid email").required("Required"),
-  password: Yup.string()
-    .required("No password provided.")
-    .min(8, "Password is too short - should be 8 chars minimum.")
-    .matches(/[a-zA-Z]/, "Password can only contain Latin letters."),
 });
 
-function Accont() {
+function Accont({ user }) {
   const [isSubmitting, setSubmitting] = useState(false);
   const [isModal, setIsModal] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
   const [modalMessageTitle, setModalMessageTitle] = useState("");
-  const [avatar, setAvatar] = useState("");
-  const [avatarSrc, setAvatarSrc] = useState("");
-  const [admin, setAdmin] = useState("User");
-  const [emailVerified, setEmailVerified] = useState(false);
+  const [avatar, setAvatar] = useState(user.avatar);
+  const [avatarSrc, setAvatarSrc] = useState(user.avatar);
+  const [admin, setAdmin] = useState(user.admin);
+  const [emailVerified, setEmailVerified] = useState(user.emailVerified);
 
   const form = {
-    name: "",
-    family: "",
-    username: "",
-    email: "",
+    name: user.name,
+    family: user.family,
+    username: user.username,
+    email: user.email,
     emailVerified: false,
-    password: "",
     avatar,
     country: "",
     city: "",
@@ -67,7 +62,6 @@ function Accont() {
     setSubmitting(true);
     const formData = new FormData();
     formData.append("file", avatar);
-
 
     const email = await getUserEmail(values.email);
     console.log(email);
@@ -110,7 +104,7 @@ function Accont() {
   };
 
   const uploadImage = (e) => {
-    console.log(e.target.files[0])
+    console.log(e.target.files[0]);
     setAvatar(e.target.files[0]);
     const element = e.target.files[0];
     const reader = new FileReader();

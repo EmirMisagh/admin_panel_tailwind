@@ -127,17 +127,14 @@ const Type = ({ data, dir }) => {
   const typeHandle = (value) => {
     if (dir === "root") {
       const name = value.root.split(".");
-      console.log("name", name);
       if (name.length === 1) return "Folder";
       if (name[name.length - 1] === "jpg") return "Image";
     } else if (dir === "root2") {
       const name = value.index.split(".");
-      console.log("name", name);
       if (name.length === 1) return "Folder";
       if (name[name.length - 1] === "jpg") return "Image";
     } else if (dir === "root3") {
       const name = value.seccond.split(".");
-      console.log("name", name);
       if (name.length === 1) return "Folder";
       if (name[name.length - 1] === "jpg") return "Image";
     }
@@ -146,7 +143,6 @@ const Type = ({ data, dir }) => {
   const fileShow = (value) => {
     if (dir === "root") {
       const name = value.root.split(".");
-      console.log("name", name);
       if (name.length === 1) setFile("");
       if (name[name.length - 1] === "jpg") {
         setFile(name.join("."));
@@ -154,7 +150,6 @@ const Type = ({ data, dir }) => {
       }
     } else if (dir === "root2") {
       const name = value.index.split(".");
-      console.log("name", name);
       if (name.length === 1) setFile("");
       if (name[name.length - 1] === "jpg") {
         setFile(value.root + "/" + name.join("."));
@@ -162,7 +157,6 @@ const Type = ({ data, dir }) => {
       }
     } else if (dir === "root3") {
       const name = value.seccond.split(".");
-      console.log("name", name);
       if (name.length === 1) setFile("");
       if (name[name.length - 1] === "jpg") {
         setFile(value.root + "/" + value.index + "/" + name.join("."));

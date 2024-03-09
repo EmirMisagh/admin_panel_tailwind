@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useLoginMode, LoginModeContext } from "./context/LoginContext";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
@@ -15,7 +15,7 @@ function App() {
     color: state.themeReducer.color,
     boxtheme: state.themeReducer.boxtheme,
   }));
-
+  const tableRef = useRef(null);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -30,6 +30,7 @@ function App() {
 
   return (
     <div
+      ref={tableRef}
       className="bg-background_body"
       theme-mode={darkmode ? "dark" : "light"}
       box-theme={boxtheme ? "defult" : "neon"}
@@ -38,7 +39,7 @@ function App() {
       <LoginModeContext.Provider value={loginMode}>
         {load ? (
           login ? (
-            <Dashboard />
+            <Dashboard tableRef={tableRef} />
           ) : (
             <Login />
           )

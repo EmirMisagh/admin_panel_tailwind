@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useRef } from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { router } from "../config/Routes";
 import Sidebar from "../components/Sidebar";
@@ -7,11 +7,11 @@ import SettingMenu from "../components/SettingMenu";
 import { useSelector } from "react-redux";
 import Loading from "../components/Loading";
 
-function Dashboard() {
+function Dashboard({tableRef}) {
   const { sidebar } = useSelector((state) => ({
     sidebar: state.menuReducer.sidebar,
   }));
-
+ 
   return (
     <Router>
       <div
@@ -47,8 +47,7 @@ function Dashboard() {
           </div>
         </div>
         <div className="menues">
-          <SettingMenu />
-          Menues
+          <SettingMenu tableRef={tableRef} />
         </div>
       </div>
     </Router>

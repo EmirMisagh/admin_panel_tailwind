@@ -21,7 +21,7 @@ function Home() {
     getPlaylist();
   }, [getPlaylist]);
   return (
-    <div className="">
+    <div className="mt-7">
       <div className="grid grid-cols-3  gap-5">
         <div className=" col-span-2  h-64">
           <Playlist playlist={playlist} />

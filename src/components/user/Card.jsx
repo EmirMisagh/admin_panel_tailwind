@@ -6,7 +6,7 @@ import { FaTwitter } from "react-icons/fa";
 
 function Card({ singer }) {
   return (
-    <div className="w-full rounded-2xl flex flex-col overflow-hidden box cursor-pointer">
+    <div className="w-full rounded-2xl flex flex-col hover:scale-105 overflow-hidden transition-all delay-75 box cursor-pointer">
       <div className="flex-1 relative">
         <img
           className="h-36 w-full bg-bg_coverblack_500 object-cover "

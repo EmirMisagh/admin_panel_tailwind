@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { PiAlignRightFill, PiAlignLeftFill } from "react-icons/pi";
 import {
@@ -10,7 +10,7 @@ import {
 } from "react-icons/bs";
 import { VscClose } from "react-icons/vsc";
 
-function SettingMenu() {
+function SettingMenu({ tableRef }) {
   const { menu, darkmode, sidebar, color, boxtheme } = useSelector((state) => ({
     menu: state.menuReducer.settingMenu,
     darkmode: state.themeReducer.darkmode,
@@ -19,6 +19,15 @@ function SettingMenu() {
     boxtheme: state.themeReducer.boxtheme,
   }));
   const dispatch = useDispatch();
+  const [handleClick, sethandleClick] = useState(false);
+  const [fullScreen, setFullScreen] = useState(1);
+  const Click = () => {
+    sethandleClick(true);
+    setTimeout(() => {
+      sethandleClick(false);
+    }, 350);
+  };
+
   return (
     <>
       <div
@@ -290,6 +299,29 @@ function SettingMenu() {
                 <span className="grid grid-cols-7 gap-1 w-3 h-3 bg-themegreen100 rounded-full"></span>
               </div>
             </div>
+          </div>
+          <div className="py-2">
+            <button
+              onClick={() => {
+                Click();
+                const elem = tableRef.current;
+                if (fullScreen) {
+                  elem.requestFullscreen();
+                  setFullScreen(0)
+                } else {
+                  document.exitFullscreen();
+                  setFullScreen(1)
+                }
+              }}
+              onMouseDown={() => sethandleClick(true)}
+              className={`${handleClick && "btn"}   transition-all delay-150 
+              border border-color_border_600 rounded-lg text-textSecond_400 font-bold w-full py-4
+                text-sm ${
+                  darkmode ? "hover:bg-slate-800" : "hover:bg-stone-200"
+                } `}
+            >
+              Fullscreen
+            </button>
           </div>
         </div>
       </div>
