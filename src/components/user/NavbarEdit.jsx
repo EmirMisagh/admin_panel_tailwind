@@ -83,7 +83,7 @@ function NavbarEdit() {
       </p>
       <p className="flex" onClick={() => clickHandle("security")}>
         <NavLink
-          to={""}
+          to={"./security"}
           className="flex focus:text-textgray50 items-center gap-2"
         >
           <i className="text-2xl">

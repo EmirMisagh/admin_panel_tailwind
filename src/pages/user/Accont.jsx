@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Header from "../../components/Header";
 import { Formik, Form } from "formik";
 import ProfileShow from "../../components/user/ProfileShow";
 import InputComponent from "../../components/element/InputComponent";
@@ -40,7 +39,7 @@ const SignupSchema = Yup.object().shape({
     .matches(/[a-zA-Z]/, "Password can only contain Latin letters."),
 });
 
-function UserCreate() {
+function Accont() {
   const [isSubmitting, setSubmitting] = useState(false);
   const [isModal, setIsModal] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
@@ -123,14 +122,6 @@ function UserCreate() {
 
   return (
     <div>
-      <div>
-        <Header
-          title={"Create a new user"}
-          address1={"Dashbourd"}
-          address2={"User"}
-          address3={"New User"}
-        />
-      </div>
       <div>
         <Formik
           onSubmit={submitHandle}
@@ -248,34 +239,10 @@ function UserCreate() {
                       touche={touched.city}
                     />
                   </div>
-                  <div>
-                    <InputComponent
-                      title={"Password"}
-                      typeInput={"password"}
-                      name="password"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.password}
-                      errors={errors.password}
-                      touche={touched.password}
-                    />
-                  </div>
-                  <div>
-                    <InputComponent
-                      title={"Confrim Password"}
-                      typeInput={"password"}
-                      name="password"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.password}
-                      errors={errors.password}
-                      touche={touched.password}
-                    />
-                  </div>
                   <div></div>
                   <div className="flex justify-end items-end">
                     <ButtonSubmit
-                      title={"Create"}
+                      title={"Update"}
                       submit={() => submitHandle(values)}
                       submiting={isSubmitting}
                       styl="bg-bg_0 text-textSecond_900"
@@ -286,7 +253,6 @@ function UserCreate() {
             </Form>
           )}
         </Formik>
-      
       </div>
       <MyModal
         isModal={isModal}
@@ -298,4 +264,4 @@ function UserCreate() {
   );
 }
 
-export default UserCreate;
+export default Accont;
