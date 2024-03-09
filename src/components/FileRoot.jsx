@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { FaFolder } from "react-icons/fa";
-import { FcFolder, FcImageFile } from "react-icons/fc";
+import { FcFolder, FcImageFile, FcAudioFile  } from "react-icons/fc";
 import { NavLink } from "react-router-dom";
 import FileMenu from "./FileMenu";
 
@@ -100,14 +100,17 @@ const Type = ({ data, dir }) => {
       const name = value.root.split(".");
       if (name.length === 1) return <FcFolder />;
       if (name[name.length - 1] === "jpg") return <FcImageFile />;
+      if (name[name.length - 1] === "mp3") return <FcAudioFile />;
     } else if (dir === "root2") {
       const name = value.index.split(".");
       if (name.length === 1) return <FcFolder />;
       if (name[name.length - 1] === "jpg") return <FcImageFile />;
+      if (name[name.length - 1] === "mp3") return <FcAudioFile />;
     } else if (dir === "root3") {
       const name = value.seccond.split(".");
       if (name.length === 1) return <FcFolder />;
       if (name[name.length - 1] === "jpg") return <FcImageFile />;
+      if (name[name.length - 1] === "mp3") return <FcAudioFile />;
     }
   };
 
@@ -129,14 +132,17 @@ const Type = ({ data, dir }) => {
       const name = value.root.split(".");
       if (name.length === 1) return "Folder";
       if (name[name.length - 1] === "jpg") return "Image";
+      if (name[name.length - 1] === "mp3") return "Audio";
     } else if (dir === "root2") {
       const name = value.index.split(".");
       if (name.length === 1) return "Folder";
       if (name[name.length - 1] === "jpg") return "Image";
+       if (name[name.length - 1] === "mp3") return "Audio";
     } else if (dir === "root3") {
       const name = value.seccond.split(".");
       if (name.length === 1) return "Folder";
       if (name[name.length - 1] === "jpg") return "Image";
+       if (name[name.length - 1] === "mp3") return "Audio";
     }
   };
 
@@ -159,6 +165,10 @@ const Type = ({ data, dir }) => {
       const name = value.seccond.split(".");
       if (name.length === 1) setFile("");
       if (name[name.length - 1] === "jpg") {
+        setFile(value.root + "/" + value.index + "/" + name.join("."));
+        setSelect(true);
+      }
+      if (name[name.length - 1] === "mp3") {
         setFile(value.root + "/" + value.index + "/" + name.join("."));
         setSelect(true);
       }
