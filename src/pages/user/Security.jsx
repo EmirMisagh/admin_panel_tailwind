@@ -3,8 +3,7 @@ import { Formik, Form } from "formik";
 import InputComponent from "../../components/element/InputComponent";
 import * as Yup from "yup";
 import ButtonSubmit from "../../components/element/ButtonSubmit";
-import axios from "axios";
-import { ApiUrl, createUser, getUserEmail } from "../../config/API";
+import {  updateUser } from "../../config/API";
 import MyModal from "../../components/element/Modal";
 
 const SignupSchema = Yup.object().shape({
@@ -22,12 +21,11 @@ const SignupSchema = Yup.object().shape({
     .matches(/[a-zA-Z]/, "Password can only contain Latin letters."),
 });
 
-function Security() {
+function Security({user}) {
   const [isSubmitting, setSubmitting] = useState(false);
   const [isModal, setIsModal] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
   const [modalMessageTitle, setModalMessageTitle] = useState("");
-  const [avatar, setAvatar] = useState("");
 
   const form = {
     oldpassword: "",
@@ -37,35 +35,26 @@ function Security() {
 
   const submitHandle = async (values) => {
     setSubmitting(true);
-    const formData = new FormData();
-    formData.append("file", avatar);
+   if(user.password !== values.oldpassword){
+    setModalMessage("Not old password");
+    setIsModal(true);
+    setSubmitting(false);
+    setModalMessageTitle("Payment successful");
+    return
+   }
+   if(values.confrimpassword !== values.password){
+    setModalMessage("Not confrim password");
+    setIsModal(true);
+    setSubmitting(false);
+    setModalMessageTitle("Payment successful");
+    return
+   }
 
-    const email = await getUserEmail(values.email);
-    console.log(email);
+   const body = user
+   body.password = values.password
+   console.log(body)
 
-    if (email.data.found) {
-      setModalMessage(email.data.message);
-      setIsModal(true);
-      setSubmitting(false);
-      setModalMessageTitle("Payment successful");
-      return;
-    }
-    await axios
-      .post(`${ApiUrl}/upload/user/avatar`, formData)
-      .then((responce) => {
-        setAvatar(responce.data.data);
-        values.avatar = responce.data.data;
-      })
-      .catch(() => {
-        setSubmitting(false);
-        setModalMessage("Image not uploaded");
-        setModalMessageTitle("");
-        return;
-      });
-
-    values.admin = form.admin;
-
-    const create = await createUser(values);
+    const create = await updateUser(user._id,body);
     if (create.data) {
       setModalMessage(create.data.message);
       setIsModal(true);
@@ -138,7 +127,7 @@ function Security() {
                       touche={touched.confrimpassword}
                     />
                   </div>
-                  <div></div>
+                  <div>{user.name}</div>
                   <div className="flex justify-end items-end">
                     <ButtonSubmit
                       title={"Update"}

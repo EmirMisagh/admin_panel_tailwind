@@ -50,6 +50,12 @@ async function createUser(body) {
   );
 }
 
+async function updateUser(id,body) {
+  return await resolve(
+    axios.patch(`${ApiUrl}/author/update/${id}`, body).then((res) => res.data)
+  );
+}
+
 async function deleteUser(id) {
   return await resolve(
     axios.delete(`${ApiUrl}/author/delete/${id}`).then((res) => res.data)
@@ -227,6 +233,7 @@ export {
   createUser,
   getUserEmail,
   getUserToken,
+  updateUser,
   uploadImageApi,
   createSong,
   getSongAll,
