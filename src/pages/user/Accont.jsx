@@ -1,13 +1,13 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import { Formik, Form } from "formik";
 import ProfileShow from "../../components/user/ProfileShow";
 import InputComponent from "../../components/element/InputComponent";
 import * as Yup from "yup";
 import MyCombobox from "../../components/element/Combobox";
 import ButtonSubmit from "../../components/element/ButtonSubmit";
-import axios from "axios";
-import { ApiUrl, createUser, getUserEmail } from "../../config/API";
+import { getUserEmail, updateUser, uploadImageApi } from "../../config/API";
 import MyModal from "../../components/element/Modal";
+import { Country } from "../../config/Country";
 
 const adminCombobox = [
   { id: 1, name: "User" },
@@ -40,8 +40,9 @@ function Accont({ user }) {
   const [isModal, setIsModal] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
   const [modalMessageTitle, setModalMessageTitle] = useState("");
-  const [avatar, setAvatar] = useState(user.avatar);
+  const [avatar, setAvatar] = useState("");
   const [avatarSrc, setAvatarSrc] = useState(user.avatar);
+  const [country, setCountry] = useState(user.country);
   const [admin, setAdmin] = useState(user.admin);
   const [emailVerified, setEmailVerified] = useState(user.emailVerified);
 
@@ -50,45 +51,49 @@ function Accont({ user }) {
     family: user.family,
     username: user.username,
     email: user.email,
-    emailVerified: false,
-    avatar,
-    country: "",
-    city: "",
-    phone: "",
+    emailVerified: user.emailVerified,
+    avatar: user.avatar,
+    country: user.country,
+    city: user.city,
+    phone: user.phone,
     admin,
   };
 
   const submitHandle = async (values) => {
     setSubmitting(true);
+    values.admin = form.admin;
+    values.country = country;
+    values.emailVerified = emailVerified;
+
     const formData = new FormData();
     formData.append("file", avatar);
+    if (user.email !== values.email) {
+      const email = await getUserEmail(values.email);
 
-    const email = await getUserEmail(values.email);
-    console.log(email);
-
-    if (email.data.found) {
-      setModalMessage(email.data.message);
-      setIsModal(true);
-      setSubmitting(false);
-      setModalMessageTitle("Payment successful");
-      return;
+      if (email.data.found) {
+        setModalMessage(email.data.message);
+        setIsModal(true);
+        setSubmitting(false);
+        setModalMessageTitle("Payment successful");
+        return;
+      }
     }
-    await axios
-      .post(`${ApiUrl}/upload/user/avatar`, formData)
-      .then((responce) => {
-        setAvatar(responce.data.data);
-        values.avatar = responce.data.data;
-      })
-      .catch(() => {
+
+    if (avatar) {
+      const imageUpload = await uploadImageApi("useravatar", formData);
+      if (!imageUpload.data.data) {
         setSubmitting(false);
         setModalMessage("Image not uploaded");
         setModalMessageTitle("");
         return;
-      });
+      }
+      setAvatar(imageUpload.data.data);
+      values.avatar = imageUpload.data.data;
+    }
 
     values.admin = form.admin;
 
-    const create = await createUser(values);
+    const create = await updateUser(user._id, values);
     if (create.data) {
       setModalMessage(create.data.message);
       setIsModal(true);
@@ -137,13 +142,13 @@ function Accont({ user }) {
                   <ProfileShow
                     handleUpload={uploadImage}
                     imageSrc={avatarSrc}
-                    error={avatar}
+                    error={false}
                     onChange={handleChange}
                     value={values.avatar}
                     emailVerified={emailVerified}
                     handleToggle={() => setEmailVerified(!emailVerified)}
                     onBlur={handleBlur}
-                    touche={touched.avatar}
+                    touche={false}
                   />
                 </div>
                 <div className="box p-5 grid grid-cols-2 gap-4 flex-1 rounded-2xl">
@@ -209,15 +214,21 @@ function Accont({ user }) {
                   </div>
                   <div>
                     <MyCombobox
-                      handle={setAdmin}
-                      arr={adminCombobox}
+                      handle={setCountry}
+                      arr={[
+                        {
+                          id: 0,
+                          name: values.country ? values.country : "Not mach",
+                        },
+                        ...Country,
+                      ]}
                       label={"Country"}
                     />
                   </div>
                   <div>
                     <MyCombobox
                       handle={setAdmin}
-                      arr={adminCombobox}
+                      arr={[{ id: 0, name: values.admin }, ...adminCombobox]}
                       label={"Admin"}
                     />
                   </div>
@@ -233,7 +244,10 @@ function Accont({ user }) {
                       touche={touched.city}
                     />
                   </div>
-                  <div></div>
+                  <div>
+                    {values.admin}
+                    {values.emailVerified ? "Ok" : "Not"}
+                  </div>
                   <div className="flex justify-end items-end">
                     <ButtonSubmit
                       title={"Update"}

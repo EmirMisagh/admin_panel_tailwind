@@ -11,23 +11,18 @@ function NavbarEdit() {
   const clickHandle = (submit) => {
     switch (submit) {
       case "general":
-        console.log("click");
         gsap.to(".square", 0.4, { x: 0, width: 100 });
         break;
       case "biling":
-        console.log("click");
         gsap.to(".square", 0.4, { x: 137, width: 90 });
         break;
       case "notifaction":
-        console.log("click");
         gsap.to(".square", 0.4, { x: 259, width: 125 });
         break;
       case "social":
-        console.log("click");
         gsap.to(".square", 0.4, { x: 422, width: 136 });
         break;
       case "security":
-        console.log("click");
         gsap.to(".square", 0.4, { x: 594, width: 110 });
         break;
 

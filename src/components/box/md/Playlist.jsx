@@ -8,7 +8,7 @@ import "swiper/css/scrollbar";
 function Playlist({ playlist }) {
   console.log(playlist);
   return (
-    <div className="w-full h-full rounded-2xl box">
+    <div className="w-full h-full rounded-2xl box playfair">
       <Swiper
         className="w-full h-full rounded-2xl"
         modules={[Navigation, Pagination, A11y, Autoplay]}

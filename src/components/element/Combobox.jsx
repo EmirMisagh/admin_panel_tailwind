@@ -54,9 +54,9 @@ function MyCombobox({ handle, arr, label }) {
                   Nothing found.
                 </div>
               ) : (
-                filteredPeople.map((person) => (
+                filteredPeople.map((person,index) => (
                   <Combobox.Option
-                    key={person._id}
+                    key={index}
                     className={({ active }) =>
                       `relative z-[9999999]  cursor-default select-none py-2 pl-10 pr-4  ${
                         active

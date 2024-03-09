@@ -34,7 +34,8 @@ function UserEdit() {
       </div>
       <div className="mt-9">
         <Routes>
-          <Route path="/" element={<Accont user={user}  />} />
+          <Route path="/" element={''} />
+          <Route path="/edit" element={<Accont user={user}  />} />
           <Route path="/security" element={<Security user={user} />} />
         </Routes>
       </div>

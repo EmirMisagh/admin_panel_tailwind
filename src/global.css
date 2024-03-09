@@ -422,7 +422,6 @@ div[theme-mode="dark"] .btn {
   color: rgb(0, 0, 0);
 }
 
-
 .InputComponent:focus + .InputComponentSpan {
   top: -10px;
   font-size: 0.8rem;

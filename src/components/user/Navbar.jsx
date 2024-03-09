@@ -6,23 +6,18 @@ export default function DataNavbar({ array }) {
   const clickHandle = (submit) => {
     switch (submit) {
       case "0":
-        console.log("click");
         gsap.to(".square", 0.4, { x: 0, width: 54 });
         break;
       case "1":
-        console.log("click");
         gsap.to(".square", 0.4, { x: 85, width: 75 });
         break;
       case "2":
-        console.log("click");
         gsap.to(".square", 0.4, { x: 192, width: 88 });
         break;
       case "3":
-        console.log("click");
         gsap.to(".square", 0.4, { x: 312, width: 85 });
         break;
       case "4":
-        console.log("click");
         gsap.to(".square", 0.4, { x: 428, width: 92 });
         break;
 

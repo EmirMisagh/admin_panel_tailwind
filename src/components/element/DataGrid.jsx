@@ -447,7 +447,7 @@ export function DataGridSong({ songs }) {
                     <small>{item.view}</small>
                   </div>
                   <div className="flex w-24 text-lg gap-3 items-center justify-end pr-4">
-                    <NavLink to={`/user/accont`}>
+                    <NavLink to={`/song/${item._id}`}>
                       <i>
                         <MdEdit />
                       </i>

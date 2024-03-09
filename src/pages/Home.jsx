@@ -22,14 +22,14 @@ function Home() {
   }, [getPlaylist]);
   return (
     <div className="mt-7">
-      <div className="grid grid-cols-3  gap-5">
-        <div className=" col-span-2  h-64">
-          <Playlist playlist={playlist} />
+      <div className="grid grid-cols-12 gap-5">
+        <div className=" col-span-8  h-64">
+          {/* <Playlist playlist={playlist} /> */}
         </div>
-        <div className=" col-span-1  h-64">
+        <div className=" col-span-4  h-64">
           <Playlist playlist={song} />
         </div>
-        <div className=" col-span-1  h-64">
+        <div className=" col-span-4 ">
           <UserList users={user} />
         </div>
       </div>
