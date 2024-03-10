@@ -11,11 +11,18 @@ export default function Topbar() {
     <div className="w-full sticky top-0 left-0 text-textSecond_200 transt z-[99999]  ">
       <div className="relative items-center">
         <nav className="px-12 py-5 flex justify-between items-center">
-          <ul className="flex items-center">
+          <ul
+            className="flex items-center cursor-pointer"
+            onClick={() => {
+              dispatch({
+                type: "searchmenu",
+              });
+            }}
+          >
             <span className=" text-2xl text-textSecond_200">
               <CiSearch />
             </span>
-            <span className=" bg-bg_secend_300 ml-2 flex p-[4px] px-[6px] cursor-pointer text-sm rounded-lg text-textgray50 items-center">
+            <span className="  bg-bg_secend_300 ml-2 flex p-[4px] px-[6px] cursor-pointer text-sm rounded-lg text-textgray50 items-center">
               <MdQrCode2 />
               <small className=" text-xs text-textgray50 font-bold cursor-pointer">
                 K

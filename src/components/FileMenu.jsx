@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 function FileMenu({ file, select, selectHandle }) {
   const navigate = useNavigate();
   const name = file.split("/");
+  const type = name.join("/").split(".");
   const deleteHandle = async (file) => {
     const remove = await deleteFile({
       url: "https://kurdsong.storage.iran.liara.space/" + file,
@@ -23,11 +24,18 @@ function FileMenu({ file, select, selectHandle }) {
         </div>
         <div className="flex-1 bg-bg_900 py-3 px-4 pr-6 flex flex-col">
           <div className=" border-b border-color_border_500">
-            <img
-              className="h-40 rounded-lg"
-              src={`https://kurdsong.storage.iran.liara.space/${file}`}
-              alt=""
-            />
+            {type[type.length - 1] === "jpg" ? (
+              <img
+                className="h-40 rounded-lg"
+                src={`https://kurdsong.storage.iran.liara.space/${file}`}
+                alt=""
+              />
+            ) : (
+              <audio
+                controls
+                src={`https://kurdsong.storage.iran.liara.space/${file}`}
+              ></audio>
+            )}
             <div className="py-5 text-textSecond_100">
               <p>{name[name.length - 1]}</p>
             </div>

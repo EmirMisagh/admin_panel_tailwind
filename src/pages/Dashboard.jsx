@@ -6,6 +6,7 @@ import Topbar from "../components/Topbar";
 import SettingMenu from "../components/SettingMenu";
 import { useSelector } from "react-redux";
 import Loading from "../components/Loading";
+import Search from "./Search";
 
 function Dashboard({tableRef}) {
   const { sidebar } = useSelector((state) => ({
@@ -48,6 +49,7 @@ function Dashboard({tableRef}) {
         </div>
         <div className="menues">
           <SettingMenu tableRef={tableRef} />
+          <Search />
         </div>
       </div>
     </Router>

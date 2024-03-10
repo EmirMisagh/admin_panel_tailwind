@@ -349,3 +349,10 @@ div[data-theme="yellow"] {
   -webkit-backdrop-filter: blur(15px);
   backdrop-filter: blur(15px);
 }
+
+.search {
+  transition: all 0.2s;
+  background-color: var(--color-menu);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+}

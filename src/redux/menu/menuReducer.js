@@ -1,5 +1,6 @@
 const initialState = {
     settingMenu: false,
+    searchMenu: false,
     notification: false,
     sidebar: true,
   };
@@ -10,6 +11,11 @@ const initialState = {
         return {
           ...state,
           settingMenu: !state.settingMenu,
+        };
+      case "searchmenu":
+        return {
+          ...state,
+          searchMenu: !state.searchMenu,
         };
       case "notification":
         return {
