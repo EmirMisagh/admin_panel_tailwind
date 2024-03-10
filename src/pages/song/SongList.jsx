@@ -8,7 +8,6 @@ function SongList() {
 
   const getSong = useCallback(async () => {
     const songData = await getSongAll();
-    console.log(songData);
     setSong(songData.data);
   }, []);
 

@@ -330,6 +330,7 @@ div[data-theme="yellow"] {
 .box {
   background-color: var(--color-box);
   box-shadow: 0px 0px 22px 5px var(--color-box-shadow);
+  
 }
 
 .notscroll::-webkit-scrollbar {
