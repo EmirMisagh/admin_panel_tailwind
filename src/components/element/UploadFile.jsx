@@ -28,7 +28,8 @@ function UploadFile({ handleUpload, acceptFile }) {
       <div className="flex justify-start items-center flex-col">
         <b className=" text-textSecond_200 text-sm">Drop or Select file</b>
         <p className=" text-textSecond_500 text-sm mt-3">
-          Drop files here or click browse thorough your machine
+          Drop files here or click <b className=" text-theme200">browse</b>{" "}
+          thorough your machine
         </p>
         <ul>
           {image.map((file) => (
