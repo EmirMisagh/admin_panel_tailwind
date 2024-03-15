@@ -6,7 +6,11 @@ import {
   BsFillFileMusicFill,
 } from "react-icons/bs";
 import { MdKeyboardArrowRight, MdPlaylistAddCircle } from "react-icons/md";
-import { BiSolidUserRectangle, BiSolidMicrophoneAlt, BiSolidCategoryAlt } from "react-icons/bi";
+import {
+  BiSolidUserRectangle,
+  BiSolidMicrophoneAlt,
+  BiSolidCategoryAlt,
+} from "react-icons/bi";
 import { GoFileDirectoryFill } from "react-icons/go";
 import { RiAlbumFill } from "react-icons/ri";
 import { useSelector, useDispatch } from "react-redux";
@@ -31,7 +35,7 @@ function Sidebar() {
           </p>
           <div className="mt-3 flex flex-col gap-1 text-sm justify-between items-center">
             <small>{sidebar && email}</small>
-            <span className="flex text-xs py-1 px-3 text-white justify-center items-center rounded-lg bg-theme500">
+            <span className="flex text-xs py-1 px-3 text-theme200 justify-center items-center rounded-lg bg-theme600">
               {admin}
             </span>
           </div>
@@ -197,14 +201,13 @@ function ItemSide({ title, address, icon }) {
   const [openDiv, setOpenDiv] = useState(false);
 
   useMemo(() => {
-    let Url = window.location.href
-    Url = Url.split('//')
-    Url = Url[1]
-    Url = Url.split('/')
-    Url = Url[1]
-    if(Url === title.toLowerCase())
-    setOpenDiv(true)
-  },[title])
+    let Url = window.location.href;
+    Url = Url.split("//");
+    Url = Url[1];
+    Url = Url.split("/");
+    Url = Url[1];
+    if (Url === title.toLowerCase()) setOpenDiv(true);
+  }, [title]);
 
   const downHandle = (e) => {
     e.target.classList.add("btn");
@@ -352,9 +355,7 @@ function Item({ title, address, icon }) {
               } 
               py-3   hover:bg-bg_secend_400 hover:text-textSecond_400`}
       >
-        <span className="w-1 icon h-1 rounded-full bg-bg_secend_100">
-
-        </span>
+        <span className="w-1 icon h-1 rounded-full bg-bg_secend_100"></span>
         {title}
       </button>
     </NavLink>

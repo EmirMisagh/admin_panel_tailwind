@@ -452,6 +452,11 @@ div[theme-mode="dark"] .btn {
 
 .imageCard {
   padding: 5px;
+  image-rendering: inherit;
+  image-orientation: from-image;
+  image-resolution: inherit;
+  color-scheme: #bababa;
+  color-interpolation-filters: linearRGB;
 }
 .imageCard::after,
 .imageCard::before {
