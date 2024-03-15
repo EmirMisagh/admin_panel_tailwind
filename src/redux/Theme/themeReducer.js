@@ -2,7 +2,7 @@ const initialState = {
      darkmode: false,
      boxtheme: true,
      notification: false,
-     color: 'bluesky'
+     color: 'blue'
  }
  
  export const themeReducer = (state = initialState, action) => {

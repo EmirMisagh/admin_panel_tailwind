@@ -17,14 +17,13 @@ function UploadFile({ handleUpload, acceptFile }) {
   });
 
   return (
-    <div className="w-full p-10 gap-10 flex flex-col overflow-hidden items-center relative rounded-lg aspect-video bg-bg_secend_400">
+    <div
+      className="w-full 
+    p-0 px-12 pb-12 gap-0 flex flex-col overflow-hidden 
+    items-center relative rounded-lg  bg-bg_secend_400"
+    >
       <div className="flex justify-start items-center ">
-        {/* <img
-          src="/img/Untitled1-removebg-preview.png "
-          className="w-32 h-32 imageCard"
-          alt=""
-        /> */}
-     <ImageUpload />
+        <ImageUpload />
       </div>
       <div className="flex justify-start items-center flex-col">
         <b className=" text-textSecond_200 text-sm">Drop or Select file</b>
