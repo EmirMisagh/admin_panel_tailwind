@@ -40,7 +40,7 @@ function Tags({
       style={{ background: "rgb(0,0,0,0)" }}
     >
       <div className="flex gap-2">
-        {tags.map((item, index) => (
+        {value.map((item, index) => (
           <Tag tag={item} key={index} removeHandle={removeHandle} />
         ))}
       </div>

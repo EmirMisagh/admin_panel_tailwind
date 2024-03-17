@@ -153,6 +153,15 @@ function SongCreate() {
     reader.readAsDataURL(element);
   };
 
+  const SingerHandle = (value, index) => {
+    const array = singer;
+    array[index] = value;
+    console.log(array);
+    console.log(value);
+    console.log(index);
+    setSinger(array);
+  };
+
   const onLoadedMetadata = () => {
     if (audioRef.current) {
       setduration(audioRef.current.duration);

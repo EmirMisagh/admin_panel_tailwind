@@ -3,14 +3,17 @@ import Navbar from "../../components/song/Navbar";
 import Header from "../../components/Header";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
-import { getSongOne } from "../../config/API";
+import { getSingerAll, getSongOne } from "../../config/API";
 import { useParams } from "react-router-dom";
 import MusicPlayer from "../../components/MusicPlayer";
 import InputComponent from "../../components/element/InputComponent";
 import SongImage from "../../components/song/SongImage";
 import SongMusic from "../../components/song/SongMusic";
 import Toggle from "../../components/element/Toggle";
-import { FaClock } from "react-icons/fa6";
+import { FaClock, FaCircleInfo, FaCircleCheck } from "react-icons/fa6";
+import ButtonSubmit from "../../components/element/ButtonSubmit";
+import MyCombobox from "../../components/element/Combobox";
+import Tags from "../../components/element/Tags";
 
 const SignupSchema = Yup.object().shape({
   name: Yup.string()
@@ -33,6 +36,7 @@ const SignupSchema = Yup.object().shape({
 
 function SongEdit() {
   const [song, setSong] = useState({});
+  const [name, setName] = useState("");
   const [show, setShow] = useState(true);
   const [isSubmitting, setSubmitting] = useState(false);
   const [peoplework, setPeoplework] = useState(false);
@@ -45,8 +49,7 @@ function SongEdit() {
   const [isModal, setIsModal] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
   const [modalMessageTitle, setModalMessageTitle] = useState("");
-  const [singer, setSinger] = useState("");
-  const [singerIndex, setSingerIndex] = useState([1]);
+  const [singer, setSinger] = useState([]);
   const [singers, setSingers] = useState([]);
   const [tags, setTags] = useState([]);
   const audioRef = useRef();
@@ -54,7 +57,7 @@ function SongEdit() {
   const { id } = useParams();
 
   const form = {
-    name: song.name,
+    name: name,
     singer,
     category: "",
     image,
@@ -67,17 +70,57 @@ function SongEdit() {
     tags: [],
   };
 
-  const submitHandle = async (values) => {};
+  const submitHandle = async (values) => {
+    console.log(singer);
+    console.log(form);
+  };
+
+  const uploadImage = (file) => {
+    setImage(file[0]);
+    const element = file[0];
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      setImageSrc(e.target.result);
+    };
+    reader.readAsDataURL(element);
+  };
+
+  const uploadMusic = (file) => {
+    setMusic(file[0]);
+    const element = file[0];
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      setMusicSrc(e.target.result);
+    };
+    reader.readAsDataURL(element);
+  };
 
   const onLoadedMetadata = () => {
     if (audioRef.current) {
       setduration(audioRef.current.duration);
+      console.log(audioRef.current.duration);
     }
+  };
+
+  const SingerHandle = (value, index) => {
+    const array = singer;
+    array[index] = value;
+    console.log(array);
+    console.log(value);
+    console.log(index);
+    setSinger(array);
   };
 
   const getSong = useCallback(async () => {
     const songData = await getSongOne(id);
     setSong(songData.data);
+    setName(songData.data.name);
+    setSinger(songData.data.singer);
+    setImageSrc(songData.data.image);
+    setMusicSrc(songData.data.music);
+    setTags(songData.data.tags);
+    const singerData = await getSingerAll();
+    setSingers(singerData.data);
     console.log(songData.data);
   }, [id]);
 
@@ -101,7 +144,7 @@ function SongEdit() {
       <div>
         <Formik
           onSubmit={submitHandle}
-          initialValues={form}
+          initialValues={song}
           validationSchema={SignupSchema}
         >
           {({
@@ -118,22 +161,46 @@ function SongEdit() {
                 <div className=" col-span-4">
                   <div className="relative">
                     <MusicPlayer
-                      image={song.image}
-                      music={song.music}
+                      image={imageSrc}
+                      music={musicSrc}
                       audioRef={audioRef}
                       onLoadedMetadata={onLoadedMetadata}
                     />
                     <div
                       className="w-full rounded-lg 
-                    h-full top-0 left-0 
-                    absolute hover:bg-bg_cover_200 text-white transition-all delay-100 flex justify-center items-center"
+                    h-[85%] top-0 left-0 
+                    absolute  text-white transition-all delay-100 flex justify-center items-center"
                     >
-                      <p className=" bg-bg_coverblack_500 hover:bg-bg_coverblack_700 hover:scale-105 transition-all delay-75 cursor-pointer p-5 m-4 rounded-xl">
+                      <label
+                        htmlFor="image"
+                        className=" bg-bg_coverblack_500 hover:bg-bg_coverblack_700 hover:scale-105 transition-all delay-75 cursor-pointer p-5 m-4 rounded-xl"
+                      >
                         Change Image
-                      </p>
-                      <p className=" bg-bg_coverblack_500 hover:bg-bg_coverblack_700 hover:scale-105 transition-all delay-75 cursor-pointer p-5 m-4 rounded-xl">
+                      </label>
+                      <input
+                        type="file"
+                        accept="image/png, image/gif, image/jpeg"
+                        className=""
+                        onChange={(e) => uploadImage(e.target.files)}
+                        style={{ display: "none" }}
+                        name="image"
+                        id="image"
+                      />
+                      <label
+                        htmlFor="music"
+                        className=" bg-bg_coverblack_500 hover:bg-bg_coverblack_700 hover:scale-105 transition-all delay-75 cursor-pointer p-5 m-4 rounded-xl"
+                      >
                         Change Music
-                      </p>
+                      </label>
+                      <input
+                        type="file"
+                        accept="audio/mp3, audio/mp3, audio/mp3"
+                        className=""
+                        onChange={(e) => uploadMusic(e.target.files)}
+                        style={{ display: "none" }}
+                        name="music"
+                        id="music"
+                      />
                     </div>
                   </div>
                 </div>
@@ -160,27 +227,32 @@ function SongEdit() {
                   <div className=" rounded-2xl p-5 grid gap-8">
                     <div>
                       <InputComponent
-                        title={song.name}
+                        title={"Name"}
                         typeInput={"text"}
                         name="name"
-                        onChange={handleChange}
+                        onChange={(e) => setName(e.target.value)}
                         onBlur={handleBlur}
-                        value={values.name}
-                        errors={errors.name}
-                        touche={touched.name}
+                        value={name}
+                        errors={""}
+                        touche={""}
                       />
                     </div>
-                    <div>
-                      <InputComponent
-                        title={"Singer"}
-                        typeInput={"text"}
-                        name="name"
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={values.name}
-                        errors={errors.name}
-                        touche={touched.name}
-                      />
+                    {singer.map((item, index) => (
+                      <div key={index}>
+                        <MyCombobox
+                          arr={[{ name: item }, ...singers]}
+                          label={"Singer"}
+                          handle={(e) => SingerHandle(e, index)}
+                        />
+                      </div>
+                    ))}
+                    <div className="flex justify-end pt-0 px-3">
+                      <small
+                        onClick={() => setSinger([...singer, singers[0].name])}
+                        className=" text-xs text-blue-600 font-bold cursor-pointer"
+                      >
+                        + Add a singer
+                      </small>
                     </div>
                     <div className="flex justify-between">
                       <small>{show ? <>Published</> : <>Private</>}</small>
@@ -197,23 +269,64 @@ function SongEdit() {
                   <hr />
                   <div className="flex justify-center items-center">
                     <button className="p-4 rounded-lg bg-bg_800 my-5 mx-2 font-bold text-textSecond_500">
-                      Add to Playlist
+                      + Add to Playlist
                     </button>
                     <button className="p-4 rounded-lg bg-bg_800 my-5 mx-2 font-bold text-textSecond_500">
                       Add to Playlist
                     </button>
                   </div>
                   <div className="flex justify-around text-sm px-5">
-                    <p>Compare</p>
+                    <p>+ Compare</p>
                     <p>Favorite</p>
                     <p>Share</p>
+                  </div>
+                  <div className="flex justify-end mt-16 px-4">
+                    <ButtonSubmit
+                      title={"Save Changes"}
+                      submit={() => submitHandle(values)}
+                      submiting={isSubmitting}
+                      styl="bg-bg_0 text-textSecond_900"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="grid grid-cols-7  mt-8">
+                <div className=" col-span-4">
+                  <b className="text-lg text-textSecond_100">Properties</b>
+                  <p className="text-sm text-textSecond_500">
+                    Title, short description, image...
+                  </p>
+                </div>
+                <div className=" col-span-3">
+                  <div className=" rounded-2xl p-5 grid gap-8">
+                    <div>
+                      <MyCombobox
+                        arr={[]}
+                        label={"Category"}
+                        handle={() => {}}
+                      />
+                    </div>
+                    <div>
+                      <MyCombobox arr={[]} label={"Album"} handle={() => {}} />
+                    </div>
+                    <div>
+                      <Tags
+                        title={"Tags"}
+                        name="tags"
+                        onChange={setTags}
+                        onBlur={() => {}}
+                        value={tags}
+                        errors={false}
+                        touche={false}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
               <div className="flex justify-around mt-20">
                 <div className="flex flex-col items-center gap-1 px-8">
                   <i className=" text-3xl text-orange-500">
-                    <FaClock />
+                    <FaCircleInfo />
                   </i>
                   <b className="mt-8">10 Day Replacement</b>
                   <p className=" text-center text-textSecond_500">
@@ -231,7 +344,7 @@ function SongEdit() {
                 </div>
                 <div className="flex flex-col items-center gap-1 px-8">
                   <i className=" text-3xl text-orange-500">
-                    <FaClock />
+                    <FaCircleCheck />
                   </i>
                   <b className="mt-8">10 Day Replacement</b>
                   <p className=" text-center text-textSecond_500">
