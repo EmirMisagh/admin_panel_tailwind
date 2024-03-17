@@ -7,6 +7,7 @@ const Files = lazy(() => import("../pages/Files"));
 const SingerList = lazy(() => import("../pages/singer/SingerList"));
 const SingerCreate = lazy(() => import("../pages/singer/SingerCreate"));
 const SongCreate = lazy(() => import("../pages/song/SongCreate"));
+const SongEdit = lazy(() => import("../pages/song/SongEdit"));
 const SongList = lazy(() => import("../pages/song/SongList"));
 const UserCard = lazy(() => import("../pages/user/UserCard"));
 const UserCreate = lazy(() => import("../pages/user/UserCreate"));
@@ -70,6 +71,10 @@ export const router = [
   {
     element: <SongList />,
     path: "/song/list",
+  },
+  {
+    element: <SongEdit />,
+    path: "/song/:id",
   },
 
   // Singer -------------------------------------------------

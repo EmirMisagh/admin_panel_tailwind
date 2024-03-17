@@ -46,6 +46,7 @@ function SongCreate() {
   const [modalMessage, setModalMessage] = useState("");
   const [modalMessageTitle, setModalMessageTitle] = useState("");
   const [singer, setSinger] = useState("");
+  const [singerIndex, setSingerIndex] = useState([1]);
   const [singers, setSingers] = useState([]);
   const [tags, setTags] = useState([]);
   const audioRef = useRef();
@@ -204,17 +205,23 @@ function SongCreate() {
                     touche={touched.name}
                   />
                 </div>
-                <div>
-                  <MyCombobox
-                    arr={singers}
-                    label={"Singer"}
-                    handle={setSinger}
-                  />
-                  <div className="flex justify-end pt-2 px-3">
-                    <small className=" text-xs text-blue-600 font-bold cursor-pointer">
-                      + Add a singer
-                    </small>
+                {singerIndex.map((item, index) => (
+                  <div>
+                    <MyCombobox
+                      key={index}
+                      arr={singers}
+                      label={"Singer"}
+                      handle={setSinger}
+                    />
                   </div>
+                ))}
+                <div className="flex justify-end pt-0 px-3">
+                  <small
+                    onClick={() => setSingerIndex([...singerIndex, 1])}
+                    className=" text-xs text-blue-600 font-bold cursor-pointer"
+                  >
+                    + Add a singer
+                  </small>
                 </div>
                 <div>
                   <small className="text-textSecond_50">Lyric</small>

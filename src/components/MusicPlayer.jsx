@@ -36,12 +36,12 @@ function MusicPlayer({ image, music, audioRef, onLoadedMetadata }) {
   };
 
   return (
-    <div className="w-full box p-10 gap-10 flex flex-col overflow-hidden items-center relative rounded-lg aspect-[4/3] bg-bg_secend_400">
+    <div className="w-full box p-10 gap-10 flex flex-col overflow-hidden items-center relative rounded-lg aspect-[4/4] bg-bg_secend_400">
       <div className="w-full h-full absolute top-0 left-0">
-        <img className="w-full h-full" src={image} alt="" />
+        <img className="w-full h-full object-cover" src={image} alt="" />
       </div>
       {music && (
-        <div className="w-full h-full flex flex-col justify-end absolute text-white top-0 left-0 bg-bg_coverblack_400">
+        <div className="w-full h-full flex flex-col justify-end absolute text-white top-0 left-0 bg-bg_coverblack_200">
           <div className="flex items-center w-full gap-3 p-8">
             <i className="text-3xl cursor-pointer" onClick={playPause}>
               {Play}
