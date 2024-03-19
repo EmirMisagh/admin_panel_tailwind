@@ -12,9 +12,10 @@ function Search() {
   const [user, setUsers] = useState([]);
 
   const dispatch = useDispatch();
-  const { searchMenu } = useSelector((state) => ({
-    searchMenu: state.menuReducer.searchMenu,
-  }));
+ 
+
+  const searchMenu = useSelector((state) => state.menuReducer.searchMenu);
+ 
 
   const getPlaylist = useCallback(async () => {
     const playlistData = await getPlaylistAll();

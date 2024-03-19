@@ -9,9 +9,10 @@ import Loading from "../components/Loading";
 import Search from "./Search";
 
 function Dashboard({tableRef}) {
-  const { sidebar } = useSelector((state) => ({
-    sidebar: state.menuReducer.sidebar,
-  }));
+ 
+
+  const sidebar = useSelector((state) => state.menuReducer.sidebar);
+ 
  
   return (
     <Router>

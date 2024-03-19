@@ -11,13 +11,13 @@ import {
 import { VscClose } from "react-icons/vsc";
 
 function SettingMenu({ tableRef }) {
-  const { menu, darkmode, sidebar, color, boxtheme } = useSelector((state) => ({
-    menu: state.menuReducer.settingMenu,
-    darkmode: state.themeReducer.darkmode,
-    sidebar: state.menuReducer.sidebar,
-    color: state.themeReducer.color,
-    boxtheme: state.themeReducer.boxtheme,
-  }));
+  
+  const darkmode = useSelector((state) => state.themeReducer.darkmode);
+  const sidebar = useSelector((state) => state.menuReducer.sidebar);
+  const color = useSelector((state) => state.themeReducer.color);
+  const menu = useSelector((state) => state.menuReducer.menu);
+  const boxtheme = useSelector((state) => state.themeReducer.boxtheme);
+
   const dispatch = useDispatch();
   const [handleClick, sethandleClick] = useState(false);
   const [fullScreen, setFullScreen] = useState(1);

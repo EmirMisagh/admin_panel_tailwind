@@ -16,9 +16,10 @@ import { RiAlbumFill } from "react-icons/ri";
 import { useSelector, useDispatch } from "react-redux";
 
 function Sidebar() {
-  const { sidebar } = useSelector((state) => ({
-    sidebar: state.menuReducer.sidebar,
-  }));
+ 
+
+  const sidebar = useSelector((state) => state.menuReducer.sidebar);
+
   const name = window.localStorage.getItem("name");
   const admin = window.localStorage.getItem("admin");
   const family = window.localStorage.getItem("family");
