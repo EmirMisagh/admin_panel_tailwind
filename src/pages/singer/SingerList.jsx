@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { getSingerAll } from "../../config/API";
 import Header from "../../components/Header";
 import Card from "../../components/user/Card";
+import { NavLink } from "react-router-dom";
 
 
 function SingerList() {
@@ -29,9 +30,9 @@ function SingerList() {
         </div>
         <div className="mt-8 p-3 grid grid-cols-3 gap-5">
           {singers.map((item, index) => (
-            <div key={index}>
+            <NavLink to={`/singer/${item._id}`} key={index}>
               <Card singer={item} />
-            </div>
+            </NavLink>
           ))}
         </div>
       </div>

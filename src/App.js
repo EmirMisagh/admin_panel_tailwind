@@ -8,13 +8,12 @@ import { useSelector, useDispatch } from "react-redux";
 function App() {
   const [load, setLoad] = useState(false);
   const [login, loginMode] = useLoginMode();
-  const { darkmode, boxtheme, color } = useSelector((state) => ({
-    menu: state.menuReducer.settingMenu,
-    darkmode: state.themeReducer.darkmode,
-    sidebar: state.menuReducer.sidebar,
-    color: state.themeReducer.color,
-    boxtheme: state.themeReducer.boxtheme,
-  }));
+ 
+
+  const darkmode = useSelector((state) => state.themeReducer.darkmode);
+  const color = useSelector((state) => state.themeReducer.color);
+  const boxtheme = useSelector((state) => state.themeReducer.boxtheme);
+
   const tableRef = useRef(null);
   const dispatch = useDispatch();
 

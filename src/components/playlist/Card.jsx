@@ -30,7 +30,7 @@ function Card({ playlist }) {
       </div>
       <div>
         <img
-          className="w-full h-full rounded-md object-cover"
+          className="w-64 h-40 rounded-md object-cover"
           src={playlist.image}
           alt=""
         />
