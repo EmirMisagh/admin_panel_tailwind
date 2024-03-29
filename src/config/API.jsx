@@ -131,9 +131,9 @@ async function createPlaylist(body) {
   );
 }
 
-async function addSongToPlaylist(id,body) {
+async function updatePlaylist(id,body) {
   return await resolve(
-    axios.post(`${ApiUrl}/playlist/song/add/${id}`, body).then((res) => res.data)
+    axios.patch(`${ApiUrl}/playlist/update/${id}`, body).then((res) => res.data)
   );
 }
 
@@ -256,7 +256,7 @@ export {
   getPlaylistAll,
   getPlaylistOne,
   createPlaylist,
-  addSongToPlaylist,
+  updatePlaylist,
   getAlbumAll,
   getAlbumOne,
   createAlbum,

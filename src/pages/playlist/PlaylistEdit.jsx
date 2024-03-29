@@ -45,7 +45,7 @@ function PlaylistEdit() {
     setName(playlistData.data.name);
     setImageSrc(playlistData.data.image);
     setTags(playlistData.data.tags);
-    setSongs(songsData.data);
+    setSongs(playlistData.data.songsarray);
   }, [id]);
 
   useEffect(() => {
@@ -179,7 +179,10 @@ function PlaylistEdit() {
                   </div>
                   <hr />
                   <div className="flex justify-center items-center">
-                    <button className="p-4 rounded-lg bg-theme600 my-5 mx-2  text-theme200 font-bold">
+                    <button
+                      type="button"
+                      className="p-4 rounded-lg bg-theme600 my-5 mx-2  text-theme200 font-bold"
+                    >
                       + Add to Fovarite
                     </button>
                     <button className="p-4 rounded-lg bg-bg_800 my-5 mx-2 font-bold text-textSecond_500">
@@ -204,9 +207,12 @@ function PlaylistEdit() {
                 </div>
                 <div className=" col-span-4"></div>
                 <div className=" col-span-8">
-                  <DataGridSongPlaylist songs={playlist.songsarray} action={"add"} />
+                  <DataGridSongPlaylist songs={songs} action={"add"} />
                 </div>
-                <div className=" col-span-8"> <DataGridSongPlaylist songs={songs} action={"min"} /></div>
+                <div className=" col-span-8">
+                  {" "}
+                  <DataGridSongPlaylist songs={songs} action={"min"} />
+                </div>
               </div>
             </Form>
           )}

@@ -1,10 +1,14 @@
 import React, { useEffect, useState, useCallback } from "react";
 import Card from "./playlist/Card";
 import { VscClose } from "react-icons/vsc";
-import { addSongToPlaylist, getPlaylistAll } from "../config/API";
+import { updatePlaylist, getPlaylistAll } from "../config/API";
+import MyModal from "./element/Modal";
 
-function PlaylistMenu({ select,close }) {
+function PlaylistMenu({ select, close }) {
   const [playlist, setPlaylist] = useState([]);
+  const [isModal, setIsModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
+  const [modalMessageTitle, setModalMessageTitle] = useState("");
 
   const getPlaylist = useCallback(async () => {
     const playlistData = await getPlaylistAll();
@@ -16,21 +20,42 @@ function PlaylistMenu({ select,close }) {
   }, [getPlaylist]);
 
   const addToPlaylist = async (playlist) => {
-    const body = playlist
-    body.songs = playlist.songs + 1
-    const song = playlist.songsarray.find(i => i === select._id)
-    console.log(song)
-    if(!song){
-      body.songsarray.push(select)
+    try {
+      const body = playlist;
+      body.songs = playlist.songs + 1;
+      const song = playlist.songsarray.find((i) => i._id === select._id);
+      console.log(song);
+      if (!song) {
+        body.songsarray.push(select);
+      }
+      const singer = playlist.singersarray.find(
+        (i) => i.name === select.singer
+      );
+      console.log(singer);
+      if (!singer) {
+        body.singersarray.push({ name: select.singer[0], number: 1 });
+      }
+      console.log(body);
+      console.log(select);
+
+      const create = await updatePlaylist(playlist._id, body);
+      if (create.data) {
+        setModalMessage(create.data.message);
+        setIsModal(true);
+        setModalMessageTitle("Payment successful");
+      } else {
+        setModalMessage(create.error.message);
+        setIsModal(true);
+        setModalMessageTitle("");
+      }
+      close()
+    } catch (error) {
+      setModalMessage(error);
+      setIsModal(true);
+      setModalMessageTitle("");
+      close()
     }
-    const singer = playlist.singersarray.find(i => i.name === select.singer)
-    console.log(singer)
-    if(!singer){
-      body.singersarray.push(select.singer[0])
-    }
-    body.songs = playlist.songs + 1
-    console.log(body)
-    console.log(select)
+    close()
     // const add = await addSongToPlaylist(id, select);
   };
 
@@ -59,6 +84,12 @@ function PlaylistMenu({ select,close }) {
           </div>
         ))}
       </div>
+      <MyModal
+        isModal={isModal}
+        ModalMessage={modalMessage}
+        title={modalMessageTitle}
+        closeModal={() => setIsModal(false)}
+      />
     </div>
   );
 }
