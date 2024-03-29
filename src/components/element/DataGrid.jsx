@@ -13,6 +13,7 @@ import { BiSolidCheckboxMinus, BiSolidCheckboxChecked } from "react-icons/bi";
 import Toggle from "./Toggle";
 import { deleteSong, deleteUser } from "../../config/API";
 import MyModal from "./Modal";
+import { IoMdAddCircle, IoIosRemoveCircle } from "react-icons/io";
 
 export function DataGridUser({ users }) {
   const [list, setList] = useState(users);
@@ -530,6 +531,169 @@ export function DataGridSong({ songs }) {
               />
             </i>
           </div>
+        </div>
+      </div>
+      <MyModal
+        isModal={isModal}
+        ModalMessage={modalMessage}
+        title={modalMessageTitle}
+        closeModal={() => setIsModal(false)}
+      />
+    </div>
+  );
+}
+
+export function DataGridSongPlaylist({ songs, action }) {
+  const [list, setList] = useState(songs);
+  const [padding, setPadding] = useState(true);
+  const [input, setInput] = useState("");
+  const [selected, setSelected] = useState([]);
+  const [index, setIndex] = useState(7);
+  const [indexOne, setIndexOne] = useState(0);
+  const [isModal, setIsModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
+  const [modalMessageTitle, setModalMessageTitle] = useState("");
+
+  useMemo(() => {
+    setList(songs);
+  }, [songs]);
+
+  const paddingHandle = () => {
+    setPadding(!padding);
+  };
+
+  const filterHandle = (event) => {
+    setInput(event.target.value);
+  };
+
+  const selectHandle = (id) => {
+    if (selected.find((i) => i === id)) {
+      setSelected(selected.filter((i) => i !== id));
+    } else {
+      setSelected([...selected, id]);
+    }
+  };
+  const selectAllHandle = () => {
+    if (selected.length < list.length) {
+      setSelected([...list]);
+    } else {
+      setSelected([]);
+    }
+  };
+
+  const filterAdminHandle = (event) => {
+    if (event === "Not filter") {
+      setList(songs);
+      return;
+    }
+
+    setList(songs.filter((item) => item.admin === event));
+  };
+
+  const removeHandle = async (id) => {
+    const remove = await deleteSong(id);
+    setList(
+      list.filter((i) => {
+        return i._id !== id;
+      })
+    );
+    setModalMessage("Song Deleted");
+    setIsModal(true);
+    setModalMessageTitle("Payment successful");
+    console.log(remove);
+  };
+
+  return (
+    <div className="w-full py-3 pb-0">
+      <div className="grid text-[0.8rem]">
+        {selected.length > 0 ? (
+          <div className="w-full h-full flex py-4 px-5 bg-theme600 text-theme100 justify-between">
+            <div className="flex items-center gap-3">
+              <div>
+                {selected.length < songs.length ? (
+                  <p className=" text-2xl cursor-pointer">
+                    <BiSolidCheckboxMinus onClick={selectAllHandle} />
+                  </p>
+                ) : (
+                  <p className=" text-2xl cursor-pointer">
+                    <BiSolidCheckboxChecked onClick={selectAllHandle} />
+                  </p>
+                )}
+              </div>
+              <div>
+                <p>{selected.length} selected</p>
+              </div>
+            </div>
+            <div className=" text-2xl pr-6 cursor-pointer">
+              <MdDeleteForever />
+            </div>
+          </div>
+        ) : (
+          <div className="flex justify-between gap-5 py-4 text-[1rem] px-6 font-bold text-textSecond_500">
+            <div className="flex items-center justify-center">
+              <input
+                type="checkbox"
+                onClick={selectAllHandle}
+                checked={selected.length === songs.length ? true : false}
+              />
+            </div>
+            <div className="flex-1">Name</div>
+            <div className=" text-left w-24 flex justify-center">Category</div>
+            <div className="w-24 text-center flex justify-center">Action</div>
+          </div>
+        )}
+        <div className="px-2">
+          {list.map(
+            (item, i) =>
+              i >= indexOne &&
+              i < index && (
+                <div
+                  key={i}
+                  className={`flex justify-between gap-5 items-center px-4 border-b text-textSecond_400 border-color_border_700 font-body transition-all delay-100 ${
+                    padding ? "py-2" : "py-5"
+                  }`}
+                >
+                  <div className="flex items-center justify-center">
+                    <input
+                      type="checkbox"
+                      onClick={() => selectHandle(item)}
+                      checked={
+                        selected.find((i) => i._id === item._id) === undefined
+                          ? false
+                          : true
+                      }
+                    />
+                  </div>
+                  <div className="flex-1 flex items-center gap-3">
+                    <div>
+                      <img
+                        className=" object-cover w-12 h-12 rounded-full"
+                        src={item.image}
+                        alt=""
+                      />
+                    </div>
+                    <div className="">
+                      <b className=" text-textSecond_200">{item.name}</b>
+                      <p className=" text-textgray400">{item.singer}</p>
+                    </div>
+                  </div>
+                  <div className="text-left w-24 flex justify-center">Work</div>
+
+                  <div className="flex w-24 text-2xl gap-3 items-center justify-center pr-4">
+                    <i
+                      className=" cursor-pointer"
+                      onClick={() => removeHandle(item._id)}
+                    >
+                      {action === "add" ? (
+                        <IoIosRemoveCircle />
+                      ) : (
+                        <IoMdAddCircle />
+                      )}
+                    </i>
+                  </div>
+                </div>
+              )
+          )}
         </div>
       </div>
       <MyModal

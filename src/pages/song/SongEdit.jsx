@@ -132,14 +132,14 @@ function SongEdit() {
     <div>
       <div>
         <Header
-          title={"Details the user"}
+          title={"Details the song"}
           address1={"Dashbourd"}
-          address2={"User"}
-          address3={"New Edit"}
+          address2={"Song"}
+          address3={"Edit"}
         />
       </div>
       <div>
-        <Navbar />
+        <Navbar back={"song"} live={`music/${id}`} />
       </div>
       <div>
         <Formik

@@ -26,7 +26,7 @@ function UserEdit() {
           title={"Details the user"}
           address1={"Dashbourd"}
           address2={"User"}
-          address3={"New Edit"}
+          address3={"Edit"}
         />
       </div>
       <div>
