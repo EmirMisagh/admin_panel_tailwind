@@ -14,6 +14,7 @@ import { FaClock, FaCircleInfo, FaCircleCheck } from "react-icons/fa6";
 import ButtonSubmit from "../../components/element/ButtonSubmit";
 import MyCombobox from "../../components/element/Combobox";
 import Tags from "../../components/element/Tags";
+import PlaylistMenu from '../../components/PlaylistMenu'
 
 const SignupSchema = Yup.object().shape({
   name: Yup.string()
@@ -357,6 +358,7 @@ function SongEdit() {
           )}
         </Formik>
       </div>
+      <PlaylistMenu />
     </div>
   );
 }
