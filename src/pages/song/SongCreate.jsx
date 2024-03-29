@@ -53,7 +53,6 @@ function SongCreate() {
 
   const getSingers = useCallback(async () => {
     const singerData = await getSingerAll();
-    console.log(singerData.data);
     setSingers(singerData.data);
   }, []);
 
@@ -215,7 +214,7 @@ function SongCreate() {
                   />
                 </div>
                 {singerIndex.map((item, index) => (
-                  <div>
+                  <div key={index}>
                     <MyCombobox
                       key={index}
                       arr={singers}
@@ -238,22 +237,21 @@ function SongCreate() {
                     <TextEditor />
                   </div>
                 </div>
-                {!image && (
                   <div>
                     <small className="text-textSecond_50">Image</small>
                     <div className="mt-3">
                       <UploadFile handleUpload={uploadImage} />
                     </div>
+                    <div>
+                      <img className="w-40 h-40 rounded-lg" src={imageSrc} alt="" />
+                    </div>
                   </div>
-                )}
-                {!music && (
                   <div>
                     <small className="text-textSecond_50">Song</small>
                     <div className="mt-3">
                       <UploadFile handleUpload={uploadMusic} />
                     </div>
                   </div>
-                )}
                 {image && (
                   <div>
                     <MusicPlayer

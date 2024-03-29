@@ -135,9 +135,7 @@ function Sidebar() {
 }
 
 function ItemOverview({ title, address, icon }) {
-  const { sidebar } = useSelector((state) => ({
-    sidebar: state.menuReducer.sidebar,
-  }));
+  const sidebar = useSelector((state) => state.menuReducer.sidebar);
   const downHandle = (e) => {
     e.target.classList.add("btn");
     e.target.classList.remove("hover:bg-bg_secend_400");
@@ -196,9 +194,7 @@ function ItemOverview({ title, address, icon }) {
 }
 
 function ItemSide({ title, address, icon }) {
-  const { sidebar } = useSelector((state) => ({
-    sidebar: state.menuReducer.sidebar,
-  }));
+  const sidebar = useSelector((state) => state.menuReducer.sidebar);
   const [openDiv, setOpenDiv] = useState(false);
 
   useMemo(() => {
@@ -306,9 +302,7 @@ function ItemSide({ title, address, icon }) {
 }
 
 function Item({ title, address, icon }) {
-  const { sidebar } = useSelector((state) => ({
-    sidebar: state.menuReducer.sidebar,
-  }));
+  const sidebar = useSelector((state) => state.menuReducer.sidebar);
 
   const downHandle = (e) => {
     e.target.classList.add("btn");

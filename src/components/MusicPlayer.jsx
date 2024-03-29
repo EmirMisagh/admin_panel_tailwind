@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaCirclePlay, FaCirclePause } from "react-icons/fa6";
+import Loading from "./Loading";
 
 function MusicPlayer({ image, music, audioRef, onLoadedMetadata }) {
   const [PlayerFill, setPlayerFill] = useState(0);
@@ -38,7 +39,11 @@ function MusicPlayer({ image, music, audioRef, onLoadedMetadata }) {
   return (
     <div className="w-full box p-10 gap-10 flex flex-col overflow-hidden items-center relative rounded-lg aspect-[4/4] bg-bg_secend_400">
       <div className="w-full h-full absolute top-0 left-0">
-        <img className="w-full h-full object-cover" src={image} alt="" />
+        {image ? (
+          <img className="w-full h-full object-cover" src={image} alt="" />
+        ) : (
+          <Loading />
+        )}
       </div>
       {music && (
         <div className="w-full h-full flex flex-col justify-end absolute text-white top-0 left-0 bg-bg_coverblack_200">

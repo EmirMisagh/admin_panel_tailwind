@@ -15,7 +15,7 @@ function SettingMenu({ tableRef }) {
   const darkmode = useSelector((state) => state.themeReducer.darkmode);
   const sidebar = useSelector((state) => state.menuReducer.sidebar);
   const color = useSelector((state) => state.themeReducer.color);
-  const menu = useSelector((state) => state.menuReducer.menu);
+  const settingMenu = useSelector((state) => state.menuReducer.settingMenu);
   const boxtheme = useSelector((state) => state.themeReducer.boxtheme);
 
   const dispatch = useDispatch();
@@ -32,7 +32,7 @@ function SettingMenu({ tableRef }) {
     <>
       <div
         className={`fixed overflow-hidden transt border-l flex flex-col top-0 w-[17.0rem] z-[99999999] blur-none  border-l-1 border-color_border_600  ${
-          menu ? "right-0" : "right-[-17rem]"
+          settingMenu ? "right-0" : "right-[-17rem]"
         } h-full`}
       >
         <div className=" flex items-center justify-between px-6 py-5 pr-4 border-b border-color_border_600">
@@ -326,7 +326,7 @@ function SettingMenu({ tableRef }) {
         </div>
       </div>
       <div
-        className={`${menu ? "w-[80vw] " : "w-0"}
+        className={`${settingMenu ? "w-[80vw] " : "w-0"}
     h-[100vh] transition-all  fixed justify-between left-0 top-0 z-[999999] flex flex-col`}
         onClick={() => {
           dispatch({

@@ -268,7 +268,7 @@ function SongEdit() {
                   </div>
                   <hr />
                   <div className="flex justify-center items-center">
-                    <button className="p-4 rounded-lg bg-bg_800 my-5 mx-2 font-bold text-textSecond_500">
+                    <button className="p-4 rounded-lg bg-theme600 my-5 mx-2  text-theme200 font-bold">
                       + Add to Playlist
                     </button>
                     <button className="p-4 rounded-lg bg-bg_800 my-5 mx-2 font-bold text-textSecond_500">
@@ -279,14 +279,6 @@ function SongEdit() {
                     <p>+ Compare</p>
                     <p>Favorite</p>
                     <p>Share</p>
-                  </div>
-                  <div className="flex justify-end mt-16 px-4">
-                    <ButtonSubmit
-                      title={"Save Changes"}
-                      submit={() => submitHandle(values)}
-                      submiting={isSubmitting}
-                      styl="bg-bg_0 text-textSecond_900"
-                    />
                   </div>
                 </div>
               </div>
@@ -318,6 +310,14 @@ function SongEdit() {
                         value={tags}
                         errors={false}
                         touche={false}
+                      />
+                    </div>
+                    <div className="flex justify-end mt-8 px-4">
+                      <ButtonSubmit
+                        title={"Save Changes"}
+                        submit={() => submitHandle(values)}
+                        submiting={isSubmitting}
+                        styl="bg-bg_0 text-textSecond_900"
                       />
                     </div>
                   </div>

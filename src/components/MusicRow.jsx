@@ -13,14 +13,14 @@ function MusicRow({ music }) {
       </div>
       <div className="flex-1 flex flex-col items-start p-2 px-3">
         <b className=" text-textSecond_200">{music.name}</b>
-        <duv className="flex text-textSecond_300 items-center">
+        <div className="flex text-textSecond_300 items-center">
           {!music.lyric && (
             <div className=" rounded-lg flex justify-center items-center p-1 text-[0.6rem] mr-1 text-white bg-gray-500">
               LYRICE
             </div>
           )}
           {music.singer}
-        </duv>
+        </div>
       </div>
       <div className=" text-textSecond_50">
         <CiMenuKebab />
