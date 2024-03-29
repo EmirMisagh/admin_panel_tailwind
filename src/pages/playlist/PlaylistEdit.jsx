@@ -204,7 +204,7 @@ function PlaylistEdit() {
                 </div>
                 <div className=" col-span-4"></div>
                 <div className=" col-span-8">
-                  <DataGridSongPlaylist songs={songs} action={"add"} />
+                  <DataGridSongPlaylist songs={playlist.songsarray} action={"add"} />
                 </div>
                 <div className=" col-span-8"> <DataGridSongPlaylist songs={songs} action={"min"} /></div>
               </div>

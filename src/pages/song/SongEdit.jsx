@@ -14,7 +14,7 @@ import { FaClock, FaCircleInfo, FaCircleCheck } from "react-icons/fa6";
 import ButtonSubmit from "../../components/element/ButtonSubmit";
 import MyCombobox from "../../components/element/Combobox";
 import Tags from "../../components/element/Tags";
-import PlaylistMenu from '../../components/PlaylistMenu'
+import PlaylistMenu from "../../components/PlaylistMenu";
 
 const SignupSchema = Yup.object().shape({
   name: Yup.string()
@@ -53,6 +53,7 @@ function SongEdit() {
   const [singer, setSinger] = useState([]);
   const [singers, setSingers] = useState([]);
   const [tags, setTags] = useState([]);
+  const [select, setSelect] = useState(null);
   const audioRef = useRef();
 
   const { id } = useParams();
@@ -111,6 +112,8 @@ function SongEdit() {
     console.log(index);
     setSinger(array);
   };
+
+ 
 
   const getSong = useCallback(async () => {
     const songData = await getSongOne(id);
@@ -269,7 +272,8 @@ function SongEdit() {
                   </div>
                   <hr />
                   <div className="flex justify-center items-center">
-                    <button className="p-4 rounded-lg bg-theme600 my-5 mx-2  text-theme200 font-bold">
+                    <button className="p-4 rounded-lg bg-theme600 my-5 mx-2  text-theme200 font-bold"
+                    onClick={() =>  setSelect(song)}>
                       + Add to Playlist
                     </button>
                     <button className="p-4 rounded-lg bg-bg_800 my-5 mx-2 font-bold text-textSecond_500">
@@ -358,7 +362,7 @@ function SongEdit() {
           )}
         </Formik>
       </div>
-      <PlaylistMenu />
+      <PlaylistMenu select={select} close={() => setSelect(null)} />
     </div>
   );
 }

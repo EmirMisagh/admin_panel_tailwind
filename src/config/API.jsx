@@ -131,6 +131,12 @@ async function createPlaylist(body) {
   );
 }
 
+async function addSongToPlaylist(id,body) {
+  return await resolve(
+    axios.post(`${ApiUrl}/playlist/song/add/${id}`, body).then((res) => res.data)
+  );
+}
+
 // ALBUM API _________________________________________________________________________
 // __________________________________________________________________________________
 
@@ -250,6 +256,7 @@ export {
   getPlaylistAll,
   getPlaylistOne,
   createPlaylist,
+  addSongToPlaylist,
   getAlbumAll,
   getAlbumOne,
   createAlbum,
