@@ -33,7 +33,9 @@ function UploadFile({ handleUpload, acceptFile }) {
         </p>
         <ul>
           {image.map((file) => (
-            <li key={file.name}>{file.name}</li>
+            <li className="truncate w-72" key={file.name}>
+              {file.name}
+            </li>
           ))}
         </ul>
       </div>

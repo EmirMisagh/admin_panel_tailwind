@@ -237,31 +237,36 @@ function SongCreate() {
                     <TextEditor />
                   </div>
                 </div>
-                  <div>
-                    <small className="text-textSecond_50">Image</small>
-                    <div className="mt-3">
-                      <UploadFile handleUpload={uploadImage} />
-                    </div>
-                    <div>
-                      <img className="w-40 h-40 rounded-lg" src={imageSrc} alt="" />
-                    </div>
+                <div>
+                  <small className="text-textSecond_50">Image</small>
+                  <div className="mt-3">
+                    <UploadFile handleUpload={uploadImage} />
                   </div>
-                  <div>
-                    <small className="text-textSecond_50">Song</small>
-                    <div className="mt-3">
-                      <UploadFile handleUpload={uploadMusic} />
+                  {imageSrc && (
+                    <div className="flex justify-end">
+                      <img
+                        className="w-24 mt-2 h-24 rounded-lg"
+                        src={imageSrc}
+                        alt=""
+                      />
                     </div>
+                  )}
+                </div>
+                <div>
+                  <small className="text-textSecond_50">Song</small>
+                  <div className="mt-3">
+                    <UploadFile handleUpload={uploadMusic} />
                   </div>
-                {image && (
-                  <div>
-                    <MusicPlayer
-                      image={imageSrc}
-                      music={musicSrc}
-                      audioRef={audioRef}
-                      onLoadedMetadata={onLoadedMetadata}
-                    />
-                  </div>
-                )}
+                  {musicSrc && (
+                    <div className="w-full">
+                      <audio
+                        className="w-full mt-2"
+                        src={musicSrc}
+                        controls
+                      ></audio>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
             <div className="grid grid-cols-3  mt-6">
