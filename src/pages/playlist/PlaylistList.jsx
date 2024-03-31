@@ -28,12 +28,9 @@ function PlaylistList() {
       </div>
       <div className="mt-8 p-3 grid grid-cols-2 gap-5">
         {playlist.map((item, index) => (
-          <>
-          <NavLink to={`/playlist/${item._id}`}>
-
-            <Card playlist={item} key={index} />
+          <NavLink to={`/playlist/${item._id}`} key={index}>
+            <Card playlist={item} />
           </NavLink>
-          </>
         ))}
       </div>
     </div>

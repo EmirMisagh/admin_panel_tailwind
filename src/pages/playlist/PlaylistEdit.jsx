@@ -2,17 +2,15 @@ import React, { useCallback, useState, useEffect } from "react";
 import Header from "../../components/Header";
 import Navbar from "../../components/song/Navbar";
 import InputComponent from "../../components/element/InputComponent";
-import MusicPlayer from "../../components/MusicPlayer";
 import Toggle from "../../components/element/Toggle";
 import { Form, Formik } from "formik";
 import { useParams } from "react-router-dom";
-import { getPlaylistOne, getSongAll } from "../../config/API";
+import { getPlaylistOne, getSongAll, updatePlaylist, uploadImageApi } from "../../config/API";
 import * as Yup from "yup";
 import Tags from "../../components/element/Tags";
-import {
-  DataGridSong,
-  DataGridSongPlaylist,
-} from "../../components/element/DataGrid";
+import { DataGridSongPlaylist } from "../../components/element/DataGrid";
+import ButtonSubmit from "../../components/element/ButtonSubmit";
+import MyModal from "../../components/element/Modal";
 
 const SignupSchema = Yup.object().shape({
   name: Yup.string()
@@ -29,11 +27,16 @@ const SignupSchema = Yup.object().shape({
 function PlaylistEdit() {
   const [playlist, setPlaylist] = useState({});
   const [songs, setSongs] = useState([]);
+  const [isSubmitting, setSubmitting] = useState(false);
+  const [songsPlaylist, setSongsPlaylist] = useState([]);
   const [name, setName] = useState("");
   const [show, setShow] = useState(true);
   const [image, setImage] = useState("");
   const [imageSrc, setImageSrc] = useState("");
   const [tags, setTags] = useState([]);
+  const [isModal, setIsModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
+  const [modalMessageTitle, setModalMessageTitle] = useState("");
 
   const { id } = useParams();
 
@@ -45,7 +48,8 @@ function PlaylistEdit() {
     setName(playlistData.data.name);
     setImageSrc(playlistData.data.image);
     setTags(playlistData.data.tags);
-    setSongs(playlistData.data.songsarray);
+    setSongsPlaylist(playlistData.data.songsarray);
+    setSongs(songsData.data);
   }, [id]);
 
   useEffect(() => {
@@ -62,8 +66,76 @@ function PlaylistEdit() {
     reader.readAsDataURL(element);
   };
 
+  const removeSong = (item) => {
+    console.log(item);
+    const body = playlist;
+    const singer = playlist.singersarray.find((i) => i.name === item.singer[0]);
+    body.songsarray = songsPlaylist.filter((i) => {
+      return i._id !== item._id;
+    });
+    setSongsPlaylist(
+      songsPlaylist.filter((i) => {
+        return i._id !== item._id;
+      })
+    );
+    console.log(singer);
+    body.songs = playlist.songs - 1;
+
+    // Singer Handle ---------------
+    if (singer.number === 1)
+      body.singersarray = playlist.singersarray.filter((i) => {
+        return i.name !== singer.name;
+      });
+    console.log(body);
+    setPlaylist(body);
+  };
+
   const submitHandle = async (values) => {
-    console.log(values);
+    setSubmitting(true);
+    const body = playlist;
+
+    // UPLOAD IMAGE ---------------
+    const formData = new FormData();
+    formData.append("file", image);
+    if (image) {
+      const imageUpload = await uploadImageApi("playlistimage", formData);
+      if (!imageUpload.data.data) {
+        setSubmitting(false);
+        setModalMessage("Image not uploaded");
+        setModalMessageTitle("");
+        return;
+      }
+      setImage(imageUpload.data.data);
+      body.image = imageUpload.data.data;
+    }
+    // ---------------------------
+
+    body.name = name;
+    body.tags = tags;
+    console.log(body);
+    console.log(image);
+    setSubmitting(false);
+    // return;
+    try {
+      const update = await updatePlaylist(playlist._id, body);
+      if (update.data) {
+        setModalMessage(update.data.message);
+        setIsModal(true);
+        setModalMessageTitle("Payment successful");
+        setSubmitting(false);
+      } else {
+        setModalMessage(update.error.message);
+        setIsModal(true);
+        setModalMessageTitle("");
+        setSubmitting(false);
+      }
+    } catch (error) {
+      setModalMessage(error);
+      setIsModal(true);
+      setModalMessageTitle("");
+      setSubmitting(false);
+    }
+    setSubmitting(false);
   };
 
   return (
@@ -205,19 +277,32 @@ function PlaylistEdit() {
                     Add and remove song...
                   </p>
                 </div>
-                <div className=" col-span-4"></div>
-                <div className=" col-span-8">
-                  <DataGridSongPlaylist songs={songs} action={"add"} />
+                <div className=" col-span-8 box mt-8 py-3 rounded-2xl">
+                  <DataGridSongPlaylist
+                    songs={songsPlaylist}
+                    action={"add"}
+                    removeSong={removeSong}
+                  />
                 </div>
-                <div className=" col-span-8">
-                  {" "}
-                  <DataGridSongPlaylist songs={songs} action={"min"} />
+                <div className=" col-span-8 flex justify-end mt-8 px-4">
+                  <ButtonSubmit
+                    title={"Save Changes"}
+                    submit={() => submitHandle(values)}
+                    submiting={isSubmitting}
+                    styl="bg-bg_0 text-textSecond_900"
+                  />
                 </div>
               </div>
             </Form>
           )}
         </Formik>
       </div>
+      <MyModal
+        isModal={isModal}
+        ModalMessage={modalMessage}
+        title={modalMessageTitle}
+        closeModal={() => setIsModal(false)}
+      />
     </div>
   );
 }

@@ -5,6 +5,7 @@ import { Route, Routes, useParams } from "react-router-dom";
 import Accont from "./Accont";
 import Security from "./Security";
 import { getUserOne } from "../../config/API";
+import Social from "../../components/user/Social";
 
 function UserEdit() {
   const [user, setUsers] = useState([]);
@@ -36,6 +37,7 @@ function UserEdit() {
         <Routes>
           <Route path="/" element={''} />
           <Route path="/edit" element={<Accont user={user}  />} />
+          <Route path="/sociallinks" element={<Social user={user} />} />
           <Route path="/security" element={<Security user={user} />} />
         </Routes>
       </div>

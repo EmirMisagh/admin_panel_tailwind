@@ -67,7 +67,7 @@ function NavbarEdit() {
       </p>
       <p className="flex" onClick={() => clickHandle("social")}>
         <NavLink
-          to={""}
+          to={"./sociallinks"}
           className="flex focus:text-textSecond_50 items-center gap-2"
         >
           <i className="text-2xl">

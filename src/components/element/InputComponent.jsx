@@ -1,3 +1,5 @@
+
+
 function InputComponent({
   title,
   typeInput,
@@ -7,6 +9,7 @@ function InputComponent({
   name,
   onBlur,
   touche,
+  icon,
 }) {
   return (
     <div className="w-full p-0  relative rounded-lg grid items-center ">
@@ -22,16 +25,17 @@ function InputComponent({
         style={{ background: "rgb(0,0,0,0)" }}
       />
       <span
-        className={`absolute left-3 font-bold InputComponentSpan  ${
+        className={`absolute left-3 font-bold InputComponentSpan flex gap-2 items-center  ${
           value
             ? errors && touche
-              ? "text-red-600 top-[-10px] text-[0.80rem] font-bold z-30"
-              : "text-textSecond_500 top-[-10px] text-[0.80rem] font-bold z-30"
+              ? "text-red-600 top-[-10px] text-[0.80rem] font-bold z-50"
+              : "text-textSecond_500 top-[-10px] text-[0.80rem] font-bold z-50"
             : errors && touche
             ? "text-red-600 top-[14px]"
             : "text-textSecond_500 top-[14px]"
         }   bg-background_box pl-1 ml-1 pr-1`}
       >
+        {icon}
         {title}
       </span>
       <small className="mt-1 text-red-600"> {errors && touche && errors}</small>

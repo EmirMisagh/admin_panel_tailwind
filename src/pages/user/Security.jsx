@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import ButtonSubmit from "../../components/element/ButtonSubmit";
 import {  updateUser } from "../../config/API";
 import MyModal from "../../components/element/Modal";
+import { MdOutlineSecurity } from "react-icons/md";
 
 const SignupSchema = Yup.object().shape({
   oldpassword: Yup.string()
@@ -90,7 +91,7 @@ function Security({user}) {
                 <div className="box p-5 grid grid-cols-2 gap-4 flex-1 rounded-2xl">
                   <div>
                     <InputComponent
-                      title={"Old Password"}
+                      title={`Old Password`}
                       typeInput={"password"}
                       name="oldpassword"
                       onChange={handleChange}
@@ -98,6 +99,7 @@ function Security({user}) {
                       value={values.oldpassword}
                       errors={errors.oldpassword}
                       touche={touched.oldpassword}
+                      icon={<MdOutlineSecurity />}
                     />
                   </div>
                   <div></div>
@@ -112,6 +114,7 @@ function Security({user}) {
                       value={values.password}
                       errors={errors.password}
                       touche={touched.password}
+                      icon={<MdOutlineSecurity />}
                     />
                   </div>
                   <div>
@@ -124,6 +127,7 @@ function Security({user}) {
                       value={values.confrimpassword}
                       errors={errors.confrimpassword}
                       touche={touched.confrimpassword}
+                      icon={<MdOutlineSecurity />}
                     />
                   </div>
                   <div></div>
