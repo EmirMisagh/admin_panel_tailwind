@@ -81,7 +81,7 @@ function Login() {
         <div>logo</div>
         <div className="flex mt-10 flex-col gap-4 items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-textSecond_0">
+            <h1 className="text-3xl font-bold text-textSecond_50">
               Hi, Welcome back
             </h1>
           </div>
@@ -116,7 +116,7 @@ function Login() {
       <div className="box p-20 col-span-3">
         <div className="flex flex-col gap-5 justify-center h-full">
           <div>
-            <h1 className="text-2xl font-bold">Sign in to Kurdsong</h1>
+            <h1 className="text-2xl font-bold text-textSecond_100">Sign in to Kurdsong</h1>
             <p className="mt-3 text-textSecond_400 text-sm">
               Continue to your accont
             </p>
@@ -156,7 +156,7 @@ function Login() {
               title={"Login"}
               submit={loginHandle}
               submiting={isSubmitting}
-              styl={"w-full h-12 bg-black"}
+              styl={"w-full h-12 bg-bg_0 text-textSecond_900"}
             />
           </div>
         </div>

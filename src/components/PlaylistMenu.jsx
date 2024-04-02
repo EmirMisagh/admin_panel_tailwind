@@ -25,6 +25,7 @@ function PlaylistMenu({ select, close }) {
       body.songs = playlist.songs + 1;
       const song = playlist.songsarray.find((i) => i._id === select._id);
       console.log(song);
+      if (song) return;
       if (!song) {
         body.songsarray.push(select);
       }
@@ -35,6 +36,7 @@ function PlaylistMenu({ select, close }) {
       if (!singer) {
         body.singersarray.push({ name: select.singer[0], number: 1 });
       }
+      body.duration = playlist.duration + select.duration;
       console.log(body);
       console.log(select);
 
@@ -48,14 +50,14 @@ function PlaylistMenu({ select, close }) {
         setIsModal(true);
         setModalMessageTitle("");
       }
-      close()
+      close();
     } catch (error) {
       setModalMessage(error);
       setIsModal(true);
       setModalMessageTitle("");
-      close()
+      close();
     }
-    close()
+    close();
     // const add = await addSongToPlaylist(id, select);
   };
 
