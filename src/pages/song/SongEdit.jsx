@@ -3,7 +3,7 @@ import Navbar from "../../components/song/Navbar";
 import Header from "../../components/Header";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
-import { getSingerAll, getSongOne } from "../../config/API";
+import { getAlbumAll, getSingerAll, getSongOne } from "../../config/API";
 import { useParams } from "react-router-dom";
 import MusicPlayer from "../../components/MusicPlayer";
 import InputComponent from "../../components/element/InputComponent";
@@ -52,6 +52,7 @@ function SongEdit() {
   const [modalMessageTitle, setModalMessageTitle] = useState("");
   const [singer, setSinger] = useState([]);
   const [singers, setSingers] = useState([]);
+  const [albums, setAlbums] = useState([]);
   const [tags, setTags] = useState([]);
   const [select, setSelect] = useState(null);
   const audioRef = useRef();
@@ -123,8 +124,10 @@ function SongEdit() {
     setImageSrc(songData.data.image);
     setMusicSrc(songData.data.music);
     setTags(songData.data.tags);
-    const singerData = await getSingerAll();
-    setSingers(singerData.data);
+    const singersData = await getSingerAll();
+    const albumsData = await getAlbumAll();
+    setSingers(singersData.data);
+    setAlbums(albumsData.data);
     console.log(songData.data);
   }, [id]);
 
@@ -304,7 +307,10 @@ function SongEdit() {
                       />
                     </div>
                     <div>
-                      <MyCombobox arr={[]} label={"Album"} handle={() => {}} />
+                      <MyCombobox  
+                      arr={[{ name: song.album },...albums]} 
+                      label={"Album"} 
+                      handle={() => {}} />
                     </div>
                     <div>
                       <Tags

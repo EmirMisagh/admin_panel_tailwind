@@ -7,11 +7,16 @@ import UploadFile from "../../components/element/UploadFile";
 import TextEditor from "../../components/element/TextEditor";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
-import MusicPlayer from "../../components/MusicPlayer";
-import { createSong, uploadImageApi, getSingerAll } from "../../config/API";
+import {
+  createSong,
+  uploadImageApi,
+  getSingerAll,
+  getAlbumAll,
+} from "../../config/API";
 import MyModal from "../../components/element/Modal";
 import Toggle from "../../components/element/Toggle";
 import Tags from "../../components/element/Tags";
+import Lyrics from "../../components/element/Lyrics";
 
 const SignupSchema = Yup.object().shape({
   name: Yup.string()
@@ -46,14 +51,19 @@ function SongCreate() {
   const [modalMessage, setModalMessage] = useState("");
   const [modalMessageTitle, setModalMessageTitle] = useState("");
   const [singer, setSinger] = useState("");
+  const [album, setAlbum] = useState("");
+  const [lyrics, setLyrics] = useState([]);
   const [singerIndex, setSingerIndex] = useState([1]);
   const [singers, setSingers] = useState([]);
+  const [albums, setAlbums] = useState([]);
   const [tags, setTags] = useState([]);
   const audioRef = useRef();
 
   const getSingers = useCallback(async () => {
-    const singerData = await getSingerAll();
-    setSingers(singerData.data);
+    const singersData = await getSingerAll();
+    const albumsData = await getAlbumAll();
+    setSingers(singersData.data);
+    setAlbums(albumsData.data);
   }, []);
 
   useEffect(() => {
@@ -111,10 +121,17 @@ function SongCreate() {
     setMusic(musicUpload.data.data);
     values.music = musicUpload.data.data;
 
+    // SET VARIBLE -----------------
+
     values.duration = duration;
     values.show = show;
     values.singer = singer;
     values.tags = tags;
+    values.lyric = lyrics;
+    values.album = album;
+
+    console.log(lyrics);
+    console.log(values);
 
     const create = await createSong(values);
     if (create.data) {
@@ -234,7 +251,15 @@ function SongCreate() {
                 <div>
                   <small className="text-textSecond_50">Lyric</small>
                   <div className="mt-3">
-                    <TextEditor />
+                    <Lyrics
+                      title={"Lyrics"}
+                      name="lyric"
+                      onChange={setLyrics}
+                      onBlur={() => {}}
+                      value={lyrics}
+                      errors={false}
+                      touche={false}
+                    />
                   </div>
                 </div>
                 <div>
@@ -262,6 +287,8 @@ function SongCreate() {
                       <audio
                         className="w-full mt-2"
                         src={musicSrc}
+                        ref={audioRef}
+                        onLoadedMetadata={onLoadedMetadata}
                         controls
                       ></audio>
                     </div>
@@ -307,7 +334,7 @@ function SongCreate() {
                   </div>
                 </div>
                 <div>
-                  <MyCombobox arr={singers} label={"Album"} handle={() => {}} />
+                  <MyCombobox arr={albums} label={"Album"} handle={setAlbum} />
                 </div>
                 <div>
                   <Tags

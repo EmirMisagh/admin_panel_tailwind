@@ -27,7 +27,7 @@ function MyCombobox({ handle, arr, label }) {
         <div className="relative z-[9999999">
           <div className="relative w-full cursor-default overflow-hidden rounded-lg bg-box text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm p-2 border border-color_border_100">
             <Combobox.Input
-              className="w-full text-textSecond_300 bg-background_box outline-none relative border-none py-2 pl-3 pr-10 p-5 border text-sm leading-5  focus:ring-0"
+              className="w-full text-textSecond_300 bg-transparent outline-none relative border-none py-2 pl-3 pr-10 p-5 border text-sm leading-5  focus:ring-0"
               displayValue={(person) => person.name}
               onChange={(event) => {
                 setQuery(event.target.value);
@@ -48,13 +48,13 @@ function MyCombobox({ handle, arr, label }) {
             leaveTo="opacity-0"
             afterLeave={() => setQuery("")}
           >
-            <Combobox.Options className="absolute z-[9999999999] bg-background_body mt-1 max-h-60 w-full overflow-auto rounded-2xl py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
+            <Combobox.Options className="absolute z-[9999999999] bg-background_body mt-1 max-h-60 w-full notscroll overflow-auto rounded-2xl py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
               {filteredPeople.length === 0 && query !== "" ? (
                 <div className="relative cursor-default select-none px-4 py-2 text-textSecond_300">
                   Nothing found.
                 </div>
               ) : (
-                filteredPeople.map((person,index) => (
+                filteredPeople.map((person, index) => (
                   <Combobox.Option
                     key={index}
                     className={({ active }) =>

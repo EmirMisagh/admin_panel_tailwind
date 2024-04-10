@@ -45,7 +45,7 @@ function Tags({
         ))}
       </div>
       <input
-        className=" outline-none w-[100%] bg-background_box text-textSecond_50"
+        className=" outline-none w-[100%] bg-transparent text-textSecond_50"
         type={`text`}
         onChange={(e) => setInput(e.target.value)}
         value={input}

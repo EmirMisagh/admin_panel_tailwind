@@ -10,7 +10,7 @@ function Card({ singer }) {
       <div className="flex-1 relative">
         <img
           className="h-36 w-full bg-bg_coverblack_500 object-cover "
-          src="/img/abstract-multi.jpg"
+          src="/img/pexels-daniel-reche-3721941.jpg"
           alt=""
         />
         <div className="w-ful h-full absolute inset-0 bg-bg_coverblack_100"></div>
