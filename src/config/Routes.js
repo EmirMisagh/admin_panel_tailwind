@@ -78,6 +78,10 @@ export const router = [
     element: <SongEdit />,
     path: "/song/:id",
   },
+  {
+    element: <SongEdit />,
+    path: "/song/:id/*",
+  },
 
   // Singer -------------------------------------------------
 

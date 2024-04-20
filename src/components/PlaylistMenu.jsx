@@ -81,8 +81,8 @@ function PlaylistMenu({ select, close }) {
       </div>
       <div className="px-5 py-5 flex flex-col gap-5">
         {playlist.map((item, index) => (
-          <div onClick={() => addToPlaylist(item)}>
-            <Card playlist={item} key={index} />
+          <div onClick={() => addToPlaylist(item)} key={index}>
+            <Card playlist={item}  />
           </div>
         ))}
       </div>

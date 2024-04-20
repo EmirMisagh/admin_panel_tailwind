@@ -4,7 +4,7 @@ import Header from "../../components/Header";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import { getAlbumAll, getSingerAll, getSongOne } from "../../config/API";
-import { useParams } from "react-router-dom";
+import { Route, Routes, useParams } from "react-router-dom";
 import MusicPlayer from "../../components/MusicPlayer";
 import InputComponent from "../../components/element/InputComponent";
 import SongImage from "../../components/song/SongImage";
@@ -15,6 +15,10 @@ import ButtonSubmit from "../../components/element/ButtonSubmit";
 import MyCombobox from "../../components/element/Combobox";
 import Tags from "../../components/element/Tags";
 import PlaylistMenu from "../../components/PlaylistMenu";
+import Topbar from "../../components/song/Topbar";
+import Lyrics from "../../components/element/Lyrics";
+import LyricsEdit from "../../components/song/LyricsEdit";
+import Comment from "../../components/song/Comment";
 
 const SignupSchema = Yup.object().shape({
   name: Yup.string()
@@ -39,6 +43,7 @@ function SongEdit() {
   const [song, setSong] = useState({});
   const [name, setName] = useState("");
   const [show, setShow] = useState(true);
+  const [lyrics, setLyrics] = useState([]);
   const [isSubmitting, setSubmitting] = useState(false);
   const [peoplework, setPeoplework] = useState(false);
   const [remember, setRemember] = useState(false);
@@ -114,8 +119,6 @@ function SongEdit() {
     setSinger(array);
   };
 
- 
-
   const getSong = useCallback(async () => {
     const songData = await getSongOne(id);
     setSong(songData.data);
@@ -124,6 +127,7 @@ function SongEdit() {
     setImageSrc(songData.data.image);
     setMusicSrc(songData.data.music);
     setTags(songData.data.tags);
+    setLyrics(songData.data.lyric);
     const singersData = await getSingerAll();
     const albumsData = await getAlbumAll();
     setSingers(singersData.data);
@@ -231,7 +235,7 @@ function SongEdit() {
                     full-speed ahead.
                   </p>
                   <hr />
-                  <div className=" rounded-2xl p-5 grid gap-8">
+                  <div className=" rounded-2xl p-5 grid gap-8 mt-5">
                     <div>
                       <InputComponent
                         title={"Name"}
@@ -261,11 +265,11 @@ function SongEdit() {
                         + Add a singer
                       </small>
                     </div>
-                    <div className="flex justify-between">
+                    <div className="flex justify-between text-textSecond_100">
                       <small>{show ? <>Published</> : <>Private</>}</small>
                       <Toggle handle={() => setShow(!show)} value={show} />
                     </div>
-                    <div className="flex justify-between">
+                    <div className="flex justify-between text-textSecond_100">
                       <small>{remember ? <>Remember</> : <>Normal</>}</small>
                       <Toggle
                         handle={() => setRemember(!remember)}
@@ -274,16 +278,18 @@ function SongEdit() {
                     </div>
                   </div>
                   <hr />
-                  <div className="flex justify-center items-center">
-                    <button className="p-4 rounded-lg bg-theme600 my-5 mx-2  text-theme200 font-bold"
-                    onClick={() =>  setSelect(song)}>
+                  <div className="flex justify-center items-center ">
+                    <button
+                      className="p-4 rounded-lg bg-theme600 my-5 mx-2  text-theme200 font-bold"
+                      onClick={() => setSelect(song)}
+                    >
                       + Add to Playlist
                     </button>
-                    <button className="p-4 rounded-lg bg-bg_800 my-5 mx-2 font-bold text-textSecond_500">
+                    <button className="p-4 rounded-lg bg-green-200  my-5 mx-2 font-bold text-green-700">
                       Add to Playlist
                     </button>
                   </div>
-                  <div className="flex justify-around text-sm px-5">
+                  <div className="flex justify-around text-sm px-5 text-textSecond_100">
                     <p>+ Compare</p>
                     <p>Favorite</p>
                     <p>Share</p>
@@ -307,10 +313,11 @@ function SongEdit() {
                       />
                     </div>
                     <div>
-                      <MyCombobox  
-                      arr={[{ name: song.album },...albums]} 
-                      label={"Album"} 
-                      handle={() => {}} />
+                      <MyCombobox
+                        arr={[{ name: song.album }, ...albums]}
+                        label={"Album"}
+                        handle={() => {}}
+                      />
                     </div>
                     <div>
                       <Tags
@@ -339,7 +346,7 @@ function SongEdit() {
                   <i className=" text-3xl text-orange-500">
                     <FaCircleInfo />
                   </i>
-                  <b className="mt-8">10 Day Replacement</b>
+                  <b className="mt-8 text-textSecond_100">10 Day Replacement</b>
                   <p className=" text-center text-textSecond_500">
                     Marshmallow biscuit donut dragée fruitcake wafer.
                   </p>
@@ -348,7 +355,7 @@ function SongEdit() {
                   <i className=" text-3xl text-orange-500">
                     <FaClock />
                   </i>
-                  <b className="mt-8">10 Day Replacement</b>
+                  <b className="mt-8 text-textSecond_100">10 Day Replacement</b>
                   <p className=" text-center text-textSecond_500">
                     Marshmallow biscuit donut dragée fruitcake wafer.
                   </p>
@@ -357,16 +364,30 @@ function SongEdit() {
                   <i className=" text-3xl text-orange-500">
                     <FaCircleCheck />
                   </i>
-                  <b className="mt-8">10 Day Replacement</b>
+                  <b className="mt-8 text-textSecond_100">10 Day Replacement</b>
                   <p className=" text-center text-textSecond_500">
                     Marshmallow biscuit donut dragée fruitcake wafer.
                   </p>
                 </div>
               </div>
-              <div className="box"></div>
+              <div className="box "></div>
             </Form>
           )}
         </Formik>
+        <div className="box px-5 pb-4 rounded-2xl">
+          <div>
+            <Topbar />
+          </div>
+          <div className="py-2">
+            <Routes>
+              <Route
+                path="/"
+                element={<LyricsEdit song={song} lyric={lyrics} />}
+              />
+              <Route path="/comment" element={<Comment />} />
+            </Routes>
+          </div>
+        </div>
       </div>
       <PlaylistMenu select={select} close={() => setSelect(null)} />
     </div>

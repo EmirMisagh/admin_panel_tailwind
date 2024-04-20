@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import Playlist from "../components/box/md/Playlist";
 import { getPlaylistAll, getSongAll, getUserAll } from "../config/API";
 import UserList from "../components/box/sm/UserList";
+import View from "../components/charts/View";
 
 function Home() {
   const [playlist, setPlaylist] = useState([]);
@@ -23,8 +24,8 @@ function Home() {
   return (
     <div className="mt-7">
       <div className="grid grid-cols-12 gap-5">
-        <div className=" col-span-8  h-64">
-          {/* <Playlist playlist={playlist} /> */}
+        <div className=" col-span-12 h-96">
+         <View />
         </div>
         <div className=" col-span-4  h-64">
           {/* <Playlist playlist={song} /> */}

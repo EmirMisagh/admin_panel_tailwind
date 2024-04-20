@@ -102,10 +102,10 @@ function CategoryCreate() {
     <div>
     <div>
       <Header
-        title={"Create a new playlist"}
+        title={"Create a new category"}
         address1={"Dashbourd"}
-        address2={"Playlist"}
-        address3={"New Playlist"}
+        address2={"Category"}
+        address3={"New Category"}
       />
     </div>
     <div>

@@ -49,10 +49,10 @@ function Lyrics({
     setLine(line.filter((item) => item.lyrics !== value));
     onChange(line.filter((item) => item.lyrics !== value));
   };
-
+console.log(value)
   return (
     <>
-      <div className="my-4 py-5 flex flex-col gap-4 bg-background_body">
+      <div className="my-4 py-5 flex flex-col gap-4 ">
         {value.map((item, index) => (
           <TextLyrics Text={item} key={index} removeHandle={removeHandle} />
         ))}

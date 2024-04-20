@@ -17,6 +17,16 @@ async function resolve(promise) {
   return resolved;
 }
 
+
+// VIEW API _________________________________________________________________________
+// __________________________________________________________________________________
+
+async function getView() {
+  return await resolve(
+    axios.get(`${ApiUrl}/view/all`).then((res) => res.data.data)
+  );
+}
+
 // USER API _________________________________________________________________________
 // __________________________________________________________________________________
 
@@ -80,6 +90,12 @@ async function getSongOne(id) {
 async function createSong(body) {
   return await resolve(
     axios.post(`${ApiUrl}/song/create`, body).then((res) => res.data)
+  );
+}
+
+async function updateSong(id,body) {
+  return await resolve(
+    axios.patch(`${ApiUrl}/song/update/${id}`, body).then((res) => res.data)
   );
 }
 
@@ -240,6 +256,7 @@ async function deleteFile(body) {
 // __________________________________________________________________________________
 
 export {
+  getView,
   getUserOne,
   getUserAll,
   createUser,
@@ -249,6 +266,7 @@ export {
   uploadImageApi,
   createSong,
   getSongAll,
+  updateSong,
   getSongOne,
   deleteSong,
   getSingerAll,
