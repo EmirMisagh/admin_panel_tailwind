@@ -21,8 +21,12 @@ function App() {
     setTimeout(() => {
       setLoad(true);
       const darkMode = window.localStorage.getItem("darkmode");
+      const sidebar = window.localStorage.getItem("sidebar");
       dispatch({
         type: darkMode === "light" ? "light" : "dark",
+      });
+      dispatch({
+        type: sidebar === "true" ? "sidebarbig" : "sidebarsmall",
       });
     }, 2000);
   }, [dispatch]);

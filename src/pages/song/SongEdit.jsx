@@ -3,7 +3,13 @@ import Navbar from "../../components/song/Navbar";
 import Header from "../../components/Header";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
-import { getAlbumAll, getSingerAll, getSongOne } from "../../config/API";
+import {
+  getAlbumAll,
+  getSingerAll,
+  getSongOne,
+  updateSong,
+  uploadImageApi,
+} from "../../config/API";
 import { Route, Routes, useParams } from "react-router-dom";
 import MusicPlayer from "../../components/MusicPlayer";
 import InputComponent from "../../components/element/InputComponent";
@@ -19,6 +25,7 @@ import Topbar from "../../components/song/Topbar";
 import Lyrics from "../../components/element/Lyrics";
 import LyricsEdit from "../../components/song/LyricsEdit";
 import Comment from "../../components/song/Comment";
+import MyModal from "../../components/element/Modal";
 
 const SignupSchema = Yup.object().shape({
   name: Yup.string()
@@ -43,7 +50,6 @@ function SongEdit() {
   const [song, setSong] = useState({});
   const [name, setName] = useState("");
   const [show, setShow] = useState(true);
-  const [lyrics, setLyrics] = useState([]);
   const [isSubmitting, setSubmitting] = useState(false);
   const [peoplework, setPeoplework] = useState(false);
   const [remember, setRemember] = useState(false);
@@ -57,7 +63,9 @@ function SongEdit() {
   const [modalMessageTitle, setModalMessageTitle] = useState("");
   const [singer, setSinger] = useState([]);
   const [singers, setSingers] = useState([]);
+  const [album, setAlbum] = useState("");
   const [albums, setAlbums] = useState([]);
+  const [lyric, setLyric] = useState([]);
   const [tags, setTags] = useState([]);
   const [select, setSelect] = useState(null);
   const audioRef = useRef();
@@ -70,17 +78,69 @@ function SongEdit() {
     category: "",
     image,
     music,
-    lyric: "",
+    lyric,
     duration,
-    album: "",
+    album,
     show,
     author: "",
-    tags: [],
+    tags,
   };
 
   const submitHandle = async (values) => {
+    setSubmitting(true);
     console.log(singer);
+    form.image = image;
+    form.music = music;
+    console.log(values);
+    const formData = new FormData();
+    formData.append("file", image);
+
+    if (image) {
+      const imageUpload = await uploadImageApi("songimage", formData);
+      if (!imageUpload.data.data) {
+        setSubmitting(false);
+        setModalMessage("Image not uploaded");
+        setModalMessageTitle("");
+        return;
+      }
+      setImage(imageUpload.data.data);
+      form.image = imageUpload.data.data;
+    } else {
+      form.image = imageSrc;
+    }
+
+    // UPLOAD MUSIC -----------------
+    const formDataMusic = new FormData();
+    formDataMusic.append("file", music);
+    if (music) {
+      const musicUpload = await uploadImageApi("songmusic", formDataMusic);
+      if (!musicUpload.data.data) {
+        setSubmitting(false);
+        setModalMessage("Image not uploaded");
+        setModalMessageTitle("");
+        return;
+      }
+      setMusic(musicUpload.data.data);
+      form.music = musicUpload.data.data;
+    } else {
+      form.music = musicSrc;
+    }
     console.log(form);
+    // SET VARIBLE -----------------
+
+    const update = await updateSong(song._id, form);
+    if (update.data) {
+      setModalMessage(update.data.message);
+      setIsModal(true);
+      setSubmitting(false);
+      setModalMessageTitle("Payment successful");
+    } else {
+      setModalMessage(update.error.message);
+      setIsModal(true);
+      setSubmitting(false);
+      setModalMessageTitle("");
+    }
+    setSubmitting(false);
   };
 
   const uploadImage = (file) => {
@@ -127,7 +187,8 @@ function SongEdit() {
     setImageSrc(songData.data.image);
     setMusicSrc(songData.data.music);
     setTags(songData.data.tags);
-    setLyrics(songData.data.lyric);
+    setLyric(songData.data.lyric);
+    setAlbum(songData.data.album);
     const singersData = await getSingerAll();
     const albumsData = await getAlbumAll();
     setSingers(singersData.data);
@@ -314,9 +375,9 @@ function SongEdit() {
                     </div>
                     <div>
                       <MyCombobox
-                        arr={[{ name: song.album }, ...albums]}
+                        arr={[{ name: album }, ...albums]}
                         label={"Album"}
-                        handle={() => {}}
+                        handle={(e) => setAlbum(e)}
                       />
                     </div>
                     <div>
@@ -382,7 +443,7 @@ function SongEdit() {
             <Routes>
               <Route
                 path="/"
-                element={<LyricsEdit song={song} lyric={lyrics} />}
+                element={<LyricsEdit song={song} lyric={lyric} />}
               />
               <Route path="/comment" element={<Comment />} />
             </Routes>
@@ -390,6 +451,12 @@ function SongEdit() {
         </div>
       </div>
       <PlaylistMenu select={select} close={() => setSelect(null)} />
+      <MyModal
+        isModal={isModal}
+        ModalMessage={modalMessage}
+        title={modalMessageTitle}
+        closeModal={() => setIsModal(false)}
+      />
     </div>
   );
 }

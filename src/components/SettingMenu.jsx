@@ -135,6 +135,7 @@ function SettingMenu({ tableRef }) {
                   dispatch({
                     type: "sidebarbig",
                   });
+                  window.localStorage.setItem("sidebar", "true");
                 }}
               >
                 <div className="grid grid-cols-7 gap-1 w-14">
@@ -178,6 +179,7 @@ function SettingMenu({ tableRef }) {
                   dispatch({
                     type: "sidebarsmall",
                   });
+                  window.localStorage.setItem("sidebar", "false");
                 }}
               >
                 <div className="grid grid-cols-7 gap-1 w-14">

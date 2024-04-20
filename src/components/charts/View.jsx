@@ -72,7 +72,14 @@ function View() {
       getPlaylist();
     }, [getPlaylist]);
   return (
-    <div>
+    <div className="box py-7 px-2 rounded-2xl">
+      <h2 className="ml-8 text-textSecond_100 text-2xl">
+        Website Visit
+      </h2>
+      <p className="ml-8 text-textSecond_400 mb-5 mt-1 text-sm">
+      than last year
+
+      </p>
       <ResponsiveContainer width="100%" height={200}>
         <LineChart
           width={500}
@@ -81,16 +88,17 @@ function View() {
           syncId="anyId"
           margin={{
             top: 10,
-            right: 30,
+            right: 50,
             left: 0,
             bottom: 0,
           }}
         >
           {/* <CartesianGrid strokeDasharray="3 3" /> */}
-          <XAxis dataKey="day" stroke="var(--color-textSecond-400)" fontSize={14}  />
+          <XAxis dataKey="day" stroke="var(--color-textSecond-400)" fill="transparent" fontSize={14}  />
           <YAxis stroke="var(--color-textSecond-400)" fontSize={15} />
           <Tooltip />
           <Line type="monotone" dataKey="view" stroke="var(--theme-bg-400)" fill="var(--theme-bg-100)" />
+          <Line type="monotone" dataKey="active" stroke="#E42D70" fill="#E10254" />
         </LineChart>
       </ResponsiveContainer>
     </div>
