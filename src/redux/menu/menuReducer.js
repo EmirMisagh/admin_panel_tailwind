@@ -4,6 +4,7 @@ const initialState = {
     notification: false,
     sidebar: true,
     load: false,
+    sidebarLocation: "right",
   };
   
   export const menuReducer = (state = initialState, action) => {
@@ -42,6 +43,16 @@ const initialState = {
         return {
           ...state,
           load: true,
+        };
+      case "leftSidebar":
+        return {
+          ...state,
+          sidebarLocation: "left",
+        };
+      case "rightSidebar":
+        return {
+          ...state,
+          sidebarLocation: "right",
         };
       default:
         return state;
