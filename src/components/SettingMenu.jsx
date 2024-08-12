@@ -14,10 +14,11 @@ import useMode from "../config/Language";
 function SettingMenu({ tableRef }) {
   const darkmode = useSelector((state) => state.themeReducer.darkmode);
   const sidebar = useSelector((state) => state.menuReducer.sidebar);
+  const sidebarLocation = useSelector((state) => state.menuReducer.sidebarLocation);
   const color = useSelector((state) => state.themeReducer.color);
   const settingMenu = useSelector((state) => state.menuReducer.settingMenu);
   const boxtheme = useSelector((state) => state.themeReducer.boxtheme);
-  const Language = useMode()
+  const Language = useMode();
 
   const dispatch = useDispatch();
   const [handleClick, sethandleClick] = useState(false);
@@ -32,12 +33,14 @@ function SettingMenu({ tableRef }) {
   return (
     <>
       <div
-        className={`fixed overflow-hidden transt border-l flex flex-col top-0 w-[17.0rem] z-[99999999] blur-none  border-l-1 border-color_border_600  ${
-          settingMenu ? "right-0" : "right-[-17rem]"
+        className={`fixed overflow-hidden transt ${sidebarLocation === "left" ? 'border-l' : 'border-r'} flex flex-col top-0 w-[17.0rem] z-[99999999] blur-none  border-l-1 border-color_border_600  ${
+          sidebarLocation === 'left' ? settingMenu ? "right-0" : "right-[-17rem]" : settingMenu ? "left-0" : "left-[-17rem]"
         } h-full`}
       >
         <div className=" flex items-center justify-between px-6 py-5 pr-4 border-b border-color_border_600">
-          <h6 className=" text-textSecond_100 font-bold text-xl">{Language.setting.setting}</h6>
+          <h6 className=" text-textSecond_100 font-bold text-xl">
+            {Language.setting.setting}
+          </h6>
           <div className="flex justify-between items-center text-xl text-textSecond_100 gap-3">
             <span>
               <BsArrowClockwise />
@@ -56,7 +59,9 @@ function SettingMenu({ tableRef }) {
         </div>
         <div className="h-full  overflow-auto notscroll px-6 py-5 flex flex-col gap-5">
           <div className="h-32 grid gap-4">
-            <small className="text-textSecond_400 font-bold">{Language.setting.mode}</small>
+            <small className="text-textSecond_400 font-bold">
+              {Language.setting.mode}
+            </small>
             <div className="flex justify-between">
               <div
                 onClick={() => {
@@ -87,7 +92,9 @@ function SettingMenu({ tableRef }) {
             </div>
           </div>
           <div className="h-32 grid gap-4">
-            <small className="text-textSecond_400 font-bold">{Language.setting.contrast}</small>
+            <small className="text-textSecond_400 font-bold">
+              {Language.setting.contrast}
+            </small>
             <div className="flex justify-between">
               <div
                 onClick={() => {
@@ -121,14 +128,34 @@ function SettingMenu({ tableRef }) {
             </div>
           </div>
           <div className="h-32 grid gap-4">
-            <small className="text-textSecond_400 font-bold">{Language.setting.direction}</small>
+            <small className="text-textSecond_400 font-bold">
+              {Language.setting.direction}
+            </small>
             <div className="flex justify-between">
-              <ItemBg active={true} icon={<PiAlignLeftFill />} />
-              <ItemBg icon={<PiAlignRightFill />} />
+              <div
+                onClick={() => {
+                  dispatch({
+                    type: "leftSidebar",
+                  });
+                }}
+              >
+                <ItemBg active={sidebarLocation === 'left' && true} icon={<PiAlignLeftFill />} />
+              </div>
+              <div
+                onClick={() => {
+                  dispatch({
+                    type: "rightSidebar",
+                  });
+                }}
+              >
+                <ItemBg active={sidebarLocation === 'right' && true} icon={<PiAlignRightFill />} />
+              </div>
             </div>
           </div>
           <div className="h-auto grid gap-4">
-            <small className="text-textSecond_400 font-bold">{Language.setting.layout}</small>
+            <small className="text-textSecond_400 font-bold">
+              {Language.setting.layout}
+            </small>
             <div className="flex gap-3">
               <div
                 className="p-1 bg-box cursor-pointer rounded-lg border border-color_border_600"
@@ -211,11 +238,15 @@ function SettingMenu({ tableRef }) {
             </div>
           </div>
           <div className="h-auto grid gap-4">
-            <small className="text-textSecond_400 font-bold">{Language.setting.stretch}</small>
+            <small className="text-textSecond_400 font-bold">
+              {Language.setting.stretch}
+            </small>
             <div></div>
           </div>
           <div className="h-auto grid gap-4">
-            <small className="text-textSecond_400 font-bold">{Language.setting.presets}</small>
+            <small className="text-textSecond_400 font-bold">
+              {Language.setting.presets}
+            </small>
             <div className="grid grid-cols-3 gap-3">
               <div
                 className={`p-1 w-16 h-14 ${
@@ -304,7 +335,9 @@ function SettingMenu({ tableRef }) {
             </div>
           </div>
           <div className="pt-2">
-            <small className="text-textSecond_400 font-bold">{Language.setting.api}</small>
+            <small className="text-textSecond_400 font-bold">
+              {Language.setting.api}
+            </small>
             <div className="flex mt-2 gap-1">
               <button
                 className={`${handleClick && "btn"}   transition-all delay-150 
@@ -315,7 +348,7 @@ function SettingMenu({ tableRef }) {
                 onClick={() => {
                   dispatch({
                     type: "setAPI",
-                     value: "http://localhost:8080"
+                    value: "http://localhost:8080",
                   });
                 }}
               >
@@ -330,7 +363,7 @@ function SettingMenu({ tableRef }) {
                 onClick={() => {
                   dispatch({
                     type: "setAPI",
-                    value: "https://serverkurdsong.liara.run"
+                    value: "https://serverkurdsong.liara.run",
                   });
                 }}
               >

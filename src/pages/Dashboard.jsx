@@ -76,7 +76,7 @@ function Dashboard({ tableRef }) {
             <div
               className={`sidebar  ${
                 sidebar ? "col-span-2" : "col-span-1"
-              } border-r border-color_border_500 relative h-full top-0`}
+              } ${sidebarLocation === "left" ? 'border-r' : 'border-l'} border-color_border_500 relative h-full top-0`}
             >
               <Sidebar />
             </div>

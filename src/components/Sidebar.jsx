@@ -4,7 +4,7 @@ import {
   BsSpeedometer,
   BsBarChartLineFill,
   BsFillFileMusicFill,
-  BsCalendar2DayFill 
+  BsCalendar2DayFill,
 } from "react-icons/bs";
 import { MdKeyboardArrowRight, MdPlaylistAddCircle } from "react-icons/md";
 import {
@@ -18,10 +18,11 @@ import { useSelector, useDispatch } from "react-redux";
 import useMode from "../config/Language";
 
 function Sidebar() {
- 
-
   const sidebar = useSelector((state) => state.menuReducer.sidebar);
-  const Language = useMode()
+  const sidebarLocation = useSelector(
+    (state) => state.menuReducer.sidebarLocation
+  );
+  const Language = useMode();
 
   const name = window.localStorage.getItem("name");
   const admin = window.localStorage.getItem("admin");
@@ -40,7 +41,11 @@ function Sidebar() {
           <div className="mt-3 flex flex-col gap-1 text-sm justify-between items-center">
             <small>{sidebar && email}</small>
             <span className="flex text-xs py-1 px-3 text-theme200 justify-center items-center rounded-lg bg-theme600">
-              {admin === "Admin" ? Language.user.admin : admin === "Manager" ? Language.user.manager : Language.user.user} 
+              {admin === "Admin"
+                ? Language.user.admin
+                : admin === "Manager"
+                ? Language.user.manager
+                : Language.user.user}
             </span>
           </div>
         </div>
@@ -51,9 +56,12 @@ function Sidebar() {
         >
           <div className={`${sidebar ? "mt-10" : "mt-4"}`}>
             <span
-              className={`uppercase text-textSecond_700 text-xs flex  ${
-                sidebar
+              className={`uppercase text-textSecond_700 text-xs mb-3 flex  ${
+                sidebarLocation === 'left' ? sidebar
                   ? "text-left  justify-between  "
+                  : " text-center justify-center"
+                  : sidebar
+                  ? "text-right float-end justify-between  "
                   : " text-center justify-center"
               }`}
             >
@@ -78,16 +86,19 @@ function Sidebar() {
               <ItemOverview
                 title={Language.sidebar.calendar}
                 address={"/calendar"}
-                icon={<BsCalendar2DayFill  />}
+                icon={<BsCalendar2DayFill />}
               />
             </div>
           </div>
           <div className="mt-4">
             <span
-              className={`uppercase text-textSecond_700 text-xs flex  ${
-                sidebar
-                  ? "text-left  justify-between  "
-                  : " text-center justify-center"
+              className={`uppercase text-textSecond_700 mb-3 text-xs flex  ${
+                sidebarLocation === 'left' ? sidebar
+                ? "text-left  justify-between  "
+                : " text-center justify-center"
+                : sidebar
+                ? "text-right float-end justify-between  "
+                : " text-center justify-center"
               }`}
             >
               {Language.sidebar.managment}
@@ -128,13 +139,12 @@ function Sidebar() {
               type: "sidebarboth",
             });
           }}
-          className="border border-gray400  z-[99999999999] text-textSecond_300 hover:border-gray100 absolute top-24 transform translate-x-3 rounded-full right-0 cursor-pointer"
+          className={`border border-gray400  z-[99999999999] text-textSecond_300 hover:border-gray100 absolute top-24 transform translate-x-3 rounded-full ${sidebarLocation === 'left' ? 'right-0' : 'left-[-1.4rem]'} cursor-pointer`}
         >
           <MdKeyboardArrowRight
             className={` ${
-              sidebar ? "rotate-[180deg]" : "rotate-[0deg]"
-            } transform font-light
-                             h-5 w-5`}
+              sidebarLocation === 'left' ? sidebar ? "rotate-[180deg]" : "rotate-[0deg]" : sidebar ? "rotate-[0deg]" : "rotate-[180deg]"
+            } transform font-light h-5 w-5`}
           />
         </span>
       </div>
@@ -203,9 +213,10 @@ function ItemOverview({ title, address, icon }) {
 
 function ItemSide({ title, address, icon }) {
   const sidebar = useSelector((state) => state.menuReducer.sidebar);
+  const sidebarLocation = useSelector((state) => state.menuReducer.sidebarLocation);
   const [openDiv, setOpenDiv] = useState(false);
 
-  const Language = useMode()
+  const Language = useMode();
 
   useMemo(() => {
     let Url = window.location.href;
@@ -256,16 +267,17 @@ function ItemSide({ title, address, icon }) {
         onMouseUp={(e) => upHandle(e)}
         onClick={(e) => clickHandle(e)}
         className={`w-full h-full flex items-center text-sm rounded-lg
+          ${sidebarLocation === 'right' && 'flex-row-reverse'}
               ${
                 sidebar
                   ? "px-4 text-left  justify-between flex-row gap-3 text-sm"
                   : "px-2 text-center justify-center text-xs "
               } 
-              py-3   hover:bg-bg_secend_400 relative`}
+              py-3 hover:bg-bg_secend_400 relative`}
       >
         <span
           className={`flex items-center gap-3 w-full h-full pointer-events-none ${
-            sidebar ? " flex-row " : "text-[0.79rem] flex-col gap-[7px]"
+            sidebarLocation === 'left' ? sidebar ? " flex-row " : "text-[0.79rem] flex-col gap-[7px]" : sidebar ? "flex-row-reverse" : "text-[0.79rem] flex-col gap-[7px]"
           } `}
         >
           <i
@@ -277,7 +289,7 @@ function ItemSide({ title, address, icon }) {
           </i>
           {title}
         </span>
-        <i className={`${openDiv && "rotate-90"} pointer-events-none`}>
+        <i className={`${sidebarLocation === 'right' && 'rotate-180'}  ${openDiv && "rotate-90"} pointer-events-none`}>
           <MdKeyboardArrowRight />
         </i>
       </button>

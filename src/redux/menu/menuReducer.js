@@ -4,7 +4,7 @@ const initialState = {
     notification: false,
     sidebar: true,
     load: false,
-    sidebarLocation: "right",
+    sidebarLocation: "left",
   };
   
   export const menuReducer = (state = initialState, action) => {
