@@ -11,7 +11,7 @@ function Lyrics({
   onBlur,
   touche,
 }) {
-  const [line, setLine] = useState([]);
+  const [line, setLine] = useState(value);
   const [input, setInput] = useState("");
   const [min, setMin] = useState("");
   const [second, setSecond] = useState("");
@@ -24,7 +24,7 @@ function Lyrics({
       // Trigger the button element with a click
       console.log(event.key);
       setLine([
-        ...line,
+        ...value,
         {
           lyrics: input,
           timeStart: parseInt(min) * 60 + parseInt(second),
@@ -32,7 +32,7 @@ function Lyrics({
         },
       ]);
       onChange([
-        ...line,
+        ...value,
         {
           lyrics: input,
           timeStart: parseInt(min) * 60 + parseInt(second),
@@ -46,8 +46,8 @@ function Lyrics({
   };
 
   const removeHandle = (value) => {
-    setLine(line.filter((item) => item.lyrics !== value));
-    onChange(line.filter((item) => item.lyrics !== value));
+    setLine(line.filter((item) => item.lyrics !== value.lyrics));
+    onChange(line.filter((item) => item.lyrics !== value.lyrics));
   };
 console.log(value)
   return (

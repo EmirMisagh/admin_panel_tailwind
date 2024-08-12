@@ -5,7 +5,7 @@ import ButtonSubmit from "../components/element/ButtonSubmit";
 import { getUserEmail } from "../config/API";
 import MyModal from "../components/element/Modal";
 import { useDispatch } from "react-redux";
-// import { getUserEmail } from "../config/API";
+import useMode from "../config/Language";
 
 function Login() {
   const [isSubmitting, setSubmitting] = useState(false);
@@ -18,7 +18,7 @@ function Login() {
   const [modalMessageTitle, setModalMessageTitle] = useState("");
 
   const dispatch = useDispatch();
-
+  const Language = useMode()
   const loginMode = useContext(LoginModeContext);
 
   const loginHandle = async () => {
@@ -82,7 +82,7 @@ function Login() {
         <div className="flex mt-10 flex-col gap-4 items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold text-textSecond_50">
-              Hi, Welcome back
+              {Language.loginPage.left}
             </h1>
           </div>
           <div>

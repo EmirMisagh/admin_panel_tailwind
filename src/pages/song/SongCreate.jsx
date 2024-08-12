@@ -21,7 +21,7 @@ import Lyrics from "../../components/element/Lyrics";
 const SignupSchema = Yup.object().shape({
   name: Yup.string()
     .min(2, "Too Short!")
-    .max(50, "Too Long!")
+    .max(70, "Too Long!")
     .required("Required"),
   singer: Yup.string()
     .min(2, "Too Short!")

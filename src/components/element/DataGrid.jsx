@@ -445,7 +445,7 @@ export function DataGridSong({ songs }) {
                     </div>
                   </div>
                   <div className="w-20  ">{item.album}</div>
-                  <div className="text-left w-20">Work</div>
+                  <div className="text-left w-20">{item.category}</div>
                   <div className="w-24 flex justify-center items-center">
                     <div
                       className={` rounded-xl text-white font-bold ${

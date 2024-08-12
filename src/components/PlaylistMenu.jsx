@@ -23,11 +23,11 @@ function PlaylistMenu({ select, close }) {
     try {
       const body = playlist;
       body.songs = playlist.songs + 1;
-      const song = playlist.songsarray.find((i) => i._id === select._id);
+      const song = playlist.songsarray.find((i) => i === select._id);
       console.log(song);
       if (song) return;
       if (!song) {
-        body.songsarray.push(select);
+        body.songsarray.push(select._id);
       }
       const singer = playlist.singersarray.find(
         (i) => i.name === select.singer

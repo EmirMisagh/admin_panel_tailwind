@@ -6,20 +6,19 @@ import Loading from "./components/Loading";
 import { useSelector, useDispatch } from "react-redux";
 
 function App() {
-  const [load, setLoad] = useState(false);
   const [login, loginMode] = useLoginMode();
  
 
   const darkmode = useSelector((state) => state.themeReducer.darkmode);
   const color = useSelector((state) => state.themeReducer.color);
   const boxtheme = useSelector((state) => state.themeReducer.boxtheme);
+  const load = useSelector((state) => state.menuReducer.load);
 
   const tableRef = useRef(null);
   const dispatch = useDispatch();
 
   useEffect(() => {
     setTimeout(() => {
-      setLoad(true);
       const darkMode = window.localStorage.getItem("darkmode");
       const sidebar = window.localStorage.getItem("sidebar");
       dispatch({

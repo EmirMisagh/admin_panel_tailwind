@@ -1,6 +1,8 @@
 import axios from "axios";
 
-export const ApiUrl = "http://localhost:8080";
+
+export const ApiUrl = "https://serverkurdsong.liara.run";
+console.log(ApiUrl);
 
 async function resolve(promise) {
   const resolved = {
@@ -16,7 +18,6 @@ async function resolve(promise) {
 
   return resolved;
 }
-
 
 // VIEW API _________________________________________________________________________
 // __________________________________________________________________________________
@@ -60,7 +61,7 @@ async function createUser(body) {
   );
 }
 
-async function updateUser(id,body) {
+async function updateUser(id, body) {
   return await resolve(
     axios.patch(`${ApiUrl}/author/update/${id}`, body).then((res) => res.data)
   );
@@ -93,7 +94,7 @@ async function createSong(body) {
   );
 }
 
-async function updateSong(id,body) {
+async function updateSong(id, body) {
   return await resolve(
     axios.patch(`${ApiUrl}/song/update/${id}`, body).then((res) => res.data)
   );
@@ -147,7 +148,7 @@ async function createPlaylist(body) {
   );
 }
 
-async function updatePlaylist(id,body) {
+async function updatePlaylist(id, body) {
   return await resolve(
     axios.patch(`${ApiUrl}/playlist/update/${id}`, body).then((res) => res.data)
   );
@@ -226,9 +227,7 @@ async function uploadImageApi(key, body) {
       );
     case "albumimage":
       return await resolve(
-        axios
-          .post(`${ApiUrl}/upload/album/image`, body)
-          .then((res) => res.data)
+        axios.post(`${ApiUrl}/upload/album/image`, body).then((res) => res.data)
       );
     case "categoryimage":
       return await resolve(

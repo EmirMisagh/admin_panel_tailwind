@@ -5,6 +5,7 @@ import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import {
   getAlbumAll,
+  getCategoryAll,
   getSingerAll,
   getSongOne,
   updateSong,
@@ -65,6 +66,8 @@ function SongEdit() {
   const [singers, setSingers] = useState([]);
   const [album, setAlbum] = useState("");
   const [albums, setAlbums] = useState([]);
+  const [categores, setCategores] = useState([]);
+  const [category, setCategory] = useState("");
   const [lyric, setLyric] = useState([]);
   const [tags, setTags] = useState([]);
   const [select, setSelect] = useState(null);
@@ -75,7 +78,7 @@ function SongEdit() {
   const form = {
     name: name,
     singer,
-    category: "",
+    category,
     image,
     music,
     lyric,
@@ -127,6 +130,7 @@ function SongEdit() {
     }
     console.log(form);
     // SET VARIBLE -----------------
+    form.category = category;
 
     const update = await updateSong(song._id, form);
     if (update.data) {
@@ -189,10 +193,13 @@ function SongEdit() {
     setTags(songData.data.tags);
     setLyric(songData.data.lyric);
     setAlbum(songData.data.album);
+    setCategory(songData.data.category);
     const singersData = await getSingerAll();
     const albumsData = await getAlbumAll();
+    const categoryData = await getCategoryAll();
     setSingers(singersData.data);
     setAlbums(albumsData.data);
+    setCategores(categoryData.data);
     console.log(songData.data);
   }, [id]);
 
@@ -368,9 +375,9 @@ function SongEdit() {
                   <div className=" rounded-2xl p-5 grid gap-8">
                     <div>
                       <MyCombobox
-                        arr={[]}
+                        arr={[{ name: category }, ...categores]}
                         label={"Category"}
-                        handle={() => {}}
+                        handle={(e) => setCategory(e)}
                       />
                     </div>
                     <div>

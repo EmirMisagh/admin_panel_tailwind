@@ -3,6 +3,7 @@ const initialState = {
     searchMenu: false,
     notification: false,
     sidebar: true,
+    load: false,
   };
   
   export const menuReducer = (state = initialState, action) => {
@@ -36,6 +37,11 @@ const initialState = {
         return {
           ...state,
           sidebar: !state.sidebar,
+        };
+      case "load":
+        return {
+          ...state,
+          load: true,
         };
       default:
         return state;

@@ -4,6 +4,7 @@ import {
   BsSpeedometer,
   BsBarChartLineFill,
   BsFillFileMusicFill,
+  BsCalendar2DayFill 
 } from "react-icons/bs";
 import { MdKeyboardArrowRight, MdPlaylistAddCircle } from "react-icons/md";
 import {
@@ -14,11 +15,13 @@ import {
 import { GoFileDirectoryFill } from "react-icons/go";
 import { RiAlbumFill } from "react-icons/ri";
 import { useSelector, useDispatch } from "react-redux";
+import useMode from "../config/Language";
 
 function Sidebar() {
  
 
   const sidebar = useSelector((state) => state.menuReducer.sidebar);
+  const Language = useMode()
 
   const name = window.localStorage.getItem("name");
   const admin = window.localStorage.getItem("admin");
@@ -37,7 +40,7 @@ function Sidebar() {
           <div className="mt-3 flex flex-col gap-1 text-sm justify-between items-center">
             <small>{sidebar && email}</small>
             <span className="flex text-xs py-1 px-3 text-theme200 justify-center items-center rounded-lg bg-theme600">
-              {admin}
+              {admin === "Admin" ? Language.user.admin : admin === "Manager" ? Language.user.manager : Language.user.user} 
             </span>
           </div>
         </div>
@@ -54,7 +57,7 @@ function Sidebar() {
                   : " text-center justify-center"
               }`}
             >
-              OVERVIEW
+              {Language.sidebar.overview}
             </span>
             <div className="mt-3">
               <ItemOverview
@@ -64,13 +67,18 @@ function Sidebar() {
               />
               <ItemOverview
                 title={"Commerce"}
-                address={"/"}
+                address={"/commerce"}
                 icon={<BsBarChartLineFill />}
               />
               <ItemOverview
-                title={"Files"}
+                title={Language.sidebar.files}
                 address={"/files"}
                 icon={<GoFileDirectoryFill />}
+              />
+              <ItemOverview
+                title={Language.sidebar.calendar}
+                address={"/calendar"}
+                icon={<BsCalendar2DayFill  />}
               />
             </div>
           </div>
@@ -82,11 +90,11 @@ function Sidebar() {
                   : " text-center justify-center"
               }`}
             >
-              managment
+              {Language.sidebar.managment}
             </span>
             <div className="mt-3">
               <ItemSide
-                title={"User"}
+                title={Language.user.user}
                 address={"/"}
                 icon={<BiSolidUserRectangle />}
               />
@@ -197,6 +205,8 @@ function ItemSide({ title, address, icon }) {
   const sidebar = useSelector((state) => state.menuReducer.sidebar);
   const [openDiv, setOpenDiv] = useState(false);
 
+  const Language = useMode()
+
   useMemo(() => {
     let Url = window.location.href;
     Url = Url.split("//");
@@ -277,12 +287,12 @@ function ItemSide({ title, address, icon }) {
         }`}
       >
         <Item
-          title={"List"}
+          title={Language.sidebar.list}
           address={`${title.toLowerCase()}/List`}
           icon={""}
         />
         <Item
-          title={"Create"}
+          title={Language.sidebar.create}
           address={`${title.toLowerCase()}/create`}
           icon={""}
         />

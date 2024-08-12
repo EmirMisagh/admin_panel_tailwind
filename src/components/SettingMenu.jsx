@@ -11,7 +11,6 @@ import {
 import { VscClose } from "react-icons/vsc";
 
 function SettingMenu({ tableRef }) {
-  
   const darkmode = useSelector((state) => state.themeReducer.darkmode);
   const sidebar = useSelector((state) => state.menuReducer.sidebar);
   const color = useSelector((state) => state.themeReducer.color);
@@ -302,17 +301,52 @@ function SettingMenu({ tableRef }) {
               </div>
             </div>
           </div>
-          <div className="py-2">
+          <div className="pt-2">
+            <small className="text-textSecond_400 font-bold">API</small>
+            <div className="flex mt-2 gap-1">
+              <button
+                className={`${handleClick && "btn"}   transition-all delay-150 
+                border border-color_border_600 rounded-lg text-textSecond_400 font-bold w-full py-4
+                  text-sm ${
+                    darkmode ? "hover:bg-slate-800" : "hover:bg-stone-200"
+                  } `}
+                onClick={() => {
+                  dispatch({
+                    type: "setAPI",
+                     value: "http://localhost:8080"
+                  });
+                }}
+              >
+                Local
+              </button>
+              <button
+                className={`${handleClick && "btn"}   transition-all delay-150 
+                border border-color_border_600 rounded-lg text-textSecond_400 font-bold w-full py-4
+                  text-sm ${
+                    darkmode ? "hover:bg-slate-800" : "hover:bg-stone-200"
+                  } `}
+                onClick={() => {
+                  dispatch({
+                    type: "setAPI",
+                    value: "https://serverkurdsong.liara.run"
+                  });
+                }}
+              >
+                global
+              </button>
+            </div>
+          </div>
+          <div className="pb-2">
             <button
               onClick={() => {
                 Click();
                 const elem = tableRef.current;
                 if (fullScreen) {
                   elem.requestFullscreen();
-                  setFullScreen(0)
+                  setFullScreen(0);
                 } else {
                   document.exitFullscreen();
-                  setFullScreen(1)
+                  setFullScreen(1);
                 }
               }}
               onMouseDown={() => sethandleClick(true)}

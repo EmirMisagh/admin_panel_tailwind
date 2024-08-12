@@ -25,7 +25,7 @@ function Card({ singer }) {
             />
           </div>
         </div>
-        <div className="flex flex-col items-center font-bold">
+        <div className="flex flex-col items-center font-bold my-7">
           <b className="text-textSecond_100">{singer.name}</b>
           <p className="mt-1 text-textSecond_400 text-sm">{singer.family}</p>
           <span className="flex gap-5 py-8 text-lg">
