@@ -9,6 +9,7 @@ import {
   BsArrowClockwise,
 } from "react-icons/bs";
 import { VscClose } from "react-icons/vsc";
+import useMode from "../config/Language";
 
 function SettingMenu({ tableRef }) {
   const darkmode = useSelector((state) => state.themeReducer.darkmode);
@@ -16,6 +17,7 @@ function SettingMenu({ tableRef }) {
   const color = useSelector((state) => state.themeReducer.color);
   const settingMenu = useSelector((state) => state.menuReducer.settingMenu);
   const boxtheme = useSelector((state) => state.themeReducer.boxtheme);
+  const Language = useMode()
 
   const dispatch = useDispatch();
   const [handleClick, sethandleClick] = useState(false);
@@ -35,7 +37,7 @@ function SettingMenu({ tableRef }) {
         } h-full`}
       >
         <div className=" flex items-center justify-between px-6 py-5 pr-4 border-b border-color_border_600">
-          <h6 className=" text-textSecond_100 font-bold text-xl">Settings</h6>
+          <h6 className=" text-textSecond_100 font-bold text-xl">{Language.setting.setting}</h6>
           <div className="flex justify-between items-center text-xl text-textSecond_100 gap-3">
             <span>
               <BsArrowClockwise />
@@ -54,7 +56,7 @@ function SettingMenu({ tableRef }) {
         </div>
         <div className="h-full  overflow-auto notscroll px-6 py-5 flex flex-col gap-5">
           <div className="h-32 grid gap-4">
-            <small className="text-textSecond_400 font-bold">Mode</small>
+            <small className="text-textSecond_400 font-bold">{Language.setting.mode}</small>
             <div className="flex justify-between">
               <div
                 onClick={() => {
@@ -85,7 +87,7 @@ function SettingMenu({ tableRef }) {
             </div>
           </div>
           <div className="h-32 grid gap-4">
-            <small className="text-textSecond_400 font-bold">Contrast</small>
+            <small className="text-textSecond_400 font-bold">{Language.setting.contrast}</small>
             <div className="flex justify-between">
               <div
                 onClick={() => {
@@ -119,14 +121,14 @@ function SettingMenu({ tableRef }) {
             </div>
           </div>
           <div className="h-32 grid gap-4">
-            <small className="text-textSecond_400 font-bold">Direction</small>
+            <small className="text-textSecond_400 font-bold">{Language.setting.direction}</small>
             <div className="flex justify-between">
               <ItemBg active={true} icon={<PiAlignLeftFill />} />
               <ItemBg icon={<PiAlignRightFill />} />
             </div>
           </div>
           <div className="h-auto grid gap-4">
-            <small className="text-textSecond_400 font-bold">Layout</small>
+            <small className="text-textSecond_400 font-bold">{Language.setting.layout}</small>
             <div className="flex gap-3">
               <div
                 className="p-1 bg-box cursor-pointer rounded-lg border border-color_border_600"
@@ -209,11 +211,11 @@ function SettingMenu({ tableRef }) {
             </div>
           </div>
           <div className="h-auto grid gap-4">
-            <small className="text-textSecond_400 font-bold">Stretch</small>
+            <small className="text-textSecond_400 font-bold">{Language.setting.stretch}</small>
             <div></div>
           </div>
           <div className="h-auto grid gap-4">
-            <small className="text-textSecond_400 font-bold">Layout</small>
+            <small className="text-textSecond_400 font-bold">{Language.setting.presets}</small>
             <div className="grid grid-cols-3 gap-3">
               <div
                 className={`p-1 w-16 h-14 ${
@@ -302,7 +304,7 @@ function SettingMenu({ tableRef }) {
             </div>
           </div>
           <div className="pt-2">
-            <small className="text-textSecond_400 font-bold">API</small>
+            <small className="text-textSecond_400 font-bold">{Language.setting.api}</small>
             <div className="flex mt-2 gap-1">
               <button
                 className={`${handleClick && "btn"}   transition-all delay-150 
@@ -317,7 +319,7 @@ function SettingMenu({ tableRef }) {
                   });
                 }}
               >
-                Local
+                {Language.setting.local}
               </button>
               <button
                 className={`${handleClick && "btn"}   transition-all delay-150 
@@ -332,7 +334,7 @@ function SettingMenu({ tableRef }) {
                   });
                 }}
               >
-                global
+                {Language.setting.global}
               </button>
             </div>
           </div>
@@ -356,7 +358,7 @@ function SettingMenu({ tableRef }) {
                   darkmode ? "hover:bg-slate-800" : "hover:bg-stone-200"
                 } `}
             >
-              Fullscreen
+              {Language.setting.fullscreen}
             </button>
           </div>
         </div>

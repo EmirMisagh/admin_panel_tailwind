@@ -21,11 +21,15 @@ function App() {
     setTimeout(() => {
       const darkMode = window.localStorage.getItem("darkmode");
       const sidebar = window.localStorage.getItem("sidebar");
+      const language = window.localStorage.getItem("language");
       dispatch({
         type: darkMode === "light" ? "light" : "dark",
       });
       dispatch({
         type: sidebar === "true" ? "sidebarbig" : "sidebarsmall",
+      });
+      dispatch({
+        type: language,
       });
     }, 2000);
   }, [dispatch]);

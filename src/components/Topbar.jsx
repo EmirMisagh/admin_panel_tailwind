@@ -2,19 +2,13 @@ import { CiSearch } from "react-icons/ci";
 import { BsPersonLinesFill } from "react-icons/bs";
 import { AiFillSetting } from "react-icons/ai";
 import { MdNotifications, MdQrCode2 } from "react-icons/md";
-import { useDispatch } from "react-redux";
-import { Menu, MenuButton, MenuItems } from '@headlessui/react'
-import {
-  ArchiveBoxXMarkIcon,
-  ChevronDownIcon,
-  PencilIcon,
-  Square2StackIcon,
-  TrashIcon,
-} from '@heroicons/react/16/solid'
+import { useDispatch, useSelector } from "react-redux";
+import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
 
 export default function Topbar() {
   const dispatch = useDispatch();
   const avatar = window.localStorage.getItem("avatar");
+  const language = useSelector((state) => state.languageReducer.language)
   return (
     <div className="w-full sticky top-0 left-0 text-textSecond_200 transt z-[99999]  ">
       <div className="relative items-center">
@@ -38,57 +32,76 @@ export default function Topbar() {
             </span>
           </ul>
           <ul className="flex gap-1 items-center">
-            <li>
-              <Menu>
-                <MenuButton className="inline-flex items-center gap-2 rounded-md bg-gray-800 py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-700 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white">
-                  Options
-                  <ChevronDownIcon className="size-4 fill-white/60" />
-                </MenuButton>
-
-                <MenuItems
+            <li className="p-2 py-3 rounded-full hover:bg-bg_secend_300 transt cursor-pointer">
+              <Popover>
+                <PopoverButton className="block text-sm/6 font-semibold text-white/50 focus:outline-none data-[active]:text-white data-[hover]:text-white data-[focus]:outline-1 data-[focus]:outline-white">
+                  <img src={`./img/${language}.webp`} className="w-6 h-[1.19rem] " alt="" />
+                </PopoverButton>
+                <PopoverPanel
                   transition
                   anchor="bottom end"
-                  className="w-52 origin-top-right rounded-xl border border-white/5 bg-white/5 p-1 text-sm/6 text-white transition duration-100 ease-out [--anchor-gap:var(--spacing-1)] focus:outline-none data-[closed]:scale-95 data-[closed]:opacity-0"
+                  className="divide-y  divide-white/5 rounded-xl mt-4 z-[99999] bg-slate-800 text-sm/6 transition duration-200 ease-in-out opacity-100 data-[closed]:-translate-y-1 data-[closed]:opacity-0"
                 >
-                  <MenuItem>
-                    <button className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10">
-                      <PencilIcon className="size-4 fill-white/30" />
-                      Edit
-                      <kbd className="ml-auto hidden font-sans text-xs text-white/50 group-data-[focus]:inline">
-                        ⌘E
-                      </kbd>
-                    </button>
-                  </MenuItem>
-                  <MenuItem>
-                    <button className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10">
-                      <Square2StackIcon className="size-4 fill-white/30" />
-                      Duplicate
-                      <kbd className="ml-auto hidden font-sans text-xs text-white/50 group-data-[focus]:inline">
-                        ⌘D
-                      </kbd>
-                    </button>
-                  </MenuItem>
-                  <div className="my-1 h-px bg-white/5" />
-                  <MenuItem>
-                    <button className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10">
-                      <ArchiveBoxXMarkIcon className="size-4 fill-white/30" />
-                      Archive
-                      <kbd className="ml-auto hidden font-sans text-xs text-white/50 group-data-[focus]:inline">
-                        ⌘A
-                      </kbd>
-                    </button>
-                  </MenuItem>
-                  <MenuItem>
-                    <button className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10">
-                      <TrashIcon className="size-4 fill-white/30" />
-                      Delete
-                      <kbd className="ml-auto hidden font-sans text-xs text-white/50 group-data-[focus]:inline">
-                        ⌘D
-                      </kbd>
-                    </button>
-                  </MenuItem>
-                </MenuItems>
-              </Menu>
+                  <div className="p-1 py-2">
+                    <div
+                      className=" cursor-pointer flex items-center gap-5 rounded-lg py-2 px-3 pr-20 transition hover:bg-white/5"
+                      onClick={() => {
+                        dispatch({
+                          type: "English",
+                        });
+                        localStorage.setItem('language', 'English')
+                      }}
+                    >
+                      <i>
+                        <img src="./img/English.webp" className="w-7 h-5" alt="" />
+                      </i>
+                      <p className="font-semibold text-white">English</p>
+                    </div>
+                    <div
+                      className=" cursor-pointer flex items-center gap-5 rounded-lg py-2 px-3 transition hover:bg-white/5"
+                      onClick={() => {
+                        dispatch({
+                          type: "French",
+                        });
+                        localStorage.setItem('language', 'French')
+                      }}
+                    >
+                      <i>
+                        <img src="./img/French.webp" className="w-7 h-5" alt="" />
+                      </i>
+                      <p className="font-semibold text-white">French</p>
+                    </div>
+                    <div
+                      className=" cursor-pointer flex items-center gap-5 rounded-lg py-2 px-3 transition hover:bg-white/5"
+                      onClick={() => {
+                        dispatch({
+                          type: "Persian",
+                        });
+                        localStorage.setItem('language', 'Persian')
+                      }}
+                    >
+                      <i>
+                        <img src="./img/Persian.webp" className="w-7 h-5" alt="" />
+                      </i>
+                      <p className="font-semibold text-white">Persian</p>
+                    </div>
+                    <div
+                      className="cursor-pointer flex items-center gap-5 rounded-lg py-2 px-3 transition hover:bg-white/5"
+                      onClick={() => {
+                        dispatch({
+                          type: "Turkish",
+                        });
+                        localStorage.setItem('language', 'Turkish')
+                      }}
+                    >
+                      <i>
+                        <img src="./img/Turkish.webp" className="w-7 h-5" alt="" />
+                      </i>
+                      <p className="font-semibold text-white">Turkish</p>
+                    </div>
+                  </div>
+                </PopoverPanel>
+              </Popover>
             </li>
             <li className="p-2 rounded-full hover:bg-bg_secend_300 transt cursor-pointer">
               <span className="text-2xl">

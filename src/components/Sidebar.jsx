@@ -61,7 +61,7 @@ function Sidebar() {
             </span>
             <div className="mt-3">
               <ItemOverview
-                title={"App"}
+                title={Language.sidebar.app}
                 address={"/"}
                 icon={<BsSpeedometer />}
               />

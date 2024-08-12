@@ -1,5 +1,5 @@
 const initialState = {
-  language: "French",
+  language: "English",
 };
 
 export const languageReducer = (state = initialState, action) => {
@@ -16,9 +16,9 @@ export const languageReducer = (state = initialState, action) => {
       return {
         language: "Persian",
       };
-    case "French":
+    case "Turkish":
       return {
-        language: "French",
+        language: "Turkish",
       };
     case "French":
       return {
