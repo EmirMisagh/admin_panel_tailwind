@@ -9,10 +9,11 @@ export default function Topbar() {
   const dispatch = useDispatch();
   const avatar = window.localStorage.getItem("avatar");
   const language = useSelector((state) => state.languageReducer.language)
+  const sidebarLocation = useSelector((state) => state.menuReducer.sidebarLocation);
   return (
     <div className="w-full sticky top-0 left-0 text-textSecond_200 transt z-[99999]  ">
       <div className="relative items-center">
-        <nav className="px-12 py-5 flex justify-between items-center">
+        <nav className={`px-12 py-5 flex justify-between items-center ${sidebarLocation === 'right' && 'flex-row-reverse'}`}>
           <ul
             className="flex items-center cursor-pointer"
             onClick={() => {
@@ -31,7 +32,7 @@ export default function Topbar() {
               </small>
             </span>
           </ul>
-          <ul className="flex gap-1 items-center">
+          <ul className={`flex gap-1 items-center ${sidebarLocation === 'right' && 'flex-row-reverse'}`}>
             <li className="p-2 py-3 rounded-full hover:bg-bg_secend_300 transt cursor-pointer">
               <Popover>
                 <PopoverButton className="block text-sm/6 font-semibold text-white/50 focus:outline-none data-[active]:text-white data-[hover]:text-white data-[focus]:outline-1 data-[focus]:outline-white">

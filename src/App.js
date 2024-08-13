@@ -22,6 +22,7 @@ function App() {
       const darkMode = window.localStorage.getItem("darkmode");
       const sidebar = window.localStorage.getItem("sidebar");
       const language = window.localStorage.getItem("language");
+      const sidebarDirection = window.localStorage.getItem("sidebarDirection");
       dispatch({
         type: darkMode === "light" ? "light" : "dark",
       });
@@ -30,6 +31,9 @@ function App() {
       });
       dispatch({
         type: language,
+      });
+      dispatch({
+        type: sidebarDirection,
       });
     }, 2000);
   }, [dispatch]);

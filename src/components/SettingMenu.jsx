@@ -137,6 +137,7 @@ function SettingMenu({ tableRef }) {
                   dispatch({
                     type: "leftSidebar",
                   });
+                  window.localStorage.setItem("sidebarDirection", "leftSidebar");
                 }}
               >
                 <ItemBg active={sidebarLocation === 'left' && true} icon={<PiAlignLeftFill />} />
@@ -146,6 +147,7 @@ function SettingMenu({ tableRef }) {
                   dispatch({
                     type: "rightSidebar",
                   });
+                  window.localStorage.setItem("sidebarDirection", "rightSidebar");
                 }}
               >
                 <ItemBg active={sidebarLocation === 'right' && true} icon={<PiAlignRightFill />} />

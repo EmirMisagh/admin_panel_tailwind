@@ -74,7 +74,7 @@ function Sidebar() {
                 icon={<BsSpeedometer />}
               />
               <ItemOverview
-                title={"Commerce"}
+                title={Language.sidebar.commerce}
                 address={"/commerce"}
                 icon={<BsBarChartLineFill />}
               />
@@ -154,6 +154,7 @@ function Sidebar() {
 
 function ItemOverview({ title, address, icon }) {
   const sidebar = useSelector((state) => state.menuReducer.sidebar);
+  const sidebarLocation = useSelector((state) => state.menuReducer.sidebarLocation);
   const downHandle = (e) => {
     e.target.classList.add("btn");
     e.target.classList.remove("hover:bg-bg_secend_400");
@@ -196,6 +197,7 @@ function ItemOverview({ title, address, icon }) {
           onMouseUp={(e) => upHandle(e)}
           onClick={(e) => clickHandle(e)}
           className={`w-full h-full flex items-center 
+            ${sidebarLocation === 'right' && 'flex-row-reverse'}
               ${
                 sidebar
                   ? "px-4 text-left  justify-start flex-row gap-3 text-sm"
@@ -289,7 +291,7 @@ function ItemSide({ title, address, icon }) {
           </i>
           {title}
         </span>
-        <i className={`${sidebarLocation === 'right' && 'rotate-180'}  ${openDiv && "rotate-90"} pointer-events-none`}>
+        <i className={`${sidebarLocation === 'right' ? openDiv ? "rotate-90" : 'rotate-180' : openDiv ? "rotate-90" : 'rotate-0'} pointer-events-none`}>
           <MdKeyboardArrowRight />
         </i>
       </button>
@@ -325,6 +327,7 @@ function ItemSide({ title, address, icon }) {
 
 function Item({ title, address, icon }) {
   const sidebar = useSelector((state) => state.menuReducer.sidebar);
+  const sidebarLocation = useSelector((state) => state.menuReducer.sidebarLocation);
 
   const downHandle = (e) => {
     e.target.classList.add("btn");
@@ -365,6 +368,7 @@ function Item({ title, address, icon }) {
         onMouseUp={(e) => upHandle(e)}
         onClick={(e) => clickHandle(e)}
         className={`w-full h-full flex justify-start items-center gap-3 
+          ${sidebarLocation === 'right' && 'flex-row-reverse'}
               ${
                 sidebar
                   ? "px-4 text-left  justify-start text-sm "
