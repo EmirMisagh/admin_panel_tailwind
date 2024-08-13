@@ -106,28 +106,28 @@ function Sidebar() {
             <div className="mt-3">
               <ItemSide
                 title={Language.user.user}
-                address={"/"}
+                address={"user"}
                 icon={<BiSolidUserRectangle />}
               />
               <ItemSide
-                title={"Song"}
-                address={"/"}
+                title={Language.song.song}
+                address={"song"}
                 icon={<BsFillFileMusicFill />}
               />
               <ItemSide
-                title={"Playlist"}
-                address={"/"}
+                title={Language.song.playlist}
+                address={"playlist"}
                 icon={<MdPlaylistAddCircle />}
               />
-              <ItemSide title={"Album"} address={"/"} icon={<RiAlbumFill />} />
+              <ItemSide title={Language.song.album} address={"/"} icon={<RiAlbumFill />} />
               <ItemSide
-                title={"Singer"}
-                address={"/"}
+                title={Language.song.singer}
+                address={"singer"}
                 icon={<BiSolidMicrophoneAlt />}
               />
               <ItemSide
-                title={"Category"}
-                address={"/"}
+                title={Language.song.category}
+                address={"category"}
                 icon={<BiSolidCategoryAlt />}
               />
             </div>
@@ -139,7 +139,7 @@ function Sidebar() {
               type: "sidebarboth",
             });
           }}
-          className={`border border-gray400  z-[99999999999] text-textSecond_300 hover:border-gray100 absolute top-24 transform translate-x-3 rounded-full ${sidebarLocation === 'left' ? 'right-0' : 'left-[-1.4rem]'} cursor-pointer`}
+          className={`border border-gray400  z-[99999999999] text-textSecond_300 hover:border-gray100 absolute top-24 transform translate-x-3 rounded-full ${sidebarLocation === 'left' ? 'right-0' : 'left-[-1.35rem]'} cursor-pointer`}
         >
           <MdKeyboardArrowRight
             className={` ${
@@ -302,22 +302,22 @@ function ItemSide({ title, address, icon }) {
       >
         <Item
           title={Language.sidebar.list}
-          address={`${title.toLowerCase()}/List`}
+          address={`${address.toLowerCase()}/List`}
           icon={""}
         />
         <Item
           title={Language.sidebar.create}
-          address={`${title.toLowerCase()}/create`}
+          address={`${address.toLowerCase()}/create`}
           icon={""}
         />
         <Item
           title={"Accont"}
-          address={`${title.toLowerCase()}/accont`}
+          address={`${address.toLowerCase()}/accont`}
           icon={""}
         />
         <Item
           title={"Card"}
-          address={`${title.toLowerCase()}/card`}
+          address={`${address.toLowerCase()}/card`}
           icon={""}
         />
       </div>

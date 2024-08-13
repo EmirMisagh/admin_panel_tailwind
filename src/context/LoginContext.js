@@ -12,6 +12,12 @@ export const useLoginMode = () => {
 
   useMemo(async () => {
     const token = window.localStorage.getItem("token");
+    const language = window.localStorage.getItem("language");
+    if (language) {
+      dispatch({
+        type: language,
+      });
+    }
     if (token) {
       try {
         const email = await getUserToken(token);
@@ -30,6 +36,10 @@ export const useLoginMode = () => {
           type: "load",
         });
       }
+    } else {
+      dispatch({
+        type: "load",
+      });
     }
   }, []);
   const loginMode = useMemo(

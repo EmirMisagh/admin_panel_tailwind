@@ -116,14 +116,14 @@ function Login() {
       <div className="box p-20 col-span-3">
         <div className="flex flex-col gap-5 justify-center h-full">
           <div>
-            <h1 className="text-2xl font-bold text-textSecond_100">Sign in to Kurdsong</h1>
+            <h1 className="text-2xl font-bold text-textSecond_100">{Language.loginPage.rightTop}</h1>
             <p className="mt-3 text-textSecond_400 text-sm">
-              Continue to your accont
+            {Language.loginPage.rightBottom}
             </p>
           </div>
           <div className="flex gap-3 mt-20 flex-col">
             <InputComponent
-              title={"Email address"}
+              title={Language.loginPage.inputOwn}
               typeInput={"text"}
               name="email"
               onChange={(e) => {
@@ -137,7 +137,7 @@ function Login() {
             />
             <small>{emailError}</small>
             <InputComponent
-              title={"Password"}
+              title={Language.loginPage.inputTwo}
               typeInput={"password"}
               name="password"
               onChange={(e) => {
@@ -153,7 +153,7 @@ function Login() {
           </div>
           <div className="mt-2 flex justify-center">
             <ButtonSubmit
-              title={"Login"}
+              title={Language.loginPage.button}
               submit={loginHandle}
               submiting={isSubmitting}
               styl={"w-full h-12 bg-bg_0 text-textSecond_900"}

@@ -4,7 +4,6 @@ import InputComponent from "../../components/element/InputComponent";
 import MyCombobox from "../../components/element/Combobox";
 import ButtonSubmit from "../../components/element/ButtonSubmit";
 import UploadFile from "../../components/element/UploadFile";
-import TextEditor from "../../components/element/TextEditor";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import {
@@ -17,6 +16,7 @@ import MyModal from "../../components/element/Modal";
 import Toggle from "../../components/element/Toggle";
 import Tags from "../../components/element/Tags";
 import Lyrics from "../../components/element/Lyrics";
+import useMode from "../../config/Language";
 
 const SignupSchema = Yup.object().shape({
   name: Yup.string()
@@ -58,6 +58,8 @@ function SongCreate() {
   const [albums, setAlbums] = useState([]);
   const [tags, setTags] = useState([]);
   const audioRef = useRef();
+
+  const Language = useMode();
 
   const getSingers = useCallback(async () => {
     const singersData = await getSingerAll();
@@ -190,7 +192,7 @@ function SongCreate() {
         <Header
           title={"Create a new song"}
           address1={"Dashbourd"}
-          address2={"Song"}
+          address2={Language.song.song}
           address3={"New Song"}
         />
       </div>
@@ -220,7 +222,7 @@ function SongCreate() {
               <div className="col-span-2  box rounded-2xl p-5 grid gap-6">
                 <div>
                   <InputComponent
-                    title={"Name"}
+                    title={Language.song.name}
                     typeInput={"text"}
                     name="name"
                     onChange={handleChange}
@@ -235,7 +237,7 @@ function SongCreate() {
                     <MyCombobox
                       key={index}
                       arr={singers}
-                      label={"Singer"}
+                      label={Language.song.singer}
                       handle={setSinger}
                     />
                   </div>
@@ -249,10 +251,10 @@ function SongCreate() {
                   </small>
                 </div>
                 <div>
-                  <small className="text-textSecond_50">Lyric</small>
+                  <small className="text-textSecond_50">{Language.song.lyrics}</small>
                   <div className="mt-3">
                     <Lyrics
-                      title={"Lyrics"}
+                      title={Language.song.lyrics}
                       name="lyric"
                       onChange={setLyrics}
                       onBlur={() => {}}
@@ -263,7 +265,7 @@ function SongCreate() {
                   </div>
                 </div>
                 <div>
-                  <small className="text-textSecond_50">Image</small>
+                  <small className="text-textSecond_50">{Language.song.image}</small>
                   <div className="mt-3">
                     <UploadFile handleUpload={uploadImage} />
                   </div>
@@ -278,7 +280,7 @@ function SongCreate() {
                   )}
                 </div>
                 <div>
-                  <small className="text-textSecond_50">Song</small>
+                  <small className="text-textSecond_50">{Language.song.song}</small>
                   <div className="mt-3">
                     <UploadFile handleUpload={uploadMusic} />
                   </div>
@@ -307,7 +309,7 @@ function SongCreate() {
                 <div>
                   <MyCombobox
                     arr={singers}
-                    label={"Category"}
+                    label={Language.song.category}
                     handle={() => {}}
                   />
                 </div>
