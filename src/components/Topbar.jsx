@@ -49,7 +49,7 @@ export default function Topbar() {
           >
             <li className="p-2 py-3 rounded-full hover:bg-bg_secend_300 transt cursor-pointer">
               <Popover>
-                <PopoverButton className="block text-sm/6 font-semibold text-white/50 focus:outline-none data-[active]:text-white data-[hover]:text-white data-[focus]:outline-1 data-[focus]:outline-white">
+                <PopoverButton className="block text-sm/6 font-semibold text-white/50 focus:outline-none data-[active]:text-white data-[hover]:text-white data-[focus]:outline-1 data-[focus]:bg-bg_secend_300">
                   <img
                     src={`./img/${language}.webp`}
                     className="w-6 h-[1.19rem] "
@@ -59,11 +59,11 @@ export default function Topbar() {
                 <PopoverPanel
                   transition
                   anchor="bottom end"
-                  className="divide-y  divide-white/5 rounded-xl mt-4 z-[99999] bg-slate-800 text-sm/6 transition duration-200 ease-in-out opacity-100 data-[closed]:-translate-y-1 data-[closed]:opacity-0"
+                  className=" rounded-xl mt-4 z-[99999] bg-blue-300 text-sm/6 transition duration-200 ease-in-out opacity-100 data-[closed]:-translate-y-1 data-[closed]:opacity-0"
                 >
-                  <div className="p-1 py-2">
+                  <div className="p-1 py-2 bg-bg_secend_100">
                     <div
-                      className=" cursor-pointer flex items-center gap-5 rounded-lg py-2 px-3 pr-20 transition hover:bg-white/5"
+                      className=" cursor-pointer bg-bg_secend_100 flex items-center gap-5 rounded-lg py-2 px-3 pr-20 transition hover:bg-white/5"
                       onClick={() => {
                         dispatch({
                           type: "English",

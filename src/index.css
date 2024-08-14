@@ -357,3 +357,15 @@ div[data-theme="yellow"] {
   -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
 }
+
+.sidebarTop::-webkit-scrollbar {
+  background-color: var(--color-back-gray-800);
+  width: 5px;
+  height: 7px;
+}
+
+.sidebarTop::-webkit-scrollbar-thumb {
+  background-color: var(--color-back-gray-700);
+  border-radius: 100px;
+  height: 50%;
+}

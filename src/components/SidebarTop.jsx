@@ -30,7 +30,7 @@ function SidebarTop() {
     <div
       className={`transition-all delay-700 sticky top-0 left-0 m-0  font-Libre flex`}
     >
-      <div className={`relative flex overflow-auto px-8 gap-10 ${sidebarLocation === 'right' && 'flex-row-reverse'}`}>
+      <div className={`relative flex overflow-auto sidebarTop pb-2 px-8 gap-10 ${sidebarLocation === 'right' && 'flex-row-reverse'}`}>
         <div className="flex flex-col items-center  justify-center font-Libre text-textSecond_400 ">
           <p className="flex text-textSecond_50 font-bold w-28">
             {name} {family}
@@ -183,9 +183,9 @@ function ItemSide({ title, address, icon }) {
                   `}
     >
       <button
-        className={`w-full h-full flex items-center text-sm rounded-lg
+        className={` h-full flex items-center text-sm rounded-lg
           ${sidebarLocation === "right" && "flex-row-reverse"}
-                  px-4 text-left  justify-between flex-row gap-3 text-sm
+                  px-4 w-36  text-left  justify-between flex-row gap-3 text-sm
               py-3 hover:bg-bg_secend_400 relative`}
       >
         <span
