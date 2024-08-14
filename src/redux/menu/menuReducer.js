@@ -4,7 +4,8 @@ const initialState = {
     notification: false,
     sidebar: true,
     load: false,
-    sidebarLocation: "top",
+    sidebarLocation: "rightSidebar",
+    sidebarTop: true,
   };
   
   export const menuReducer = (state = initialState, action) => {
@@ -27,11 +28,13 @@ const initialState = {
       case "sidebarbig":
         return {
           ...state,
+          sidebarTop: false,
           sidebar: true,
         };
       case "sidebarsmall":
         return {
           ...state,
+          sidebarTop: false,
           sidebar: false,
         };
       case "sidebarboth":
@@ -57,7 +60,7 @@ const initialState = {
       case "topSidebar":
         return {
           ...state,
-          sidebarLocation: "top",
+          sidebarTop: true,
         };
       default:
         return state;

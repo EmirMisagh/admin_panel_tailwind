@@ -4,16 +4,26 @@ import { AiFillSetting } from "react-icons/ai";
 import { MdNotifications, MdQrCode2 } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
+import SidebarTop from "./SidebarTop";
 
 export default function Topbar() {
   const dispatch = useDispatch();
   const avatar = window.localStorage.getItem("avatar");
-  const language = useSelector((state) => state.languageReducer.language)
-  const sidebarLocation = useSelector((state) => state.menuReducer.sidebarLocation);
+  const language = useSelector((state) => state.languageReducer.language);
+  const sidebarLocation = useSelector(
+    (state) => state.menuReducer.sidebarLocation
+  );
+  const sidebarTop = useSelector((state) => state.menuReducer.sidebarTop);
   return (
     <div className="w-full sticky top-0 left-0 text-textSecond_200 transt z-[99999]  ">
       <div className="relative items-center">
-        <nav className={`px-12 py-5 flex justify-between items-center ${sidebarLocation === 'right' && 'flex-row-reverse'}`}>
+        <nav
+          className={`px-12 py-5 ${
+            sidebarTop && "pb-0"
+          } flex justify-between items-center ${
+            sidebarLocation === "right" && "flex-row-reverse"
+          }`}
+        >
           <ul
             className="flex items-center cursor-pointer"
             onClick={() => {
@@ -32,11 +42,19 @@ export default function Topbar() {
               </small>
             </span>
           </ul>
-          <ul className={`flex gap-1 items-center ${sidebarLocation === 'right' && 'flex-row-reverse'}`}>
+          <ul
+            className={`flex gap-1 items-center ${
+              sidebarLocation === "right" && "flex-row-reverse"
+            }`}
+          >
             <li className="p-2 py-3 rounded-full hover:bg-bg_secend_300 transt cursor-pointer">
               <Popover>
                 <PopoverButton className="block text-sm/6 font-semibold text-white/50 focus:outline-none data-[active]:text-white data-[hover]:text-white data-[focus]:outline-1 data-[focus]:outline-white">
-                  <img src={`./img/${language}.webp`} className="w-6 h-[1.19rem] " alt="" />
+                  <img
+                    src={`./img/${language}.webp`}
+                    className="w-6 h-[1.19rem] "
+                    alt=""
+                  />
                 </PopoverButton>
                 <PopoverPanel
                   transition
@@ -50,11 +68,15 @@ export default function Topbar() {
                         dispatch({
                           type: "English",
                         });
-                        localStorage.setItem('language', 'English')
+                        localStorage.setItem("language", "English");
                       }}
                     >
                       <i>
-                        <img src="./img/English.webp" className="w-7 h-5" alt="" />
+                        <img
+                          src="./img/English.webp"
+                          className="w-7 h-5"
+                          alt=""
+                        />
                       </i>
                       <p className="font-semibold text-white">English</p>
                     </div>
@@ -64,11 +86,15 @@ export default function Topbar() {
                         dispatch({
                           type: "French",
                         });
-                        localStorage.setItem('language', 'French')
+                        localStorage.setItem("language", "French");
                       }}
                     >
                       <i>
-                        <img src="./img/French.webp" className="w-7 h-5" alt="" />
+                        <img
+                          src="./img/French.webp"
+                          className="w-7 h-5"
+                          alt=""
+                        />
                       </i>
                       <p className="font-semibold text-white">French</p>
                     </div>
@@ -78,11 +104,15 @@ export default function Topbar() {
                         dispatch({
                           type: "Persian",
                         });
-                        localStorage.setItem('language', 'Persian')
+                        localStorage.setItem("language", "Persian");
                       }}
                     >
                       <i>
-                        <img src="./img/Persian.webp" className="w-7 h-5" alt="" />
+                        <img
+                          src="./img/Persian.webp"
+                          className="w-7 h-5"
+                          alt=""
+                        />
                       </i>
                       <p className="font-semibold text-white">Persian</p>
                     </div>
@@ -92,11 +122,15 @@ export default function Topbar() {
                         dispatch({
                           type: "Turkish",
                         });
-                        localStorage.setItem('language', 'Turkish')
+                        localStorage.setItem("language", "Turkish");
                       }}
                     >
                       <i>
-                        <img src="./img/Turkish.webp" className="w-7 h-5" alt="" />
+                        <img
+                          src="./img/Turkish.webp"
+                          className="w-7 h-5"
+                          alt=""
+                        />
                       </i>
                       <p className="font-semibold text-white">Turkish</p>
                     </div>
@@ -138,6 +172,7 @@ export default function Topbar() {
           </ul>
         </nav>
       </div>
+      {sidebarTop && <SidebarTop />}
     </div>
   );
 }

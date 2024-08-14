@@ -14,9 +14,12 @@ import useMode from "../config/Language";
 function SettingMenu({ tableRef }) {
   const darkmode = useSelector((state) => state.themeReducer.darkmode);
   const sidebar = useSelector((state) => state.menuReducer.sidebar);
-  const sidebarLocation = useSelector((state) => state.menuReducer.sidebarLocation);
+  const sidebarLocation = useSelector(
+    (state) => state.menuReducer.sidebarLocation
+  );
   const color = useSelector((state) => state.themeReducer.color);
   const settingMenu = useSelector((state) => state.menuReducer.settingMenu);
+  const sidebarTop = useSelector((state) => state.menuReducer.sidebarTop);
   const boxtheme = useSelector((state) => state.themeReducer.boxtheme);
   const Language = useMode();
 
@@ -33,8 +36,16 @@ function SettingMenu({ tableRef }) {
   return (
     <>
       <div
-        className={`fixed overflow-hidden transt ${sidebarLocation === "left" ? 'border-l' : 'border-r'} flex flex-col top-0 w-[17.0rem] z-[99999999] blur-none  border-l-1 border-color_border_600  ${
-          sidebarLocation === 'left' ? settingMenu ? "right-0" : "right-[-17rem]" : settingMenu ? "left-0" : "left-[-17rem]"
+        className={`fixed overflow-hidden transt ${
+          sidebarLocation === "left" ? "border-l" : "border-r"
+        } flex flex-col top-0 w-[17.0rem] z-[99999999] blur-none  border-l-1 border-color_border_600  ${
+          sidebarLocation === "left"
+            ? settingMenu
+              ? "right-0"
+              : "right-[-17rem]"
+            : settingMenu
+            ? "left-0"
+            : "left-[-17rem]"
         } h-full`}
       >
         <div className=" flex items-center justify-between px-6 py-5 pr-4 border-b border-color_border_600">
@@ -137,20 +148,32 @@ function SettingMenu({ tableRef }) {
                   dispatch({
                     type: "leftSidebar",
                   });
-                  window.localStorage.setItem("sidebarDirection", "leftSidebar");
+                  window.localStorage.setItem(
+                    "sidebarDirection",
+                    "leftSidebar"
+                  );
                 }}
               >
-                <ItemBg active={sidebarLocation === 'left' && true} icon={<PiAlignLeftFill />} />
+                <ItemBg
+                  active={sidebarLocation === "left" && true}
+                  icon={<PiAlignLeftFill />}
+                />
               </div>
               <div
                 onClick={() => {
                   dispatch({
                     type: "rightSidebar",
                   });
-                  window.localStorage.setItem("sidebarDirection", "rightSidebar");
+                  window.localStorage.setItem(
+                    "sidebarDirection",
+                    "rightSidebar"
+                  );
                 }}
               >
-                <ItemBg active={sidebarLocation === 'right' && true} icon={<PiAlignRightFill />} />
+                <ItemBg
+                  active={sidebarLocation === "right" && true}
+                  icon={<PiAlignRightFill />}
+                />
               </div>
             </div>
           </div>
@@ -172,35 +195,75 @@ function SettingMenu({ tableRef }) {
                   <div className=" h-12 col-span-4 rounded-md flex flex-col gap-1 justify-start">
                     <div
                       className={` w-3 h-3 rounded-full ${
-                        sidebar ? "bg-theme200" : "bg-bg_secend_100"
+                        !sidebarTop && sidebar
+                          ? "bg-theme200"
+                          : "bg-bg_secend_100"
                       }`}
                     ></div>
                     <div
                       className={`w-3/4 ${
-                        sidebar ? "bg-theme300" : "bg-bg_secend_300"
+                        !sidebarTop && sidebar
+                          ? "bg-theme300"
+                          : "bg-bg_secend_300"
                       } h-[3px] rounded-lg`}
                     ></div>
                     <div
                       className={`w-2/3 ${
-                        sidebar ? "bg-theme500" : "bg-bg_secend_300"
+                        !sidebarTop && sidebar
+                          ? "bg-theme500"
+                          : "bg-bg_secend_300"
                       } h-[3px] rounded-lg`}
                     ></div>
                   </div>
                   <div
                     className={`h-full col-span-3 ${
-                      sidebar ? "bg-theme700" : "bg-bg_secend_300"
+                      !sidebarTop && sidebar
+                        ? "bg-theme700"
+                        : "bg-bg_secend_300"
                     } rounded-md `}
                   ></div>
                 </div>
               </div>
-              <div className="p-1 cursor-pointer py-1 rounded-lg border border-color_border_600">
-                <div className="grid grid-cols-2 gap-1 w-14">
-                  <div className="w-6 h-12 col-span-1 rounded-md flex flex-col gap-1 justify-start">
-                    <div className=" w-3 h-3 rounded-full bg-secend100"></div>
-                    <div className="w-full bg-secend300 h-1 rounded-lg"></div>
-                    <div className="w-2/3 bg-secend300 h-1 rounded-lg"></div>
+              <div
+                className="p-1 cursor-pointer py-1 rounded-lg border border-color_border_600"
+                onClick={() => {
+                  dispatch({
+                    type: "topSidebar",
+                  });
+                  window.localStorage.setItem("topSidebar", "true");
+                }}
+              >
+                <div className="flex flex-col w-14">
+                  <div className="  rounded-md flex items-center gap-1 justify-start">
+                    <div
+                      className={` w-3 h-3 rounded-full ${
+                        sidebarTop
+                          ? "bg-theme200"
+                          : "bg-bg_secend_100"
+                      }`}
+                    ></div>
+                    <div
+                      className={`w-3 ${
+                        sidebarTop
+                          ? "bg-theme300"
+                          : "bg-bg_secend_300"
+                      } h-[3px] rounded-lg`}
+                    ></div>
+                    <div
+                      className={`w-2 ${
+                        sidebarTop
+                          ? "bg-theme500"
+                          : "bg-bg_secend_300"
+                      } h-[3px] rounded-lg`}
+                    ></div>
                   </div>
-                  <div className="w-full h-full col-span-1 bg-secend300 rounded-md "></div>
+                  <div
+                    className={`w-full h-8 mt-1 ${
+                      sidebarTop
+                        ? "bg-theme700"
+                        : "bg-bg_secend_300"
+                    } rounded-md `}
+                  ></div>
                 </div>
               </div>
               <div
@@ -216,23 +279,31 @@ function SettingMenu({ tableRef }) {
                   <div className="w-6 h-12 col-span-2 rounded-md flex flex-col gap-1 justify-start">
                     <div
                       className={`w-3 h-3 rounded-full ${
-                        sidebar === false ? "bg-theme200" : "bg-bg_secend_100"
+                        !sidebarTop && sidebar === false
+                          ? "bg-theme200"
+                          : "bg-bg_secend_100"
                       }`}
                     ></div>
                     <div
                       className={`w-1/2  ${
-                        sidebar === false ? "bg-theme300" : "bg-bg_secend_300"
+                        !sidebarTop && sidebar === false
+                          ? "bg-theme300"
+                          : "bg-bg_secend_300"
                       } h-1 rounded-lg`}
                     ></div>
                     <div
                       className={`w-1/2 ${
-                        sidebar === false ? "bg-theme700" : "bg-bg_secend_300"
+                        !sidebarTop && sidebar === false
+                          ? "bg-theme700"
+                          : "bg-bg_secend_300"
                       } h-1 rounded-lg`}
                     ></div>
                   </div>
                   <div
                     className={`w-full h-full col-span-5 ${
-                      sidebar === false ? "bg-theme700" : "bg-bg_secend_300"
+                      !sidebarTop && sidebar === false
+                        ? "bg-theme700"
+                        : "bg-bg_secend_300"
                     } rounded-md `}
                   ></div>
                 </div>

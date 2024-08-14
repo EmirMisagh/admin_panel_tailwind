@@ -10,6 +10,7 @@ import Search from "./Search";
 
 function Dashboard({ tableRef }) {
   const sidebar = useSelector((state) => state.menuReducer.sidebar);
+  const sidebarTop = useSelector((state) => state.menuReducer.sidebarTop);
   const sidebarLocation = useSelector(
     (state) => state.menuReducer.sidebarLocation
   );
@@ -21,7 +22,28 @@ function Dashboard({ tableRef }) {
           sidebar ? "md:grid-cols-9" : "md:grid-cols-12"
         } relative`}
       >
-        {sidebarLocation === "left" ? (
+        {sidebarTop ? (
+          <div
+            className={`main  overflow-y-scroll notscroll h-[100vh] ${
+              sidebar ? "col-span-9" : "col-span-12"
+            }`}
+          >
+            <Topbar />
+            <div className="py-0 px-14 pb-20 relative">
+              <Suspense fallback={<Loading />}>
+                <Routes>
+                  {router.map((route, index) => (
+                    <Route
+                      path={route.path}
+                      element={route.element}
+                      key={index}
+                    />
+                  ))}
+                </Routes>
+              </Suspense>
+            </div>
+          </div>
+        ) : sidebarLocation === "left" ? (
           <>
             <div
               className={`sidebar  ${
@@ -51,7 +73,7 @@ function Dashboard({ tableRef }) {
               </div>
             </div>
           </>
-        ) : sidebarLocation === "right" ? (
+        ) : (
           <>
             <div
               className={`main  overflow-y-scroll notscroll h-[100vh] ${
@@ -74,34 +96,13 @@ function Dashboard({ tableRef }) {
               </div>
             </div>
             <div
-              className={`sidebar  ${sidebar ? "col-span-2" : "col-span-1"} ${
-                sidebarLocation === "left" ? "border-r" : "border-l"
-              } border-color_border_500 relative h-full top-0`}
+              className={`sidebar  ${
+                sidebar ? "col-span-2" : "col-span-1"
+              } border-l border-color_border_500 relative h-full top-0`}
             >
               <Sidebar />
             </div>
           </>
-        ) : (
-          <div
-            className={`main  overflow-y-scroll notscroll h-[100vh] ${
-              sidebar ? "col-span-9" : "col-span-12"
-            }`}
-          >
-            <Topbar />
-            <div className="py-0 px-14 pb-20 relative">
-              <Suspense fallback={<Loading />}>
-                <Routes>
-                  {router.map((route, index) => (
-                    <Route
-                      path={route.path}
-                      element={route.element}
-                      key={index}
-                    />
-                  ))}
-                </Routes>
-              </Suspense>
-            </div>
-          </div>
         )}
         <div className="menues">
           <SettingMenu tableRef={tableRef} />
