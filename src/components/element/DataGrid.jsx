@@ -440,7 +440,7 @@ export function DataGridSong({ songs }) {
                       />
                     </div>
                     <div className="">
-                      <b className=" text-textSecond_200">{item.name}</b>
+                      <b className=" text-textSecond_200" >{item.name}</b>
                       <p className=" text-textgray400">{item.singer}</p>
                     </div>
                   </div>
@@ -465,16 +465,17 @@ export function DataGridSong({ songs }) {
                   </div>
                   <div className="flex w-24 text-lg gap-3 items-center justify-end pr-4">
                     <NavLink to={`/song/${item._id}`}>
-                      <i>
+                      <p title="Edit">
                         <MdEdit />
-                      </i>
+                      </p>
                     </NavLink>
-                    <i
+                    <p 
                       className=" cursor-pointer"
+                      title="Delete"
                       onClick={() => removeHandle(item._id)}
                     >
                       <MdDeleteForever />
-                    </i>
+                    </p>
                   </div>
                 </div>
               )
@@ -543,7 +544,7 @@ export function DataGridSong({ songs }) {
   );
 }
 
-export function DataGridSongPlaylist({ songs, action,removeSong }) {
+export function DataGridSongPlaylist({ songs, action, removeSong }) {
   const [list, setList] = useState(songs);
   const [padding, setPadding] = useState(true);
   const [input, setInput] = useState("");
@@ -589,8 +590,6 @@ export function DataGridSongPlaylist({ songs, action,removeSong }) {
 
     setList(songs.filter((item) => item.admin === event));
   };
-
- 
 
   return (
     <div className="w-full py-3 pb-0">
@@ -644,7 +643,7 @@ export function DataGridSongPlaylist({ songs, action,removeSong }) {
               </div>
             </div>
             <div className=" text-2xl pr-5 cursor-pointer">
-            <IoIosRemoveCircle />
+              <IoIosRemoveCircle />
             </div>
           </div>
         ) : (
