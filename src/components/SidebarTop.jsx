@@ -18,7 +18,9 @@ import { useSelector, useDispatch } from "react-redux";
 import useMode from "../config/Language";
 
 function SidebarTop() {
-  const sidebarLocation = useSelector((state) => state.menuReducer.sidebarLocation);
+  const sidebarLocation = useSelector(
+    (state) => state.menuReducer.sidebarLocation
+  );
   const Language = useMode();
 
   const name = window.localStorage.getItem("name");
@@ -30,15 +32,27 @@ function SidebarTop() {
     <div
       className={`transition-all delay-700 sticky top-0 left-0 m-0  font-Libre flex`}
     >
-      <div className={`relative flex overflow-auto sidebarTop pb-2 px-8 gap-10 ${sidebarLocation === 'right' && 'flex-row-reverse'}`}>
+      <div
+        className={`relative flex overflow-x-auto sidebarTop pb-2 px-8 gap-10 ${
+          sidebarLocation === "right" && "flex-row-reverse"
+        }`}
+      >
         <div className="flex flex-col items-center  justify-center font-Libre text-textSecond_400 ">
           <p className="flex text-textSecond_50 font-bold w-28">
             {name} {family}
           </p>
         </div>
-        <div className={`relative flex ${sidebarLocation === 'right' && 'flex-row-reverse'} gap-2 `}>
-          <div className={` items-center`}>
-            <div className={`flex gap-2 items-center ${sidebarLocation === 'right' && 'flex-row-reverse'}`}>
+        <div
+          className={`relative flex ${
+            sidebarLocation === "right" && "flex-row-reverse"
+          } gap-2 `}
+        >
+          <div className={` items-center overflow-y-auto`}>
+            <div
+              className={`flex gap-2 items-center overflow-auto ${
+                sidebarLocation === "right" && "flex-row-reverse"
+              }`}
+            >
               <ItemOverview
                 title={Language.sidebar.app}
                 address={"/"}
@@ -61,8 +75,12 @@ function SidebarTop() {
               />
             </div>
           </div>
-          <div className=" gap-10 flex">
-            <div className={`flex items-center gap-2 ${sidebarLocation === 'right' && 'flex-row-reverse'}`}>
+          <div className=" gap-10 flex ">
+            <div
+              className={`flex items-center relative overflow-hidden gap-2  ${
+                sidebarLocation === "right" && "flex-row-reverse"
+              }`}
+            >
               <ItemSide
                 title={Language.user.user}
                 address={"user"}
@@ -171,38 +189,48 @@ function ItemSide({ title, address, icon }) {
   return (
     <div
       className={`flex flex-col mt-1 
-                    w-full 
-                    rounded-lg 
-                    text-center justify-center
-                    text-textSecond_300
-                    focus:outline-none 
-                    font-Libre
-                    bg-none  
-                    overflow-hidden
-                    transition ease-in-out duration-300
-                  `}
+                  w-full 
+                  rounded-lg 
+                      text-left  justify-between   relative
+                  text-textSecond_300
+                  focus:outline-none 
+                  font-Libre
+                  bg-none  
+                  transition ease-in-out duration-300
+                `}
     >
       <button
-        className={` h-full flex items-center text-sm rounded-lg
-          ${sidebarLocation === "right" && "flex-row-reverse"}
-                  px-4 w-36  text-left  justify-between flex-row gap-3 text-sm
-              py-3 hover:bg-bg_secend_400 relative`}
+        className={`w-full btnSidebarTop h-full flex items-center text-sm rounded-lg
+        ${sidebarLocation === "right" && "flex-row-reverse"}
+           
+                px-4 text-left  justify-between flex-row gap-3 text-sm
+               
+            py-3 hover:bg-bg_secend_400 relative`}
       >
         <span
           className={`flex items-center gap-3 w-full h-full pointer-events-none ${
             sidebarLocation === "left" ? " flex-row " : "flex-row-reverse"
           } `}
         >
-          <i className={`text-lg  pointer-events-none`}>{icon}</i>
+          <i
+            className={`
+              text-lg text-[0.9rem] scale-150  
+            pointer-events-none`}
+          >
+            {icon}
+          </i>
           {title}
         </span>
-        <i className={`rotate-90`}>
+        <i
+          className={`rotate-90 pointer-events-none`}
+        >
           <MdKeyboardArrowRight />
         </i>
       </button>
       <div
-        className={`pt-1 pb-2 text-sm text-gray-500 ${
-          openDiv ? "" : "opendiv"
+        tabIndex={1}
+        className={`divSidebarTop flex-col pt-1 pb-2 text-sm text-gray-500 absolute bg-red-100 left-0 top-0 ${
+          openDiv ? "divSidebarTop " : "divSidebarTop"
         }`}
       >
         <Item
@@ -265,7 +293,6 @@ function Item({ title, address, icon }) {
       focus:outline-none 
       font-Libre
       bg-none 
-      overflow-hidden
       transition ease-in-out duration-300 mt-1
       sidebarLink
     `}

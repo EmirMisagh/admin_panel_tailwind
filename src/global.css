@@ -9,6 +9,16 @@
   display: block;
 }
 
+.divSidebarTop{
+display: none;
+}
+
+.btnSidebarTop:hover + .divSidebarTop{
+display: flex;
+}
+
+
+
 div[theme-mode="light"] .btn {
   animation: gradient 300ms;
   background: rgb(207, 207, 207);
